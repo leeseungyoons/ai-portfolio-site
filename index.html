@@ -388,6 +388,41 @@
       </div>
     </section>
 
+      <!-- 8. AI 면접관 Agent -->
+      <div class="item">
+        <div class="item-header">
+          <div class="item-title">AI 면접관 Agent (이력서·자소서 기반 면접 Q/A·평가·리포트 자동화)</div>
+          <div class="item-meta">LLM · LangGraph · 인터뷰 시뮬레이터</div>
+        </div>
+        <p class="item-sub">
+          지원자의 이력서·자기소개서를 기반으로 면접 질문을 생성하고, 답변을 평가한 뒤, 최종 인터뷰 리포트를 자동으로 작성하는 AI 면접관 에이전트.
+        </p>
+        <ul>
+          <li><code>InterviewState</code>를 정의해 이력서 요약, 키워드, 질문 전략, 현재 Q/A, 평가 로그 등을 상태로 관리</li>
+          <li>면접 플로우: 이력서 분석 → 질문 생성 → 답변 평가(관련성/구체성/논리성 등) → 추가 질문 여부 결정 → 인터뷰 종료 후 리포트 작성</li>
+          <li>LangGraph를 이용해 각 단계를 노드로 구성하고, 규칙 기반 로직과 LLM 응답을 조합해 일관된 인터뷰 경험 제공</li>
+          <li>질문 난이도·주제 전환 등 UX 관점까지 고려해, 실제 면접에 가까운 시나리오 설계 경험</li>
+        </ul>
+      </div>
+
+      <!-- 9. AI 강사 Agent -->
+      <div class="item">
+        <div class="item-header">
+          <div class="item-title">AI 강사 Agent (강의자료 → 수업 설계·퀴즈·피드백 자동화)</div>
+          <div class="item-meta">LLM · 교육 도메인 · 콘텐츠 생성</div>
+        </div>
+        <p class="item-sub">
+          강의자료(PDF/슬라이드/텍스트)를 입력하면 수업 구성, 핵심 요약, 퀴즈, 과제, 피드백까지 자동으로 생성해주는 AI 강사 에이전트.
+        </p>
+        <ul>
+          <li>강의자료를 분석해 챕터별 핵심 개념을 추출하고, 난이도에 맞는 학습 목표 및 수업 흐름 설계</li>
+          <li>개념 이해를 체크할 수 있는 객관식/주관식 퀴즈와 간단한 과제를 자동 생성</li>
+          <li>학생 답변 예시를 바탕으로 피드백 문구를 생성하는 프롬프트/에이전트 구조 설계</li>
+          <li>“강의자료 → 수업 설계 → 평가 → 피드백”까지의 전체 교육 플로우를 자동화하는 구조를 실험하며, 교육 도메인과 LLM 활용 가능성을 탐색</li>
+        </ul>
+      </div>
+
+    
     <!-- CONTACT -->
     <section id="contact">
       <h2>Contact</h2>
