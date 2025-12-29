@@ -8,15 +8,15 @@
   <style>
     :root {
       --bg: #020617;
-      --bg-elevated: #02091b;
-      --card: #020c26;
-      --accent: #38bdf8;
-      --accent-soft: rgba(56, 189, 248, 0.12);
+      --bg-soft: #02081f;
+      --card: #020b25;
+      --accent: #22c55e;
+      --accent2: #38bdf8;
       --border-subtle: rgba(148, 163, 184, 0.35);
       --text-main: #e5e7eb;
       --text-sub: #9ca3af;
-      --chip-border: rgba(148, 163, 184, 0.6);
-      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.7);
+      --chip-border: rgba(148, 163, 184, 0.4);
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.75);
       --radius-xl: 18px;
     }
 
@@ -24,18 +24,15 @@
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Pretendard", "Noto Sans KR", system-ui, sans-serif;
-      background: radial-gradient(circle at top left, #0b1220 0, #020617 40%, #020617 100%);
+      background:
+        radial-gradient(circle at top left, #0f172a 0, #020617 40%, #020617 100%),
+        #020617;
       color: var(--text-main);
       line-height: 1.6;
     }
 
-    a {
-      color: var(--accent);
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
+    a { color: var(--accent2); text-decoration: none; }
+    a:hover { text-decoration: underline; }
 
     /* NAV */
     header {
@@ -43,13 +40,13 @@
       top: 0;
       z-index: 20;
       backdrop-filter: blur(14px);
-      background: linear-gradient(to right, rgba(2, 8, 23, 0.94), rgba(15, 23, 42, 0.9));
-      border-bottom: 1px solid rgba(148, 163, 184, 0.3);
+      background: linear-gradient(to right, rgba(2, 6, 23, 0.96), rgba(15, 23, 42, 0.92));
+      border-bottom: 1px solid rgba(30, 64, 175, 0.5);
     }
     .nav {
       max-width: 1120px;
       margin: 0 auto;
-      padding: 0.75rem 1.6rem;
+      padding: 0.8rem 1.6rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -57,37 +54,36 @@
     }
     .nav-title {
       font-weight: 700;
-      letter-spacing: 0.12em;
-      font-size: 0.82rem;
+      letter-spacing: 0.18em;
+      font-size: 0.78rem;
       text-transform: uppercase;
-      white-space: nowrap;
       display: flex;
       align-items: center;
-      gap: 0.4rem;
+      gap: 0.5rem;
     }
-    .nav-dot {
-      width: 10px;
-      height: 10px;
+    .nav-logo-dot {
+      width: 12px;
+      height: 12px;
       border-radius: 999px;
-      background: var(--accent);
-      box-shadow: 0 0 12px rgba(56, 189, 248, 0.8);
+      background: radial-gradient(circle, var(--accent), #16a34a);
+      box-shadow: 0 0 16px rgba(34, 197, 94, 0.9);
     }
     .nav-links {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.55rem;
+      gap: 0.6rem;
       font-size: 0.85rem;
     }
     .nav-links a {
-      padding: 0.3rem 0.9rem;
+      padding: 0.35rem 0.9rem;
       border-radius: 999px;
       border: 1px solid transparent;
-      background: transparent;
+      background: rgba(15, 23, 42, 0.7);
       transition: all 0.15s ease-out;
     }
     .nav-links a:hover {
-      border-color: var(--border-subtle);
-      background: rgba(15, 23, 42, 0.95);
+      border-color: rgba(148, 163, 184, 0.9);
+      background: rgba(15, 23, 42, 0.98);
       text-decoration: none;
       transform: translateY(-1px);
     }
@@ -96,29 +92,38 @@
     main {
       max-width: 1120px;
       margin: 0 auto;
-      padding: 2.3rem 1.6rem 4rem;
+      padding: 2.4rem 1.6rem 4rem;
     }
     section {
       padding: 2.2rem 0;
-      border-bottom: 1px solid rgba(30, 64, 175, 0.2);
+      border-bottom: 1px solid rgba(30, 64, 175, 0.25);
     }
     section:last-of-type {
       border-bottom: none;
       padding-bottom: 0;
     }
 
+    .section-label {
+      font-size: 0.78rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-sub);
+      margin-bottom: 0.35rem;
+    }
+
     h1 {
-      font-size: 2.4rem;
-      margin-bottom: 0.5rem;
+      font-size: 2.5rem;
+      margin-bottom: 0.4rem;
     }
     h2 {
-      font-size: 1.45rem;
+      font-size: 1.5rem;
       margin-bottom: 1.1rem;
     }
     h3 {
       font-size: 1.02rem;
       margin: 0.35rem 0;
     }
+
     .sub {
       color: var(--text-sub);
       font-size: 0.96rem;
@@ -138,18 +143,42 @@
     }
     .pill {
       font-size: 0.78rem;
-      padding: 0.28rem 0.85rem;
+      padding: 0.3rem 0.9rem;
       border-radius: 999px;
-      border: 1px solid var(--chip-border);
-      background: var(--accent-soft);
+      border: 1px solid rgba(34, 197, 94, 0.28);
+      background: rgba(15, 118, 110, 0.25);
       color: var(--text-main);
-      backdrop-filter: blur(6px);
+      backdrop-filter: blur(8px);
     }
 
-    .grid-2 {
+    .grid-hero {
       display: grid;
-      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.1fr);
-      gap: 2.1rem;
+      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.1fr);
+      gap: 2rem;
+      align-items: stretch;
+    }
+
+    .card {
+      position: relative;
+      background: radial-gradient(circle at top left, #020b25, #020617);
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(30, 64, 175, 0.55);
+      padding: 1.4rem 1.35rem 1.2rem;
+      box-shadow: var(--shadow-soft);
+    }
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(34,197,94,0.4), rgba(56,189,248,0.4));
+      -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+              mask-composite: exclude;
+      opacity: 0.7;
     }
 
     ul {
@@ -157,33 +186,45 @@
       margin-top: 0.4rem;
     }
     li {
-      font-size: 0.94rem;
-      margin-bottom: 0.28rem;
+      font-size: 0.93rem;
+      margin-bottom: 0.26rem;
       color: var(--text-main);
     }
 
-    .card {
-      background: var(--card);
-      border-radius: var(--radius-xl);
-      border: 1px solid rgba(30, 64, 175, 0.55);
-      padding: 1.3rem 1.3rem 1.1rem;
-      box-shadow: var(--shadow-soft);
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.9rem;
+      margin-top: 1.1rem;
+    }
+    .stat {
+      border-radius: 14px;
+      padding: 0.75rem 0.9rem;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      background: rgba(15, 23, 42, 0.9);
+      font-size: 0.8rem;
+    }
+    .stat strong {
+      display: block;
+      font-size: 1.05rem;
+      margin-bottom: 0.15rem;
+      color: var(--accent);
     }
 
     .item {
       margin-bottom: 1.6rem;
-      padding: 1.1rem 1.2rem 1rem;
+      padding: 1.15rem 1.25rem 1.05rem;
       border-radius: var(--radius-xl);
-      border: 1px solid rgba(148, 163, 184, 0.22);
-      background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.92));
+      background: radial-gradient(circle at top left, rgba(15,23,42,0.96), rgba(15,23,42,0.9));
+      border: 1px solid rgba(148, 163, 184, 0.28);
     }
     .item-header {
       display: flex;
       justify-content: space-between;
       flex-wrap: wrap;
-      gap: 0.4rem;
+      gap: 0.45rem;
       font-size: 0.9rem;
-      margin-bottom: 0.2rem;
+      margin-bottom: 0.25rem;
     }
     .item-title {
       font-weight: 600;
@@ -195,33 +236,47 @@
     .item-sub {
       font-size: 0.9rem;
       color: var(--text-sub);
-      margin: 0.25rem 0 0.45rem;
+      margin: 0.3rem 0 0.55rem;
     }
 
     .skills-columns {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
       gap: 1.6rem;
     }
     .chip-list {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.38rem;
-      margin-top: 0.4rem;
+      gap: 0.4rem;
+      margin-top: 0.45rem;
     }
     .chip {
       font-size: 0.82rem;
-      padding: 0.22rem 0.7rem;
+      padding: 0.24rem 0.7rem;
       border-radius: 999px;
       border: 1px solid var(--chip-border);
       color: var(--text-main);
-      background: rgba(15, 23, 42, 0.95);
+      background: rgba(15, 23, 42, 0.96);
+    }
+
+    .project-tags {
+      margin-top: 0.4rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.32rem;
+    }
+    .project-tag {
+      font-size: 0.76rem;
+      padding: 0.14rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.4);
+      color: var(--text-sub);
     }
 
     .contact-row {
       font-size: 0.92rem;
       color: #cbd5f5;
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.35rem;
     }
     .contact-row span {
       display: inline-block;
@@ -229,54 +284,44 @@
       color: var(--text-sub);
     }
 
-    .section-label {
-      font-size: 0.78rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--text-sub);
+    /* Journey / Reflection */
+    .journey-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.4rem;
+    }
+    .journey-box {
+      border-radius: var(--radius-xl);
+      padding: 1.1rem 1.2rem;
+      border: 1px solid rgba(148,163,184,0.35);
+      background: rgba(15,23,42,0.9);
+      font-size: 0.9rem;
+    }
+    .journey-title {
+      font-size: 0.95rem;
+      font-weight: 600;
       margin-bottom: 0.4rem;
-    }
-
-    .project-tags {
-      margin-top: 0.45rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.3rem;
-    }
-    .project-tag {
-      font-size: 0.76rem;
-      padding: 0.12rem 0.55rem;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      color: var(--text-sub);
+      color: var(--accent2);
     }
 
     @media (max-width: 768px) {
-      .nav {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .grid-2 {
-        grid-template-columns: 1fr;
-      }
-      main {
-        padding-top: 1.5rem;
-      }
-      h1 {
-        font-size: 2rem;
+      .nav { flex-direction: column; align-items: flex-start; }
+      .grid-hero { grid-template-columns: 1fr; }
+      main { padding-top: 1.7rem; }
+      h1 { font-size: 2.1rem; }
+      .stats-row {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
   </style>
 </head>
 <body>
   <header>
     <div class="nav">
       <div class="nav-title">
-        <span class="nav-dot"></span>
+        <span class="nav-logo-dot"></span>
         LEE SEUNGYUN · AI ENGINEER
       </div>
       <nav class="nav-links">
@@ -284,6 +329,7 @@
         <a href="#education">Education</a>
         <a href="#skills">Skills</a>
         <a href="#projects">Projects</a>
+        <a href="#journey">Portfolio Journey</a>
         <a href="#contact">Contact</a>
       </nav>
     </div>
@@ -292,43 +338,51 @@
   <main>
     <!-- ABOUT -->
     <section id="about">
-      <div class="section-label">About</div>
-      <h1>이승윤</h1>
-      <p class="sub">강남대학교 인공지능융합공학부 인공지능전공 · 4학년</p>
-      <p class="tagline">
-        스포츠 기사, 맛집, 풍력 발전, 화재 피난, 스마트폰 센서까지.<br />
-        현실의 문제를 데이터와 AI로 풀어보는 데 관심이 많은, 예비 <strong>Machine Learning / AI 엔지니어</strong>입니다.
-      </p>
-
-      <div class="pill-row">
-        <div class="pill">Machine Learning / AI Engineer 지망</div>
-        <div class="pill">스포츠 · 공공데이터 · 센서 데이터</div>
-        <div class="pill">NLP · 시계열 · 행동 인식</div>
-        <div class="pill">공모전 · 논문 · 학술제 경험</div>
-      </div>
-
-      <div class="grid-2">
-        <div class="card">
-          <h2>About Me</h2>
-          <ul>
-            <li>아이디어를 말로만 끝내지 않고, 실제 <strong>프로젝트·공모전·논문·게임</strong>까지 완성해 본 경험이 많습니다.</li>
-            <li>스포츠, 교통, 안전, 일자리, 교육 등 사람과 밀접한 문제를 AI로 해결하는 데 관심이 있습니다.</li>
-            <li>KT 에이블스쿨에서 스마트폰 센서 기반 행동 인식 등 실전 ML 프로젝트를 수행하며 역량을 확장하고 있습니다.</li>
-          </ul>
+      <div class="section-label">ABOUT</div>
+      <div class="grid-hero">
+        <div>
+          <h1>이승윤</h1>
+          <p class="sub">강남대학교 인공지능융합공학부 인공지능전공 · 4학년</p>
+          <p class="tagline">
+            스포츠 기사, 맛집, 풍력 발전, 화재 피난, 스마트폰 센서까지.<br />
+            현실의 문제를 데이터와 AI로 풀어보는 데 진심인 예비 <strong>Machine Learning / AI 엔지니어</strong>입니다.
+          </p>
+          <div class="pill-row">
+            <div class="pill">Machine Learning / AI Engineer 지망</div>
+            <div class="pill">스포츠 · 공공데이터 · 센서 데이터</div>
+            <div class="pill">NLP · 시계열 · 행동 인식</div>
+            <div class="pill">공모전 · 논문 · 학술제 경험</div>
+          </div>
         </div>
+
         <div class="card">
-          <h2>Target Role</h2>
+          <h2 style="margin-bottom:0.6rem;">한 줄 소개</h2>
           <ul>
-            <li><strong>머신러닝 기반 서비스를 설계·개발하는 AI 엔지니어</strong></li>
-            <li>데이터 분석 → 모델링 → 서비스 기획까지 이어지는 풀 파이프라인에 관심이 있습니다.</li>
+            <li>아이디어를 말로만 하지 않고, 실제 <strong>프로젝트·공모전·논문·게임</strong>으로 구현해 본 경험 다수</li>
+            <li>스포츠, 교통, 안전, 일자리, 교육 등 사람과 가까운 문제를 AI로 해결하는 데 관심</li>
+            <li>KT AIVLE School을 통해 스마트폰 센서 기반 행동 인식 등 실전 ML 프로젝트 수행 중</li>
           </ul>
+          <div class="stats-row">
+            <div class="stat">
+              <strong>9+</strong>
+              AI / 데이터 프로젝트
+            </div>
+            <div class="stat">
+              <strong>3+</strong>
+              공모전·논문·학술제 입상/참여
+            </div>
+            <div class="stat">
+              <strong>1</strong>
+              목표 직무: ML 기반 서비스 개발자
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- EDUCATION -->
     <section id="education">
-      <div class="section-label">Education</div>
+      <div class="section-label">EDUCATION</div>
       <h2>학력 & 교육</h2>
 
       <div class="item">
@@ -339,7 +393,7 @@
         <p class="item-sub">B.S. in Artificial Intelligence</p>
         <ul>
           <li>머신러닝, 딥러닝, 지능형 로봇 시스템, 인공지능 앱 개발 등 전공 수강</li>
-          <li>캡스톤 디자인 및 여러 미니프로젝트로 실제 데이터를 활용한 AI 모델 개발 경험</li>
+          <li>캡스톤 디자인 및 미니프로젝트로 실제 데이터를 활용한 AI 모델 개발 경험</li>
         </ul>
       </div>
 
@@ -350,16 +404,16 @@
         </div>
         <p class="item-sub">스마트폰 센서 기반 행동 인식 등 실전 프로젝트 수행</p>
         <ul>
-          <li>팀 프로젝트로 센서 데이터 분석 및 행동 분류 모델 설계·검증</li>
-          <li>클라우드·MLOps·서비스 기획 관점까지 함께 경험</li>
+          <li>센서 데이터 분석과 ML 파이프라인 구축 경험</li>
+          <li>클라우드, MLOps, 서비스 관점까지 함께 학습</li>
         </ul>
       </div>
     </section>
 
     <!-- SKILLS -->
     <section id="skills">
-      <div class="section-label">Skills</div>
-      <h2>기술 스킬</h2>
+      <div class="section-label">SKILLS</div>
+      <h2>기술 스택</h2>
 
       <div class="skills-columns">
         <div class="card">
@@ -388,7 +442,7 @@
           <h3>NLP & Data</h3>
           <div class="chip-list">
             <div class="chip">텍스트 분류</div>
-            <div class="chip">감정 분석 (Sentiment)</div>
+            <div class="chip">감정 분석</div>
             <div class="chip">시계열 데이터 예측</div>
             <div class="chip">공공데이터 분석</div>
           </div>
@@ -408,7 +462,7 @@
 
     <!-- PROJECTS -->
     <section id="projects">
-      <div class="section-label">Projects</div>
+      <div class="section-label">PROJECTS</div>
       <h2>프로젝트 & 경험</h2>
 
       <!-- 1. 스포츠 기사 감정 분석 -->
@@ -421,11 +475,11 @@
         <ul>
           <li>스포츠 기사 텍스트 수집 및 전처리(토큰화, 불용어 제거 등) 파이프라인 구축</li>
           <li>한국어 감정 분석 모델 적용 및 성능 비교 실험 진행</li>
-          <li>팀/선수별 감정 분포를 분석해, 팬덤·여론 흐름을 확인할 수 있는 구조 설계</li>
+          <li>팀/선수별 감정 분포를 분석하여 팬덤·여론 흐름을 시각화할 수 있는 구조 설계</li>
         </ul>
         <div class="project-tags">
           <span class="project-tag">Text Classification</span>
-          <span class="project-tag">Sentiment Analysis</span>
+          <span class="project-tag">Sentiment</span>
         </div>
       </div>
 
@@ -435,14 +489,14 @@
           <div class="item-title">광고 없는 맛집 추천 앱</div>
           <div class="item-meta">추천 시스템 · 서비스 기획</div>
         </div>
-        <p class="item-sub">“광고에 덜 속는” 맛집 추천을 목표로, 리뷰/평점 데이터를 활용한 추천 로직을 기획</p>
+        <p class="item-sub">“광고에 덜 속는” 맛집 추천을 목표로 한 서비스 기획</p>
         <ul>
-          <li>리뷰·별점 데이터 기반 추천 기준 정의 및 광고/협찬 가게 필터링 규칙 설계</li>
-          <li>핵심 화면 위주의 간단한 UI 플로우 정리 및 와이어프레임 수준 기획</li>
-          <li>“신뢰도 있는 추천”을 위한 데이터 활용 방향 설정</li>
+          <li>리뷰·평점 데이터 기반 추천 기준 정의 및 광고/협찬 가게 필터링 규칙 설계</li>
+          <li>핵심 화면 중심의 UI 플로우·와이어프레임 작성</li>
+          <li>신뢰도 있는 추천을 위한 데이터 활용 방향 설정</li>
         </ul>
         <div class="project-tags">
-          <span class="project-tag">Recommendation Idea</span>
+          <span class="project-tag">Recommendation</span>
           <span class="project-tag">Service Design</span>
         </div>
       </div>
@@ -453,11 +507,11 @@
           <div class="item-title">풍력 발전량 예측 모델 공모전</div>
           <div class="item-meta">시계열 회귀 · 공모전</div>
         </div>
-        <p class="item-sub">기상·설비 데이터를 활용해 풍력 발전량을 예측하는 머신러닝 모델 개발</p>
+        <p class="item-sub">기상·설비 데이터를 활용한 풍력 발전량 예측 모델 개발</p>
         <ul>
-          <li>발전량·기상 시계열 데이터의 결측치/이상치 처리 및 특징 공학 수행</li>
-          <li>LightGBM, XGBoost 등 여러 회귀 모델을 비교하며 성능 튜닝</li>
-          <li>대회 제출 포맷에 맞춘 예측 파이프라인 구현 경험</li>
+          <li>발전량·기상 시계열 데이터의 결측치/이상치 처리 및 특징 공학</li>
+          <li>LightGBM, XGBoost 등 회귀 모델을 비교하며 성능 튜닝</li>
+          <li>공모전 제출 포맷에 맞춘 예측 파이프라인 구현</li>
         </ul>
         <div class="project-tags">
           <span class="project-tag">Time Series</span>
@@ -473,13 +527,13 @@
         </div>
         <p class="item-sub">경력단절 여성의 재취업을 돕기 위한 데이터 기반 서비스 기획</p>
         <ul>
-          <li>고용·복지·교육 관련 공공데이터를 분석하여 경단녀 페르소나 및 필요 지원 항목 도출</li>
-          <li>교육/지원 정책/일자리 추천 흐름을 설계하고, UX 관점에서 화면 구성 초안 작성</li>
-          <li>데이터를 활용해 실제 사회 문제 해결에 접근한 경험</li>
+          <li>고용·복지·교육 관련 공공데이터 분석으로 경단녀 페르소나 및 요구 사항 도출</li>
+          <li>교육·지원 정책·일자리 추천 흐름과 화면 구성 초안 설계</li>
+          <li>데이터를 활용해 실제 사회 문제를 풀어본 경험</li>
         </ul>
         <div class="project-tags">
           <span class="project-tag">Public Data</span>
-          <span class="project-tag">Service Planning</span>
+          <span class="project-tag">Policy / Service</span>
         </div>
       </div>
 
@@ -489,15 +543,15 @@
           <div class="item-title">화재 시 피난자 행동 기반 경로 탐색 연구 (논문 우수상)</div>
           <div class="item-meta">연구 프로젝트 · 우수상</div>
         </div>
-        <p class="item-sub">피난자 행동 특성과 건물 구조를 고려한 효율적인 피난 경로 탐색 연구</p>
+        <p class="item-sub">피난자 행동 특성과 건물 구조를 고려한 효율적 피난 경로 탐색 연구</p>
         <ul>
-          <li>피난자 속도, 혼잡, 패닉 등 행동 특성을 모델링하여 시뮬레이션 설계</li>
+          <li>피난자 속도, 혼잡, 패닉 등 행동 특성 모델 조사 및 시뮬레이션 설계</li>
           <li>건물 구조를 그래프로 표현하고 경로 탐색 알고리즘 적용</li>
           <li>연구 결과를 논문으로 정리하여 우수상 수상</li>
         </ul>
         <div class="project-tags">
           <span class="project-tag">Simulation</span>
-          <span class="project-tag">Graph Modeling</span>
+          <span class="project-tag">Graph</span>
         </div>
       </div>
 
@@ -507,15 +561,15 @@
           <div class="item-title">미로 + 퀴즈 + 스도쿠 게임 개발 (학술제 입상)</div>
           <div class="item-meta">게임 개발 · 알고리즘</div>
         </div>
-        <p class="item-sub">미로 탐색, 퀴즈, 스도쿠를 합친 퍼즐 게임 개발 및 학술제 출품</p>
+        <p class="item-sub">미로 탐색, 퀴즈, 스도쿠를 합친 퍼즐 게임 개발</p>
         <ul>
           <li>미로 생성/탐색, 스도쿠 생성 및 검증 알고리즘 구현</li>
-          <li>난이도 조절과 스테이지 구성, 기본 UI 설계</li>
-          <li>학술제에 출품하여 입상 경험</li>
+          <li>난이도 조절, 스테이지 구성, 기본 UI 설계</li>
+          <li>학술제 출품 및 입상 경험</li>
         </ul>
         <div class="project-tags">
           <span class="project-tag">Algorithm</span>
-          <span class="project-tag">Game Project</span>
+          <span class="project-tag">Game</span>
         </div>
       </div>
 
@@ -527,13 +581,13 @@
         </div>
         <p class="item-sub">가속도/자이로 등 스마트폰 센서 데이터로 사용자의 행동을 분류하는 모델</p>
         <ul>
-          <li>센서 시계열 데이터를 윈도우 단위로 나누고 통계·주파수 기반 특징 추출</li>
+          <li>센서 시계열 데이터를 윈도우 단위로 분할하고 통계·주파수 기반 특징 추출</li>
           <li>여러 분류 모델을 비교하며 행동 인식 정확도 향상을 위한 실험 수행</li>
-          <li>혼동행렬을 활용해 오분류 패턴을 분석하고 개선 방향 도출</li>
+          <li>혼동행렬을 활용해 오분류 패턴 분석 및 개선 방향 도출</li>
         </ul>
         <div class="project-tags">
-          <span class="project-tag">Sensor Data</span>
-          <span class="project-tag">Human Activity</span>
+          <span class="project-tag">Sensor</span>
+          <span class="project-tag">HAR</span>
         </div>
       </div>
 
@@ -544,12 +598,12 @@
           <div class="item-meta">LLM · LangGraph · 인터뷰 시뮬레이터</div>
         </div>
         <p class="item-sub">
-          지원자의 이력서·자기소개서를 기반으로 면접 질문을 생성하고, 답변을 평가한 뒤 인터뷰 리포트를 자동으로 작성하는 AI 면접관 에이전트.
+          이력서·자기소개서를 기반으로 면접 질문을 생성하고, 답변을 평가한 뒤 인터뷰 리포트를 자동으로 작성하는 AI 면접관 에이전트.
         </p>
         <ul>
-          <li>InterviewState를 정의해 이력서 요약, 키워드, 질문 전략, Q/A 로그, 평가 결과를 상태로 관리</li>
-          <li>이력서 분석 → 질문 생성 → 답변 평가(관련성·구체성·논리성 등) → 추가 질문 여부 결정 → 최종 리포트 작성 플로우 설계</li>
-          <li>LangGraph로 각 단계를 노드로 구성하고, 규칙 기반 로직과 LLM을 조합해 일관된 인터뷰 경험 구현</li>
+          <li>InterviewState로 이력서 요약, 키워드, 질문 전략, Q/A 로그, 평가 결과를 구조화</li>
+          <li>이력서 분석 → 질문 생성 → 답변 평가 → 추가 질문 여부 결정 → 리포트 작성 플로우 설계</li>
+          <li>LangGraph로 각 단계를 노드로 구성해 규칙 기반 로직과 LLM을 조합한 인터뷰 경험 구현</li>
         </ul>
         <div class="project-tags">
           <span class="project-tag">Agent</span>
@@ -564,23 +618,75 @@
           <div class="item-meta">LLM · 교육 도메인 · 콘텐츠 생성</div>
         </div>
         <p class="item-sub">
-          강의자료를 입력하면 수업 구성, 핵심 요약, 퀴즈, 과제, 피드백까지 자동으로 생성해 주는 교육용 AI 강사 에이전트.
+          강의자료를 입력하면 수업 구성, 핵심 요약, 퀴즈, 과제, 피드백까지 자동으로 생성하는 교육용 AI 강사 에이전트.
         </p>
         <ul>
-          <li>강의자료에서 챕터별 핵심 개념을 추출하고, 학습 목표와 수업 흐름을 자동 설계하는 프롬프트 구조 설계</li>
-          <li>객관식·주관식 퀴즈와 과제를 생성해 학습 내용을 점검할 수 있도록 구현</li>
-          <li>예시 답변을 기반으로 피드백 문장을 자동 생성해, “강의자료 → 수업 → 평가 → 피드백” 전체 흐름을 자동화하는 구조 실험</li>
+          <li>강의자료에서 챕터별 핵심 개념을 추출하고, 학습 목표와 수업 흐름을 자동 설계</li>
+          <li>객관식·주관식 퀴즈와 과제를 생성해 학습 내용을 점검할 수 있도록 구성</li>
+          <li>예시 답변 기반 피드백 문장을 생성해 “강의자료 → 수업 → 평가 → 피드백” 플로우를 자동화</li>
         </ul>
         <div class="project-tags">
           <span class="project-tag">Education</span>
-          <span class="project-tag">Content Generation</span>
+          <span class="project-tag">Content Gen</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- PORTFOLIO JOURNEY -->
+    <section id="journey">
+      <div class="section-label">PORTFOLIO JOURNEY</div>
+      <h2>포트폴리오 작성 여정</h2>
+
+      <div class="journey-grid">
+        <div class="journey-box">
+          <div class="journey-title">직무 연관성 강화 (4주차)</div>
+          <ul>
+            <li>프로젝트마다 내가 맡은 역할과 결과를 정리하면서, “AI 엔지니어로서의 강점”이 더 선명해졌다.</li>
+            <li>NLP, 시계열, 센서 데이터 등 경험한 도메인을 직무와 연결해서 설명하는 연습을 했다.</li>
+          </ul>
+        </div>
+
+        <div class="journey-box">
+          <div class="journey-title">내용 정리 & 문장 다듬기 (5주차)</div>
+          <ul>
+            <li>중복된 내용을 줄이고, 핵심만 남기면서 한 페이지에 들어가는 정보 밀도를 조절했다.</li>
+            <li>전문 용어는 최소한으로 쓰고, 비전공자도 이해할 수 있는 표현으로 바꾸는 연습을 했다.</li>
+          </ul>
+        </div>
+
+        <div class="journey-box">
+          <div class="journey-title">디자인 및 포맷 정리 (6주차)</div>
+          <ul>
+            <li>프로젝트 구조를 통일된 포맷으로 맞추면서, 읽는 사람이 흐름을 따라가기 쉽게 정리했다.</li>
+            <li>레이아웃과 시각 요소를 다듬어 “읽기 편한 포트폴리오”를 목표로 개선했다.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="margin-top:1.6rem;" class="journey-grid">
+        <div class="journey-box">
+          <div class="journey-title">좋았던 점 & 배운 점</div>
+          <ul>
+            <li>여러 프로젝트를 한눈에 정리하면서 내가 어떤 방향의 AI 엔지니어로 성장해왔는지 흐름을 볼 수 있었다.</li>
+            <li>기술 나열보다 “문제·데이터·결과” 중심으로 정리하는 법을 배웠다.</li>
+            <li>산만했던 경험들을 묶으면서 내가 강점을 가진 도메인과 역할을 더 분명하게 알게 되었다.</li>
+          </ul>
+        </div>
+
+        <div class="journey-box">
+          <div class="journey-title">아쉬웠던 점</div>
+          <ul>
+            <li>프로젝트를 할 때부터 포트폴리오를 염두에 두고 기록을 남기지 못한 점이 아쉬웠다.</li>
+            <li>정확도·점수·순위 같은 수치를 처음부터 더 꼼꼼히 모아두지 못했다.</li>
+            <li>디자인과 내용을 여러 번 되돌리느라 시간을 조금 비효율적으로 쓴 느낌이 있다.</li>
+          </ul>
         </div>
       </div>
     </section>
 
     <!-- CONTACT -->
     <section id="contact">
-      <div class="section-label">Contact</div>
+      <div class="section-label">CONTACT</div>
       <h2>Contact</h2>
       <p class="contact-row">
         <span>Email</span>
