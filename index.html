@@ -6,6 +6,7 @@
 
 <title>Lee Seungyoon | ML Engineer</title>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
@@ -20,8 +21,17 @@ scroll-behavior:smooth;
 
 body{
 background:#020617;
-color:#e2e8f0;
-line-height:1.6;
+color:white;
+overflow-x:hidden;
+}
+
+/* PARTICLE CANVAS */
+
+canvas{
+position:fixed;
+top:0;
+left:0;
+z-index:-1;
 }
 
 /* NAV */
@@ -30,18 +40,12 @@ nav{
 position:fixed;
 top:0;
 width:100%;
-padding:20px 10%;
 display:flex;
 justify-content:space-between;
-align-items:center;
-background:rgba(2,6,23,0.85);
+padding:20px 10%;
+background:rgba(2,6,23,0.7);
 backdrop-filter:blur(8px);
-z-index:100;
-}
-
-nav h2{
-font-size:18px;
-letter-spacing:2px;
+z-index:10;
 }
 
 nav ul{
@@ -69,55 +73,37 @@ flex-direction:column;
 justify-content:center;
 align-items:center;
 text-align:center;
-padding:0 20px;
 }
 
 .hero h1{
-font-size:72px;
-margin-bottom:20px;
+font-size:70px;
 background:linear-gradient(90deg,#22c55e,#06b6d4);
 -webkit-background-clip:text;
 color:transparent;
 }
 
-.hero p{
-font-size:20px;
+.typing{
+margin-top:20px;
+font-size:22px;
 color:#94a3b8;
-max-width:700px;
 }
 
-.buttons{
-margin-top:40px;
-display:flex;
-gap:20px;
-}
+/* BUTTON */
 
 .btn{
-padding:14px 32px;
-border-radius:30px;
-font-size:14px;
-cursor:pointer;
-transition:0.3s;
-}
-
-.primary{
-background:#22c55e;
+margin-top:40px;
+padding:15px 35px;
+border-radius:40px;
 border:none;
-color:black;
+background:#22c55e;
+cursor:pointer;
+font-weight:600;
+transition:0.3s;
+box-shadow:0 0 20px #22c55e;
 }
 
-.primary:hover{
-transform:scale(1.05);
-}
-
-.secondary{
-background:transparent;
-border:1px solid #334155;
-color:white;
-}
-
-.secondary:hover{
-background:#334155;
+.btn:hover{
+transform:scale(1.1);
 }
 
 /* SECTION */
@@ -130,113 +116,60 @@ padding:120px 10%;
 
 .projects h2{
 font-size:40px;
-margin-bottom:50px;
+margin-bottom:60px;
 }
 
-.project-grid{
+.grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-gap:30px;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:40px;
 }
 
-.project-card{
+.card{
 background:#020c1b;
-border-radius:14px;
 padding:30px;
+border-radius:15px;
 border:1px solid #1e293b;
-transition:0.3s;
-position:relative;
-overflow:hidden;
+transition:0.4s;
+transform-style:preserve-3d;
 }
 
-.project-card:hover{
-transform:translateY(-10px);
+.card:hover{
+transform:rotateY(8deg) rotateX(8deg) scale(1.05);
 border:1px solid #22c55e;
 }
 
-.project-card h3{
-font-size:22px;
-margin-bottom:15px;
-}
-
-.project-card p{
-color:#94a3b8;
-margin-bottom:15px;
+.card h3{
+margin-bottom:10px;
 }
 
 .tech{
 color:#22c55e;
 font-size:13px;
-margin-bottom:15px;
-}
-
-.project-card a{
-color:#38bdf8;
-text-decoration:none;
-font-size:14px;
+margin-top:10px;
 }
 
 /* SKILLS */
 
-.skills h2{
-font-size:40px;
-margin-bottom:40px;
-}
-
-.skills-grid{
+.skills{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
 gap:30px;
 }
 
-.skill-card{
+.skill{
 background:#020c1b;
 padding:25px;
-border-radius:12px;
+border-radius:10px;
 border:1px solid #1e293b;
-}
-
-.skill-card h3{
-margin-bottom:10px;
-}
-
-/* AWARDS */
-
-.awards h2{
-font-size:40px;
-margin-bottom:20px;
-}
-
-.awards ul{
-color:#94a3b8;
-line-height:2;
-}
-
-/* CONTACT */
-
-.contact h2{
-font-size:40px;
-margin-bottom:20px;
-}
-
-.contact p{
-color:#94a3b8;
 }
 
 /* FOOTER */
 
 footer{
 text-align:center;
-padding:50px;
+padding:60px;
 color:#64748b;
-}
-
-@media(max-width:768px){
-
-.hero h1{
-font-size:40px;
-}
-
 }
 
 </style>
@@ -244,153 +177,85 @@ font-size:40px;
 
 <body>
 
+<canvas id="bg"></canvas>
+
 <nav>
-
-<h2>LEE SEUNGYOON</h2>
-
+<h3>LEE SEUNGYOON</h3>
 <ul>
 <li><a href="#projects">Projects</a></li>
 <li><a href="#skills">Skills</a></li>
-<li><a href="#awards">Awards</a></li>
-<li><a href="#contact">Contact</a></li>
 </ul>
-
 </nav>
-
-<!-- HERO -->
 
 <section class="hero">
 
 <h1>Machine Learning Engineer</h1>
 
-<p>
-데이터에서 모델을 만들고  
-모델을 실제 서비스로 연결하는 AI 엔지니어
-</p>
+<p class="typing" id="typing"></p>
 
-<div class="buttons">
-<a href="#projects"><button class="btn primary">View Projects</button></a>
-<a href="https://github.com/leeseungyoons"><button class="btn secondary">Github</button></a>
-</div>
+<button class="btn">View Projects</button>
 
 </section>
 
-<!-- PROJECTS -->
+<section id="projects" class="projects">
 
-<section class="projects" id="projects">
+<h2>Projects</h2>
 
-<h2>Featured Projects</h2>
+<div class="grid">
 
-<div class="project-grid">
-
-<div class="project-card">
-<h3>K-Food 수요 예측 AI 플랫폼</h3>
-<p>Amazon 리뷰와 트렌드 데이터를 활용해 국가별 K-Food 수요를 예측하고 자동 시장 리포트를 생성하는 AI 시스템</p>
-<div class="tech">LightGBM · Feature Engineering · SHAP</div>
-<a href="#">Github →</a>
+<div class="card">
+<h3>K-Food 수요 예측 AI</h3>
+<p>Amazon 리뷰와 트렌드 데이터를 활용한 국가별 수요 예측</p>
+<div class="tech">LightGBM · SHAP</div>
 </div>
 
-<div class="project-card">
+<div class="card">
 <h3>AI 면접관 Agent</h3>
-<p>이력서를 기반으로 질문 생성 → 답변 평가 → 인터뷰 리포트 생성까지 수행하는 AI 면접 시스템</p>
-<div class="tech">LangGraph · LLM · Agent Workflow</div>
-<a href="#">Github →</a>
+<p>LangGraph 기반 인터뷰 질문 생성 및 평가 시스템</p>
+<div class="tech">LangGraph · LLM</div>
 </div>
 
-<div class="project-card">
-<h3>광고 없는 맛집 추천 서비스</h3>
-<p>Kakao / Naver API 기반 실제 리뷰 데이터를 활용한 맛집 추천 서비스</p>
-<div class="tech">Python · Web API · Data Processing</div>
-<a href="#">Github →</a>
+<div class="card">
+<h3>맛집 추천 서비스</h3>
+<p>Kakao/Naver API 기반 리뷰 분석 추천</p>
+<div class="tech">Python · Web API</div>
 </div>
 
-<div class="project-card">
-<h3>풍력 발전량 예측 모델</h3>
-<p>시계열 Feature Engineering을 활용한 풍력 발전량 예측 머신러닝 모델</p>
-<div class="tech">LightGBM · Time Series</div>
-<a href="#">Github →</a>
+<div class="card">
+<h3>풍력 발전량 예측</h3>
+<p>시계열 Feature Engineering 기반 발전량 예측</p>
+<div class="tech">Time Series · ML</div>
 </div>
 
-<div class="project-card">
+<div class="card">
 <h3>스포츠 기사 감성 분석</h3>
-<p>스포츠 기사 텍스트 데이터를 활용한 감성 분석 NLP 모델</p>
-<div class="tech">NLP · TF-IDF · ML</div>
-<a href="#">Github →</a>
+<p>NLP 기반 기사 감정 분석 모델</p>
+<div class="tech">NLP · ML</div>
 </div>
 
-<div class="project-card">
-<h3>AI 작가 모바일 앱</h3>
-<p>GPT 기반 맞춤형 스토리 생성 React Native 앱</p>
+<div class="card">
+<h3>AI 작가 앱</h3>
+<p>GPT 기반 스토리 생성 모바일 앱</p>
 <div class="tech">React Native · GPT</div>
-<a href="#">Github →</a>
 </div>
 
 </div>
 
 </section>
 
-<!-- SKILLS -->
-
-<section class="skills" id="skills">
+<section id="skills">
 
 <h2>Tech Stack</h2>
 
-<div class="skills-grid">
+<div class="skills">
 
-<div class="skill-card">
-<h3>Machine Learning</h3>
-<p>LightGBM<br>XGBoost<br>RandomForest<br>Scikit-learn</p>
-</div>
-
-<div class="skill-card">
-<h3>Data</h3>
-<p>Pandas<br>Numpy<br>Feature Engineering<br>SHAP</p>
-</div>
-
-<div class="skill-card">
-<h3>AI / NLP</h3>
-<p>LLM<br>LangChain<br>LangGraph<br>Prompt Engineering</p>
-</div>
-
-<div class="skill-card">
-<h3>Backend</h3>
-<p>Python<br>FastAPI<br>Spring Boot<br>REST API</p>
-</div>
-
-<div class="skill-card">
-<h3>Cloud</h3>
-<p>AWS<br>Docker<br>CI/CD</p>
-</div>
+<div class="skill">Python / Pandas / Numpy</div>
+<div class="skill">LightGBM / XGBoost</div>
+<div class="skill">LLM / LangChain / LangGraph</div>
+<div class="skill">FastAPI / Spring Boot</div>
+<div class="skill">AWS / Docker / CI/CD</div>
 
 </div>
-
-</section>
-
-<!-- AWARDS -->
-
-<section class="awards" id="awards">
-
-<h2>Awards & Activities</h2>
-
-<ul>
-
-<li>한국정보통신학회 춘계종합학술대회 학생논문 우수상</li>
-<li>풍력 발전량 예측 공모전 참여</li>
-<li>경력단절 여성 복귀 설계 공공데이터 분석 프로젝트</li>
-<li>KT AIVLE Big Project 참여</li>
-
-</ul>
-
-</section>
-
-<!-- CONTACT -->
-
-<section class="contact" id="contact">
-
-<h2>Contact</h2>
-
-<p>Email : lieme980@gmail.com</p>
-<p>Github : github.com/leeseungyoons</p>
 
 </section>
 
@@ -399,6 +264,66 @@ font-size:40px;
 © 2026 Lee Seungyoon
 
 </footer>
+
+<script>
+
+/* typing */
+
+const text="데이터에서 모델을 만들고 실제 서비스로 연결하는 AI 엔지니어";
+let i=0;
+
+function typing(){
+if(i<text.length){
+document.getElementById("typing").innerHTML+=text.charAt(i);
+i++;
+setTimeout(typing,40);
+}
+}
+
+typing();
+
+/* particle background */
+
+const canvas=document.getElementById("bg");
+const ctx=canvas.getContext("2d");
+
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+let particles=[];
+
+for(let i=0;i<120;i++){
+particles.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+vx:(Math.random()-0.5),
+vy:(Math.random()-0.5)
+});
+}
+
+function animate(){
+
+ctx.clearRect(0,0,canvas.width,canvas.height);
+
+particles.forEach(p=>{
+p.x+=p.vx;
+p.y+=p.vy;
+
+ctx.fillStyle="#22c55e";
+ctx.fillRect(p.x,p.y,2,2);
+
+if(p.x<0||p.x>canvas.width)p.vx*=-1;
+if(p.y<0||p.y>canvas.height)p.vy*=-1;
+
+});
+
+requestAnimationFrame(animate);
+
+}
+
+animate();
+
+</script>
 
 </body>
 </html>
