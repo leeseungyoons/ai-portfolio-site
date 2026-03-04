@@ -1,828 +1,381 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <title>이승윤 · AI Engineer Portfolio</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta charset="UTF-8">
+<title>이승윤 · Machine Learning Engineer</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <style>
-    :root {
-      --bg: #020617;
-      --bg-soft: #02081f;
-      --card: #020b25;
-      --accent: #22c55e;
-      --accent2: #38bdf8;
-      --border-subtle: rgba(148, 163, 184, 0.35);
-      --text-main: #e5e7eb;
-      --text-sub: #9ca3af;
-      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.75);
-      --radius-xl: 18px;
-    }
+<style>
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+:root{
+--bg:#020617;
+--card:#020b25;
+--accent:#22c55e;
+--accent2:#38bdf8;
+--text:#e5e7eb;
+--sub:#9ca3af;
+}
 
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Pretendard", "Noto Sans KR", system-ui, sans-serif;
-      background:
-        radial-gradient(circle at top left, #0f172a 0, #020617 40%, #020617 100%),
-        #020617;
-      color: var(--text-main);
-      line-height: 1.6;
-    }
+*{box-sizing:border-box;margin:0;padding:0}
 
-    a { color: var(--accent2); text-decoration: none; }
-    a:hover { text-decoration: underline; }
+body{
+font-family:-apple-system,BlinkMacSystemFont,Pretendard,sans-serif;
+background:radial-gradient(circle at top left,#0f172a,#020617);
+color:var(--text);
+line-height:1.6;
+}
 
-    /* NAV */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      backdrop-filter: blur(14px);
-      background: linear-gradient(to right, rgba(2, 6, 23, 0.96), rgba(15, 23, 42, 0.92));
-      border-bottom: 1px solid rgba(30, 64, 175, 0.5);
-    }
-    .nav {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 0.8rem 1.6rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-    }
-    .nav-title {
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .nav-logo-dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 999px;
-      background: radial-gradient(circle, var(--accent), #16a34a);
-      box-shadow: 0 0 16px rgba(34, 197, 94, 0.9);
-    }
-    .nav-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-      font-size: 0.85rem;
-    }
-    .nav-links a {
-      padding: 0.35rem 0.9rem;
-      border-radius: 999px;
-      border: 1px solid transparent;
-      background: rgba(15, 23, 42, 0.7);
-      transition: all 0.15s ease-out;
-    }
-    .nav-links a:hover {
-      border-color: rgba(148, 163, 184, 0.9);
-      background: rgba(15, 23, 42, 0.98);
-      text-decoration: none;
-      transform: translateY(-1px);
-    }
-    .nav-links a.is-active {
-      border-color: var(--accent);
-      background: rgba(22, 163, 74, 0.22);
-    }
+header{
+position:sticky;
+top:0;
+background:#020617dd;
+backdrop-filter:blur(10px);
+border-bottom:1px solid #1e293b;
+}
 
-    /* LAYOUT */
-    main {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 2.4rem 1.6rem 4rem;
-    }
-    section {
-      padding: 2.2rem 0;
-      border-bottom: 1px solid rgba(30, 64, 175, 0.25);
-    }
-    section:last-of-type {
-      border-bottom: none;
-      padding-bottom: 0;
-    }
+.nav{
+max-width:1100px;
+margin:auto;
+padding:15px;
+display:flex;
+justify-content:space-between;
+}
 
-    .section-label {
-      font-size: 0.78rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--text-sub);
-      margin-bottom: 0.35rem;
-    }
+.nav-links a{
+margin-left:15px;
+font-size:14px;
+color:var(--sub);
+text-decoration:none;
+}
 
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.4rem;
-    }
-    h2 {
-      font-size: 1.5rem;
-      margin-bottom: 1.1rem;
-    }
-    h3 {
-      font-size: 1.02rem;
-      margin: 0.35rem 0;
-    }
+main{
+max-width:1100px;
+margin:auto;
+padding:60px 20px;
+}
 
-    .sub {
-      color: var(--text-sub);
-      font-size: 0.96rem;
-      margin-bottom: 1.4rem;
-    }
-    .tagline {
-      font-size: 0.98rem;
-      color: #d1d5db;
-      margin-bottom: 1.6rem;
-    }
+section{
+margin-bottom:80px;
+}
 
-    .pill-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.45rem;
-      margin-bottom: 2rem;
-    }
-    .pill {
-      font-size: 0.78rem;
-      padding: 0.3rem 0.9rem;
-      border-radius: 999px;
-      border: 1px solid rgba(34, 197, 94, 0.28);
-      background: rgba(15, 118, 110, 0.25);
-      color: var(--text-main);
-      backdrop-filter: blur(8px);
-    }
+h1{
+font-size:42px;
+margin-bottom:10px;
+}
 
-    .grid-hero {
-      display: grid;
-      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.1fr);
-      gap: 2rem;
-      align-items: stretch;
-    }
+h2{
+font-size:28px;
+margin-bottom:25px;
+}
 
-    .card {
-      position: relative;
-      background: radial-gradient(circle at top left, #020b25, #020617);
-      border-radius: var(--radius-xl);
-      border: 1px solid rgba(30, 64, 175, 0.55);
-      padding: 1.4rem 1.35rem 1.2rem;
-      box-shadow: var(--shadow-soft);
-    }
-    .card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      padding: 1px;
-      background: linear-gradient(135deg, rgba(34,197,94,0.4), rgba(56,189,248,0.4));
-      -webkit-mask:
-        linear-gradient(#000 0 0) content-box,
-        linear-gradient(#000 0 0);
-      -webkit-mask-composite: xor;
-              mask-composite: exclude;
-      opacity: 0.7;
-    }
+.sub{
+color:var(--sub);
+margin-bottom:20px;
+}
 
-    ul {
-      padding-left: 1.1rem;
-      margin-top: 0.4rem;
-    }
-    li {
-      font-size: 0.93rem;
-      margin-bottom: 0.26rem;
-      color: var(--text-main);
-    }
+.hero{
+margin-bottom:80px;
+}
 
-    .stats-row {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 0.9rem;
-      margin-top: 1.1rem;
-    }
-    .stat {
-      border-radius: 14px;
-      padding: 0.75rem 0.9rem;
-      border: 1px solid rgba(148, 163, 184, 0.35);
-      background: rgba(15, 23, 42, 0.9);
-      font-size: 0.8rem;
-    }
-    .stat strong {
-      display: block;
-      font-size: 1.05rem;
-      margin-bottom: 0.15rem;
-      color: var(--accent);
-    }
+.pill-row{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+margin-top:15px;
+}
 
-    .item {
-      margin-bottom: 1.6rem;
-      padding: 1.1rem 1.25rem 1.05rem;
-      border-radius: var(--radius-xl);
-      background: radial-gradient(circle at top left, rgba(15,23,42,0.96), rgba(15,23,42,0.9));
-      border: 1px solid rgba(148, 163, 184, 0.28);
-    }
+.pill{
+border:1px solid #334155;
+padding:5px 12px;
+border-radius:20px;
+font-size:13px;
+color:var(--sub);
+}
 
-    .project-card {
-      transition: transform 0.18s ease-out, box-shadow 0.18s ease-out, border-color 0.18s ease-out;
-      cursor: default;
-    }
-    .project-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 20px 50px rgba(15, 23, 42, 0.9);
-      border-color: rgba(56, 189, 248, 0.6);
-    }
+.card{
+background:var(--card);
+padding:25px;
+border-radius:14px;
+border:1px solid #1e293b;
+margin-bottom:25px;
+}
 
-    .item-header {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 0.45rem;
-      font-size: 0.9rem;
-      margin-bottom: 0.25rem;
-    }
-    .item-title {
-      font-weight: 600;
-    }
-    .item-meta {
-      color: var(--text-sub);
-      font-size: 0.84rem;
-    }
-    .item-sub {
-      font-size: 0.9rem;
-      color: var(--text-sub);
-      margin: 0.3rem 0 0.45rem;
-    }
+.project-card{
+cursor:pointer;
+transition:0.2s;
+}
 
-    .skills-columns {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 1.6rem;
-    }
-    .chip-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      margin-top: 0.45rem;
-    }
-    .chip {
-      font-size: 0.82rem;
-      padding: 0.24rem 0.7rem;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      color: var(--text-main);
-      background: rgba(15, 23, 42, 0.96);
-    }
+.project-card:hover{
+transform:translateY(-4px);
+}
 
-    .project-tags {
-      margin-top: 0.2rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.32rem;
-    }
-    .project-tag {
-      font-size: 0.76rem;
-      padding: 0.14rem 0.6rem;
-      border-radius: 999px;
-      border: 1px solid rgba(148,163,184,0.4);
-      color: var(--text-sub);
-    }
+ul{
+margin-top:10px;
+padding-left:20px;
+}
 
-    .project-details {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.22s ease-out;
-    }
-    .project-card.open .project-details {
-      margin-top: 0.4rem;
-    }
+li{
+margin-bottom:6px;
+font-size:14px;
+}
 
-    .toggle-details {
-      margin-top: 0.5rem;
-      font-size: 0.8rem;
-      padding: 0.32rem 0.8rem;
-      border-radius: 999px;
-      border: 1px solid rgba(148,163,184,0.6);
-      background: rgba(15,23,42,0.9);
-      color: var(--text-main);
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.25rem;
-    }
-    .toggle-details span.icon {
-      font-size: 0.9rem;
-      transform: translateY(1px);
-    }
-    .project-card.open .toggle-details span.icon {
-      transform: rotate(180deg) translateY(-1px);
-    }
+.skills{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:20px;
+}
 
-    .filter-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      margin-bottom: 1.2rem;
-      font-size: 0.8rem;
-    }
-    .filter-button {
-      padding: 0.3rem 0.9rem;
-      border-radius: 999px;
-      border: 1px solid rgba(148,163,184,0.5);
-      background: rgba(15,23,42,0.9);
-      cursor: pointer;
-    }
-    .filter-button.is-active {
-      border-color: var(--accent);
-      background: rgba(22,163,74,0.22);
-      color: var(--accent);
-    }
+.chip{
+display:inline-block;
+border:1px solid #334155;
+padding:4px 10px;
+margin:4px;
+border-radius:20px;
+font-size:13px;
+color:var(--sub);
+}
 
-    .hidden {
-      display: none;
-    }
+.project-details{
+display:none;
+margin-top:10px;
+}
 
-    .contact-row {
-      font-size: 0.92rem;
-      color: #cbd5f5;
-      margin-bottom: 0.35rem;
-    }
-    .contact-row span {
-      display: inline-block;
-      min-width: 70px;
-      color: var(--text-sub);
-    }
+button{
+margin-top:10px;
+padding:5px 10px;
+background:#020617;
+border:1px solid #334155;
+color:var(--text);
+border-radius:20px;
+cursor:pointer;
+}
 
-    footer {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 1.8rem 1.6rem 2.4rem;
-      font-size: 0.8rem;
-      color: var(--text-sub);
-      text-align: right;
-    }
+.contact{
+font-size:15px;
+}
 
-    @media (max-width: 768px) {
-      .nav { flex-direction: column; align-items: flex-start; }
-      .grid-hero { grid-template-columns: 1fr; }
-      main { padding-top: 1.7rem; }
-      h1 { font-size: 2.1rem; }
-      .stats-row {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-
-    html { scroll-behavior: smooth; }
-  </style>
+</style>
 </head>
+
 <body>
-  <header>
-    <div class="nav">
-      <div class="nav-title">
-        <span class="nav-logo-dot"></span>
-        LEE SEUNGYUN · AI ENGINEER
-      </div>
-      <nav class="nav-links">
-        <a href="#about" class="is-active">About</a>
-        <a href="#education">Education</a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </div>
-  </header>
 
-  <main>
-    <!-- ABOUT -->
-    <section id="about">
-      <div class="section-label">ABOUT</div>
-      <div class="grid-hero">
-        <div>
-          <h1>이승윤</h1>
-          <p class="sub">강남대학교 인공지능융합공학부 인공지능전공 · 4학년</p>
-          <p class="tagline">
-            스포츠 기사, 맛집, 풍력 발전, 화재 피난, 스마트폰 센서까지.<br />
-            현실의 문제를 데이터와 AI로 풀어보는 데 진심인 예비 <strong>Machine Learning / AI 엔지니어</strong>입니다.
-          </p>
-          <div class="pill-row">
-            <div class="pill">Machine Learning / AI Engineer 지망</div>
-            <div class="pill">스포츠 · 공공데이터 · 센서 데이터</div>
-            <div class="pill">NLP · 시계열 · 행동 인식</div>
-            <div class="pill">공모전 · 논문 · 학술제 경험</div>
-          </div>
-        </div>
+<header>
+<div class="nav">
+<div>LEE SEUNGYOON</div>
 
-        <div class="card">
-          <h3>지금까지의 키워드</h3>
-          <ul>
-            <li>아이디어를 말로만 하지 않고, 실제 <strong>프로젝트·공모전·논문·게임</strong>으로 구현해 본 경험</li>
-            <li>스포츠, 교통, 안전, 일자리, 교육 등 사람과 가까운 문제를 AI로 해결해 보고자 함</li>
-            <li>KT AIVLE School을 통해 스마트폰 센서 기반 행동 인식 등 실전 ML 프로젝트 수행 중</li>
-          </ul>
-          <div class="stats-row">
-            <div class="stat">
-              <strong>9+</strong>
-              AI / 데이터 프로젝트
-            </div>
-            <div class="stat">
-              <strong>3+</strong>
-              공모전·논문·학술제 입상/참여
-            </div>
-            <div class="stat">
-              <strong>1</strong>
-              목표 직무: ML 기반 서비스 개발자
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+<div class="nav-links">
+<a href="#about">About</a>
+<a href="#skills">Skills</a>
+<a href="#projects">Projects</a>
+<a href="#contact">Contact</a>
+</div>
+</div>
+</header>
 
-    <!-- EDUCATION -->
-    <section id="education">
-      <div class="section-label">EDUCATION</div>
-      <h2>학력 & 교육</h2>
 
-      <div class="item">
-        <div class="item-header">
-          <div class="item-title">강남대학교 · 인공지능융합공학부 인공지능전공</div>
-          <div class="item-meta">2022.03 – 재학 중</div>
-        </div>
-        <p class="item-sub">B.S. in Artificial Intelligence</p>
-        <ul>
-          <li>머신러닝, 딥러닝, 지능형 로봇 시스템, 인공지능 앱 개발 등 전공 수강</li>
-          <li>캡스톤 디자인 및 미니프로젝트로 실제 데이터를 활용한 AI 모델 개발 경험</li>
-        </ul>
-      </div>
+<main>
 
-      <div class="item">
-        <div class="item-header">
-          <div class="item-title">KT AIVLE School</div>
-          <div class="item-meta">참여 중</div>
-        </div>
-        <p class="item-sub">스마트폰 센서 기반 행동 인식 등 실전 프로젝트 수행</p>
-        <ul>
-          <li>센서 데이터 분석과 ML 파이프라인 구축 경험</li>
-          <li>클라우드, MLOps, 서비스 관점까지 함께 학습</li>
-        </ul>
-      </div>
-    </section>
+<!-- HERO -->
 
-    <!-- SKILLS -->
-    <section id="skills">
-      <div class="section-label">SKILLS</div>
-      <h2>기술 스택</h2>
+<section class="hero">
 
-      <div class="skills-columns">
-        <div class="card">
-          <h3>Language & Tools</h3>
-          <div class="chip-list">
-            <div class="chip">Python</div>
-            <div class="chip">Java</div>
-            <div class="chip">Git / GitHub</div>
-            <div class="chip">VS Code</div>
-            <div class="chip">Jupyter / Colab</div>
-          </div>
-        </div>
+<h1>Machine Learning Engineer</h1>
 
-        <div class="card">
-          <h3>Machine Learning / Deep Learning</h3>
-          <div class="chip-list">
-            <div class="chip">scikit-learn</div>
-            <div class="chip">LightGBM</div>
-            <div class="chip">XGBoost</div>
-            <div class="chip">PyTorch (기초)</div>
-            <div class="chip">TensorFlow (기초)</div>
-          </div>
-        </div>
+<p class="sub">
+데이터를 분석하고 머신러닝 모델을 설계하여  
+실제 문제 해결에 활용하는 AI 엔지니어를 지향합니다.
+</p>
 
-        <div class="card">
-          <h3>NLP & Data</h3>
-          <div class="chip-list">
-            <div class="chip">텍스트 분류</div>
-            <div class="chip">감정 분석</div>
-            <div class="chip">시계열 데이터 예측</div>
-            <div class="chip">공공데이터 분석</div>
-          </div>
-        </div>
+<div class="pill-row">
+<div class="pill">Machine Learning</div>
+<div class="pill">Time Series</div>
+<div class="pill">NLP</div>
+<div class="pill">AI Service</div>
+</div>
 
-        <div class="card">
-          <h3>Domain & 관심 분야</h3>
-          <div class="chip-list">
-            <div class="chip">스포츠 데이터 (야구 기사 등)</div>
-            <div class="chip">풍력 발전량 데이터</div>
-            <div class="chip">스마트폰 센서 (행동 인식)</div>
-            <div class="chip">화재 피난 시뮬레이션</div>
-          </div>
-        </div>
-      </div>
-    </section>
+</section>
 
-    <!-- PROJECTS -->
-    <section id="projects">
-      <div class="section-label">PROJECTS</div>
-      <h2>프로젝트 & 경험</h2>
 
-      <!-- 필터 버튼 -->
-      <div class="filter-row">
-        <button class="filter-button is-active" data-filter="all">전체</button>
-        <button class="filter-button" data-filter="nlp">NLP / 텍스트</button>
-        <button class="filter-button" data-filter="timeseries">시계열 / 예측</button>
-        <button class="filter-button" data-filter="sensor">센서 / 로봇</button>
-        <button class="filter-button" data-filter="service">서비스 기획</button>
-        <button class="filter-button" data-filter="agent">LLM Agent</button>
-        <button class="filter-button" data-filter="game">게임 / 시뮬레이션</button>
-      </div>
+<!-- ABOUT -->
 
-      <!-- 1. 스포츠 기사 감정 분석 -->
-      <div class="item project-card" data-tags="nlp sports">
-        <div class="item-header">
-          <div class="item-title">스포츠 기사 감정 분석 시스템</div>
-          <div class="item-meta">NLP · 감성 분석 · 개인 프로젝트</div>
-        </div>
-        <p class="item-sub">야구/스포츠 기사 텍스트를 기반으로 감정(긍정/부정/중립)을 분류하는 시스템.</p>
-        <div class="project-tags">
-          <span class="project-tag">Text Classification</span>
-          <span class="project-tag">Sentiment</span>
-        </div>
-        <div class="project-details">
-          <ul>
-            <li>스포츠 기사 텍스트 수집 및 전처리(토큰화, 불용어 제거 등) 파이프라인 구축</li>
-            <li>한국어 감정 분석 모델 적용 및 성능 비교 실험 진행</li>
-            <li>팀/선수별 감정 분포를 분석하여 팬덤·여론 흐름을 시각화할 수 있는 구조 설계</li>
-          </ul>
-        </div>
-        <button class="toggle-details">
-          <span class="icon">▼</span> 자세히 보기
-        </button>
-      </div>
+<section id="about">
 
-      <!-- 2. 광고 없는 맛집 추천 앱 -->
-      <div class="item project-card" data-tags="service reco">
-        <div class="item-header">
-          <div class="item-title">광고 없는 맛집 추천 앱</div>
-          <div class="item-meta">추천 시스템 · 서비스 기획</div>
-        </div>
-        <p class="item-sub">“광고에 덜 속는” 맛집 추천을 목표로 한 서비스 기획.</p>
-        <div class="project-tags">
-          <span class="project-tag">Recommendation</span>
-          <span class="project-tag">Service Design</span>
-        </div>
-        <div class="project-details">
-          <ul>
-            <li>리뷰·평점 데이터 기반 추천 기준 정의 및 광고/협찬 가게 필터링 규칙 설계</li>
-            <li>핵심 화면 중심의 UI 플로우·와이어프레임 작성</li>
-            <li>신뢰도 있는 추천을 위한 데이터 활용 방향 설정</li>
-          </ul>
-        </div>
-        <button class="toggle-details">
-          <span class="icon">▼</span> 자세히 보기
-        </button>
-      </div>
+<h2>About</h2>
 
-      <!-- 3. 풍력 발전량 예측 -->
-      <div class="item project-card" data-tags="timeseries energy">
-        <div class="item-header">
-          <div class="item-title">풍력 발전량 예측 모델 공모전</div>
-          <div class="item-meta">시계열 회귀 · 공모전</div>
-        </div>
-        <p class="item-sub">기상·설비 데이터를 활용한 풍력 발전량 예측 모델 개발.</p>
-        <div class="project-tags">
-          <span class="project-tag">Time Series</span>
-          <span class="project-tag">Regression</span>
-        </div>
-        <div class="project-details">
-          <ul>
-            <li>발전량·기상 시계열 데이터의 결측치/이상치 처리 및 특징 공학</li>
-            <li>LightGBM, XGBoost 등 회귀 모델을 비교하며 성능 튜닝</li>
-            <li>공모전 제출 포맷에 맞춘 예측 파이프라인 구현</li>
-          </ul>
-        </div>
-        <button class="toggle-details">
-          <span class="icon">▼</span> 자세히 보기
-        </button>
-      </div>
+<p class="sub">
+강남대학교 인공지능융합공학부 인공지능전공 4학년  
+스포츠 기사, 센서 데이터, 풍력 발전량 등 다양한 데이터로  
+AI 문제 해결 프로젝트를 진행했습니다.
+</p>
 
-      <!-- 4. 경력단절 여성 복귀 설계 시스템 -->
-      <div class="item project-card" data-tags="service publicdata">
-        <div class="item-header">
-          <div class="item-title">경력단절 여성 복귀 설계 시스템 (공공데이터 분석 공모전)</div>
-          <div class="item-meta">공공데이터 · 서비스 기획</div>
-        </div>
-        <p class="item-sub">경력단절 여성의 재취업을 돕기 위한 데이터 기반 서비스 기획.</p>
-        <div class="project-tags">
-          <span class="project-tag">Public Data</span>
-          <span class="project-tag">Policy / Service</span>
-        </div>
-        <div class="project-details">
-          <ul>
-            <li>고용·복지·교육 관련 공공데이터 분석으로 경단녀 페르소나 및 요구 사항 도출</li>
-            <li>교육·지원 정책·일자리 추천 흐름과 화면 구성 초안 설계</li>
-            <li>데이터를 활용해 실제 사회 문제를 풀어본 경험</li>
-          </ul>
-        </div>
-        <button class="toggle-details">
-          <span class="icon">▼</span> 자세히 보기
-        </button>
-      </div>
+</section>
 
-      <!-- 5. 화재 피난 경로 연구 -->
-      <div class="item project-card" data-tags="game safety">
-        <div class="item-header">
-          <div class="item-title">화재 시 피난자 행동 기반 경로 탐색 연구 (논문 우수상)</div>
-          <div class="item-meta">연구 프로젝트 · 우수상</div>
-        </div>
-        <p class="item-sub">피난자 행동 특성과 건물 구조를 고려한 효율적 피난 경로 탐색 연구.</p>
-        <div class="project-tags">
-          <span class="project-tag">Simulation</span>
-          <span class="project-tag">Graph</span>
-        </div>
-        <div class="project-details">
-          <ul>
-            <li>피난자 속도, 혼잡, 패닉 등 행동 특성 모델 조사 및 시뮬레이션 설계</li>
-            <li>건물 구조를 그래프로 표현하고 경로 탐색 알고리즘 적용</li>
-            <li>연구 결과를 논문으로 정리하여 우수상 수상</li>
-          </ul>
-        </div>
-        <button class="toggle-details">
-          <span class="icon">▼</span> 자세히 보기
-        </button>
-      </div>
 
-      <!-- 6. 미로 + 퀴즈 + 스도쿠 게임 -->
-      <div class="item project-card" data-tags="game">
-        <div class="item-header">
-          <div class="item-title">미로 + 퀴즈 + 스도쿠 게임 개발 (학술제 입상)</div>
-          <div class="item-meta">게임 개발 · 알고리즘</div>
-        </div>
-        <p class="item-sub">미로 탐색, 퀴즈, 스도쿠를 합친 퍼즐 게임 개발.</p>
-        <div class="project-tags">
-          <span class="project-tag">Algorithm</span>
-          <span class="project-tag">Game</span>
-        </div>
-        <div class="project-details">
-          <ul>
-            <li>미로 생성/탐색, 스도쿠 생성 및 검증 알고리즘 구현</li>
-            <li>난이도 조절, 스테이지 구성, 기본 UI 설계</li>
-            <li>학술제 출품 및 입상 경험</li>
-          </ul>
-        </div>
-        <button class="toggle-details">
-          <span class="icon">▼</span> 자세히 보기
-        </button>
-      </div>
+<!-- SKILLS -->
 
-      <!-- 7. 스마트폰 센서 행동 인식 -->
-      <div class="item project-card" data-tags="sensor timeseries">
-        <div class="item-header">
-          <div class="item-title">스마트폰 센서 기반 행동 인식 (KT AIVLE School)</div>
-          <div class="item-meta">센서 데이터 · 분류 모델</div>
-        </div>
-        <p class="item-sub">가속도/자이로 등 스마트폰 센서 데이터로 사용자의 행동을 분류하는 모델.</p>
-        <div class="project-tags">
-          <span class="project-tag">Sensor</span>
-          <span class="project-tag">HAR</span>
-        </div>
-        <div class="project-details">
-          <ul>
-            <li>센서 시계열 데이터를 윈도우 단위로 분할하고 통계·주파수 기반 특징 추출</li>
-            <li>여러 분류 모델을 비교하며 행동 인식 정확도 향상을 위한 실험 수행</li>
-            <li>혼동행렬을 활용해 오분류 패턴 분석 및 개선 방향 도출</li>
-          </ul>
-        </div>
-        <button class="toggle-details">
-          <span class="icon">▼</span> 자세히 보기
-        </button>
-      </div>
+<section id="skills">
 
-      <!-- 8. AI 면접관 Agent -->
-      <div class="item project-card" data-tags="agent nlp">
-        <div class="item-header">
-          <div class="item-title">AI 면접관 Agent (이력서·자소서 기반 면접 Q/A·평가·리포트 자동화)</div>
-          <div class="item-meta">LLM · LangGraph · 인터뷰 시뮬레이터</div>
-        </div>
-        <p class="item-sub">
-          이력서·자기소개서를 기반으로 면접 질문을 생성하고, 답변을 평가한 뒤 인터뷰 리포트를 자동으로 작성하는 AI 면접관 에이전트.
-        </p>
-        <div class="project-tags">
-          <span class="project-tag">Agent</span>
-          <span class="project-tag">Interview</span>
-        </div>
-        <div class="project-details">
-          <ul>
-            <li>InterviewState로 이력서 요약, 키워드, 질문 전략, Q/A 로그, 평가 결과를 구조화</li>
-            <li>이력서 분석 → 질문 생성 → 답변 평가 → 추가 질문 여부 결정 → 리포트 작성 플로우 설계</li>
-            <li>LangGraph로 각 단계를 노드로 구성해 규칙 기반 로직과 LLM을 조합한 인터뷰 경험 구현</li>
-          </ul>
-        </div>
-        <button class="toggle-details">
-          <span class="icon">▼</span> 자세히 보기
-        </button>
-      </div>
+<h2>Tech Stack</h2>
 
-      <!-- 9. AI 강사 Agent -->
-      <div class="item project-card" data-tags="agent service">
-        <div class="item-header">
-          <div class="item-title">AI 강사 Agent (강의자료 → 수업 설계·퀴즈·피드백 자동화)</div>
-          <div class="item-meta">LLM · 교육 도메인 · 콘텐츠 생성</div>
-        </div>
-        <p class="item-sub">
-          강의자료를 입력하면 수업 구성, 핵심 요약, 퀴즈, 과제, 피드백까지 자동으로 생성하는 교육용 AI 강사 에이전트.
-        </p>
-        <div class="project-tags">
-          <span class="project-tag">Education</span>
-          <span class="project-tag">Content Gen</span>
-        </div>
-        <div class="project-details">
-          <ul>
-            <li>강의자료에서 챕터별 핵심 개념을 추출하고, 학습 목표와 수업 흐름을 자동 설계</li>
-            <li>객관식·주관식 퀴즈와 과제를 생성해 학습 내용을 점검할 수 있도록 구성</li>
-            <li>예시 답변 기반 피드백 문장을 생성해 “강의자료 → 수업 → 평가 → 피드백” 플로우를 자동화</li>
-          </ul>
-        </div>
-        <button class="toggle-details">
-          <span class="icon">▼</span> 자세히 보기
-        </button>
-      </div>
-    </section>
+<div class="skills">
 
-    <!-- CONTACT -->
-    <section id="contact">
-      <div class="section-label">CONTACT</div>
-      <h2>Contact</h2>
-      <p class="contact-row">
-        <span>Email</span>
-        <a href="mailto:lieme980@gmail.com">lieme980@gmail.com</a>
-      </p>
-      <p class="contact-row">
-        <span>GitHub</span>
-        <a href="https://github.com/leeseungyoons" target="_blank">github.com/leeseungyoons</a>
-      </p>
-    </section>
-  </main>
+<div class="card">
+<h3>Language</h3>
 
-  <footer>
-    © 2025 Seungyun Lee. All rights reserved.
-  </footer>
+<div class="chip">Python</div>
+<div class="chip">Java</div>
+</div>
 
-  <script>
-    // nav active 상태
-    const sections = document.querySelectorAll("main section");
-    const navLinks = document.querySelectorAll(".nav-links a");
 
-    function onScroll() {
-      let currentId = "";
-      sections.forEach(section => {
-        const rect = section.getBoundingClientRect();
-        if (rect.top <= 80 && rect.bottom > 80) {
-          currentId = section.id;
-        }
-      });
-      if (!currentId) return;
-      navLinks.forEach(link => {
-        link.classList.toggle("is-active", link.getAttribute("href") === "#" + currentId);
-      });
-    }
-    document.addEventListener("scroll", onScroll);
+<div class="card">
+<h3>Machine Learning</h3>
 
-    // 프로젝트 필터
-    const filterButtons = document.querySelectorAll(".filter-button");
-    const projectCards = document.querySelectorAll(".project-card");
+<div class="chip">scikit-learn</div>
+<div class="chip">LightGBM</div>
+<div class="chip">XGBoost</div>
+</div>
 
-    filterButtons.forEach(btn => {
-      btn.addEventListener("click", () => {
-        const category = btn.dataset.filter;
-        filterButtons.forEach(b => b.classList.remove("is-active"));
-        btn.classList.add("is-active");
 
-        projectCards.forEach(card => {
-          const tags = card.dataset.tags || "";
-          if (category === "all" || tags.includes(category)) {
-            card.classList.remove("hidden");
-          } else {
-            card.classList.add("hidden");
-          }
-        });
-      });
-    });
+<div class="card">
+<h3>Data</h3>
 
-    // 프로젝트 자세히 보기 토글
-    const toggleButtons = document.querySelectorAll(".toggle-details");
+<div class="chip">Pandas</div>
+<div class="chip">NumPy</div>
+<div class="chip">Matplotlib</div>
+<div class="chip">Seaborn</div>
+</div>
 
-    toggleButtons.forEach(btn => {
-      const card = btn.closest(".project-card");
-      const details = card.querySelector(".project-details");
-      details.style.maxHeight = "0px";
 
-      btn.addEventListener("click", () => {
-        const isOpen = card.classList.toggle("open");
-        if (isOpen) {
-          details.style.maxHeight = details.scrollHeight + "px";
-          btn.innerHTML = '<span class="icon">▲</span> 간단히 보기';
-        } else {
-          details.style.maxHeight = "0px";
-          btn.innerHTML = '<span class="icon">▼</span> 자세히 보기';
-        }
-      });
-    });
-  </script>
+<div class="card">
+<h3>AI / LLM</h3>
+
+<div class="chip">LangChain</div>
+<div class="chip">LangGraph</div>
+<div class="chip">Transformers</div>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- PROJECTS -->
+
+<section id="projects">
+
+<h2>Featured ML Projects</h2>
+
+
+<div class="card project-card">
+
+<h3>K-Food 수요 예측 모델</h3>
+
+<p class="sub">
+해외 리뷰 데이터를 기반으로 국가별 K-Food 수요 예측 모델 개발
+</p>
+
+<ul>
+<li>Amazon 리뷰 데이터 약 10만건 활용</li>
+<li>LightGBM 기반 수요 예측 모델 개발</li>
+<li>SHAP 기반 Feature Importance 분석</li>
+</ul>
+
+</div>
+
+
+<div class="card project-card">
+
+<h3>AI 면접관 Agent</h3>
+
+<p class="sub">
+이력서 기반 질문 생성 및 답변 평가 시스템
+</p>
+
+<ul>
+<li>LangGraph 기반 AI Agent 설계</li>
+<li>이력서 분석 → 질문 생성 → 평가 → 리포트 자동화</li>
+<li>인터뷰 시뮬레이션 시스템 구현</li>
+</ul>
+
+</div>
+
+
+<div class="card project-card">
+
+<h3>스마트폰 센서 행동 인식</h3>
+
+<p class="sub">
+스마트폰 가속도 센서를 활용한 행동 분류 모델
+</p>
+
+<ul>
+<li>센서 시계열 데이터 Feature Engineering</li>
+<li>RandomForest / LightGBM 모델 비교</li>
+<li>행동 분류 정확도 약 85%</li>
+</ul>
+
+</div>
+
+
+
+<h2 style="margin-top:60px">Other Projects</h2>
+
+
+<div class="card">
+
+<h3>스포츠 기사 감정 분석</h3>
+
+<ul>
+<li>스포츠 기사 텍스트 감성 분석</li>
+<li>NLP 기반 텍스트 분류</li>
+</ul>
+
+</div>
+
+
+<div class="card">
+
+<h3>풍력 발전량 예측</h3>
+
+<ul>
+<li>기상 데이터 기반 발전량 예측</li>
+<li>LightGBM / XGBoost 모델 실험</li>
+</ul>
+
+</div>
+
+
+<div class="card">
+
+<h3>화재 피난 경로 연구</h3>
+
+<ul>
+<li>그래프 기반 피난 경로 탐색</li>
+<li>논문 우수상 수상</li>
+</ul>
+
+</div>
+
+
+</section>
+
+
+<!-- CONTACT -->
+
+<section id="contact">
+
+<h2>Contact</h2>
+
+<div class="contact">
+Email : lieme980@gmail.com  
+<br>
+Github : github.com/leeseungyoons
+</div>
+
+</section>
+
+
+</main>
+
 </body>
 </html>
