@@ -2,195 +2,247 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>이승윤 · Machine Learning Engineer</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Seungyoon Lee | ML Engineer</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
 
-:root{
---bg:#020617;
---card:#020b25;
---accent:#22c55e;
---accent2:#38bdf8;
---text:#e5e7eb;
---sub:#9ca3af;
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
 }
 
-*{box-sizing:border-box;margin:0;padding:0}
-
 body{
-font-family:-apple-system,BlinkMacSystemFont,Pretendard,sans-serif;
-background:radial-gradient(circle at top left,#0f172a,#020617);
-color:var(--text);
+font-family:Inter,system-ui;
+background:#020617;
+color:white;
 line-height:1.6;
 }
 
+/* NAV */
+
 header{
-position:sticky;
+position:fixed;
+width:100%;
 top:0;
-background:#020617dd;
 backdrop-filter:blur(10px);
+background:rgba(2,6,23,0.8);
 border-bottom:1px solid #1e293b;
 }
 
 .nav{
-max-width:1100px;
+max-width:1200px;
 margin:auto;
-padding:15px;
+padding:20px;
 display:flex;
 justify-content:space-between;
+align-items:center;
 }
 
-.nav-links a{
-margin-left:15px;
-font-size:14px;
-color:var(--sub);
+.nav a{
+color:#94a3b8;
+margin-left:25px;
 text-decoration:none;
+font-size:14px;
 }
 
-main{
-max-width:1100px;
-margin:auto;
-padding:60px 20px;
+.nav a:hover{
+color:white;
 }
 
-section{
-margin-bottom:80px;
+/* HERO */
+
+.hero{
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+padding:40px;
 }
 
-h1{
-font-size:42px;
+.hero h1{
+font-size:70px;
+font-weight:700;
 margin-bottom:10px;
 }
 
-h2{
-font-size:28px;
-margin-bottom:25px;
+.hero p{
+font-size:20px;
+color:#94a3b8;
+margin-bottom:30px;
 }
 
-.sub{
-color:var(--sub);
-margin-bottom:20px;
-}
+.hero-buttons a{
 
-.hero{
-margin-bottom:80px;
-}
-
-.pill-row{
-display:flex;
-gap:10px;
-flex-wrap:wrap;
-margin-top:15px;
-}
-
-.pill{
+padding:12px 28px;
+border-radius:30px;
+margin:8px;
+text-decoration:none;
+font-size:14px;
 border:1px solid #334155;
-padding:5px 12px;
-border-radius:20px;
-font-size:13px;
-color:var(--sub);
 }
 
-.card{
-background:var(--card);
-padding:25px;
-border-radius:14px;
-border:1px solid #1e293b;
-margin-bottom:25px;
+.btn-primary{
+background:#22c55e;
+color:black;
+border:none;
+}
+
+.btn-secondary{
+color:white;
+}
+
+/* SECTION */
+
+section{
+max-width:1100px;
+margin:auto;
+padding:120px 20px;
+}
+
+h2{
+font-size:36px;
+margin-bottom:40px;
+}
+
+/* ABOUT */
+
+.about{
+font-size:18px;
+color:#cbd5f5;
+}
+
+/* PROJECTS */
+
+.projects-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:30px;
 }
 
 .project-card{
-cursor:pointer;
-transition:0.2s;
+
+background:#020b25;
+border:1px solid #1e293b;
+border-radius:15px;
+padding:30px;
+
+transition:0.3s;
 }
 
 .project-card:hover{
-transform:translateY(-4px);
+transform:translateY(-10px);
+border-color:#38bdf8;
 }
 
-ul{
-margin-top:10px;
+.project-card h3{
+margin-bottom:10px;
+font-size:22px;
+}
+
+.project-card p{
+color:#94a3b8;
+margin-bottom:15px;
+}
+
+.project-card ul{
 padding-left:20px;
 }
 
-li{
+.project-card li{
 margin-bottom:6px;
 font-size:14px;
 }
 
-.skills{
+/* SKILLS */
+
+.skills-grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-gap:20px;
+gap:25px;
 }
 
-.chip{
-display:inline-block;
-border:1px solid #334155;
-padding:4px 10px;
-margin:4px;
-border-radius:20px;
-font-size:13px;
-color:var(--sub);
+.skill-card{
+background:#020b25;
+border:1px solid #1e293b;
+padding:20px;
+border-radius:12px;
 }
 
-.project-details{
-display:none;
-margin-top:10px;
+.skill-card h4{
+margin-bottom:10px;
 }
 
-button{
-margin-top:10px;
-padding:5px 10px;
-background:#020617;
-border:1px solid #334155;
-color:var(--text);
-border-radius:20px;
-cursor:pointer;
-}
+/* CONTACT */
 
 .contact{
-font-size:15px;
+font-size:18px;
+color:#cbd5f5;
+}
+
+/* FOOTER */
+
+footer{
+text-align:center;
+padding:40px;
+color:#64748b;
+font-size:14px;
 }
 
 </style>
+
 </head>
 
 <body>
 
 <header>
-<div class="nav">
-<div>LEE SEUNGYOON</div>
 
-<div class="nav-links">
+<div class="nav">
+
+<div><strong>LEE SEUNGYOON</strong></div>
+
+<div>
+
 <a href="#about">About</a>
-<a href="#skills">Skills</a>
 <a href="#projects">Projects</a>
+<a href="#skills">Skills</a>
 <a href="#contact">Contact</a>
+
 </div>
+
 </div>
+
 </header>
 
-
-<main>
 
 <!-- HERO -->
 
 <section class="hero">
 
+<div>
+
 <h1>Machine Learning Engineer</h1>
 
-<p class="sub">
-데이터를 분석하고 머신러닝 모델을 설계하여  
-실제 문제 해결에 활용하는 AI 엔지니어를 지향합니다.
+<p>
+
+데이터에서 모델을 만들고  
+모델을 실제 서비스로 연결하는 AI 엔지니어
+
 </p>
 
-<div class="pill-row">
-<div class="pill">Machine Learning</div>
-<div class="pill">Time Series</div>
-<div class="pill">NLP</div>
-<div class="pill">AI Service</div>
+<div class="hero-buttons">
+
+<a class="btn-primary" href="#projects">View Projects</a>
+
+<a class="btn-secondary" href="https://github.com/leeseungyoons">Github</a>
+
+</div>
+
 </div>
 
 </section>
@@ -202,11 +254,98 @@ font-size:15px;
 
 <h2>About</h2>
 
-<p class="sub">
-강남대학교 인공지능융합공학부 인공지능전공 4학년  
-스포츠 기사, 센서 데이터, 풍력 발전량 등 다양한 데이터로  
-AI 문제 해결 프로젝트를 진행했습니다.
+<p class="about">
+
+강남대학교 인공지능융합공학부 인공지능 전공.  
+다양한 데이터 문제를 머신러닝으로 해결하는 것에 관심이 있으며  
+NLP, 시계열 예측, 센서 데이터 분석 프로젝트를 수행했습니다.
+
+현재 AI Agent, 수요 예측 모델, 행동 인식 모델 등을 개발하며  
+Machine Learning Engineer를 목표로 성장하고 있습니다.
+
 </p>
+
+</section>
+
+
+<!-- PROJECTS -->
+
+<section id="projects">
+
+<h2>Featured Projects</h2>
+
+<div class="projects-grid">
+
+<div class="project-card">
+
+<h3>K-Food 수요 예측 모델</h3>
+
+<p>
+Amazon 리뷰와 트렌드 데이터를 활용한  
+국가별 K-Food 수요 예측 시스템
+</p>
+
+<ul>
+
+<li>LightGBM 기반 수요 예측 모델</li>
+
+<li>Lag / Rolling Feature Engineering</li>
+
+<li>SHAP 기반 Feature Importance 분석</li>
+
+</ul>
+
+</div>
+
+
+<div class="project-card">
+
+<h3>AI 면접관 Agent</h3>
+
+<p>
+
+이력서를 기반으로 질문 생성 및 답변 평가를 수행하는  
+AI 면접 시뮬레이션 시스템
+
+</p>
+
+<ul>
+
+<li>LangGraph 기반 Agent 설계</li>
+
+<li>질문 생성 → 답변 평가 → 리포트 자동화</li>
+
+<li>인터뷰 시뮬레이션 시스템 구현</li>
+
+</ul>
+
+</div>
+
+
+<div class="project-card">
+
+<h3>스마트폰 센서 행동 인식</h3>
+
+<p>
+
+스마트폰 가속도 센서 데이터를 이용한  
+행동 인식 머신러닝 모델
+
+</p>
+
+<ul>
+
+<li>센서 시계열 Feature Engineering</li>
+
+<li>RandomForest / LightGBM 모델 비교</li>
+
+<li>행동 분류 정확도 약 85%</li>
+
+</ul>
+
+</div>
+
+</div>
 
 </section>
 
@@ -217,145 +356,44 @@ AI 문제 해결 프로젝트를 진행했습니다.
 
 <h2>Tech Stack</h2>
 
-<div class="skills">
+<div class="skills-grid">
 
-<div class="card">
-<h3>Language</h3>
+<div class="skill-card">
 
-<div class="chip">Python</div>
-<div class="chip">Java</div>
-</div>
+<h4>Language</h4>
 
-
-<div class="card">
-<h3>Machine Learning</h3>
-
-<div class="chip">scikit-learn</div>
-<div class="chip">LightGBM</div>
-<div class="chip">XGBoost</div>
-</div>
-
-
-<div class="card">
-<h3>Data</h3>
-
-<div class="chip">Pandas</div>
-<div class="chip">NumPy</div>
-<div class="chip">Matplotlib</div>
-<div class="chip">Seaborn</div>
-</div>
-
-
-<div class="card">
-<h3>AI / LLM</h3>
-
-<div class="chip">LangChain</div>
-<div class="chip">LangGraph</div>
-<div class="chip">Transformers</div>
-</div>
-
-</div>
-
-</section>
-
-
-<!-- PROJECTS -->
-
-<section id="projects">
-
-<h2>Featured ML Projects</h2>
-
-
-<div class="card project-card">
-
-<h3>K-Food 수요 예측 모델</h3>
-
-<p class="sub">
-해외 리뷰 데이터를 기반으로 국가별 K-Food 수요 예측 모델 개발
-</p>
-
-<ul>
-<li>Amazon 리뷰 데이터 약 10만건 활용</li>
-<li>LightGBM 기반 수요 예측 모델 개발</li>
-<li>SHAP 기반 Feature Importance 분석</li>
-</ul>
+<p>Python / Java</p>
 
 </div>
 
 
-<div class="card project-card">
+<div class="skill-card">
 
-<h3>AI 면접관 Agent</h3>
+<h4>Machine Learning</h4>
 
-<p class="sub">
-이력서 기반 질문 생성 및 답변 평가 시스템
-</p>
-
-<ul>
-<li>LangGraph 기반 AI Agent 설계</li>
-<li>이력서 분석 → 질문 생성 → 평가 → 리포트 자동화</li>
-<li>인터뷰 시뮬레이션 시스템 구현</li>
-</ul>
+<p>Scikit-learn / LightGBM / XGBoost</p>
 
 </div>
 
 
-<div class="card project-card">
+<div class="skill-card">
 
-<h3>스마트폰 센서 행동 인식</h3>
+<h4>Data</h4>
 
-<p class="sub">
-스마트폰 가속도 센서를 활용한 행동 분류 모델
-</p>
-
-<ul>
-<li>센서 시계열 데이터 Feature Engineering</li>
-<li>RandomForest / LightGBM 모델 비교</li>
-<li>행동 분류 정확도 약 85%</li>
-</ul>
+<p>Pandas / NumPy / Matplotlib</p>
 
 </div>
 
 
+<div class="skill-card">
 
-<h2 style="margin-top:60px">Other Projects</h2>
+<h4>AI / LLM</h4>
 
-
-<div class="card">
-
-<h3>스포츠 기사 감정 분석</h3>
-
-<ul>
-<li>스포츠 기사 텍스트 감성 분석</li>
-<li>NLP 기반 텍스트 분류</li>
-</ul>
+<p>LangChain / LangGraph / Transformers</p>
 
 </div>
 
-
-<div class="card">
-
-<h3>풍력 발전량 예측</h3>
-
-<ul>
-<li>기상 데이터 기반 발전량 예측</li>
-<li>LightGBM / XGBoost 모델 실험</li>
-</ul>
-
 </div>
-
-
-<div class="card">
-
-<h3>화재 피난 경로 연구</h3>
-
-<ul>
-<li>그래프 기반 피난 경로 탐색</li>
-<li>논문 우수상 수상</li>
-</ul>
-
-</div>
-
 
 </section>
 
@@ -367,15 +405,25 @@ AI 문제 해결 프로젝트를 진행했습니다.
 <h2>Contact</h2>
 
 <div class="contact">
-Email : lieme980@gmail.com  
-<br>
+
+Email : lieme980@gmail.com
+
+<br><br>
+
 Github : github.com/leeseungyoons
+
 </div>
 
 </section>
 
 
-</main>
+<footer>
+
+© 2026 Seungyoon Lee
+
+</footer>
+
 
 </body>
+
 </html>
