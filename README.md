@@ -2,6 +2,7 @@
 
 > 이승윤의 Machine Learning Engineer 포트폴리오 웹사이트입니다.  
 > AI/ML 프로젝트, 기술 스택, 성장 과정, 수상 경험, 연락처를 한 페이지에서 확인할 수 있도록 구성한 **반응형 개인 포트폴리오 사이트**입니다.
+> https://leeseungyoons.github.io/ai-portfolio-site/
 
 ---
 
