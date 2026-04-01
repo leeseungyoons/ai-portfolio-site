@@ -3,2772 +3,1673 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>이승윤 | Machine Learning Engineer Portfolio</title>
-  <meta name="description" content="이승윤 ML Engineer Portfolio - 데이터에서 모델을 만들고 실제 서비스로 연결하는 AI 엔지니어" />
-  <meta property="og:title" content="이승윤 | Machine Learning Engineer Portfolio" />
-  <meta property="og:description" content="ML / NLP / Time Series / AI Agent / Service Development Portfolio" />
+  <title>이승윤 | AI Engineer Portfolio</title>
+  <meta name="description" content="이승윤 포트폴리오 - 데이터에서 서비스까지 연결하는 AI Engineer" />
+  <meta property="og:title" content="이승윤 | AI Engineer Portfolio" />
+  <meta property="og:description" content="ML · NLP · Time Series · Agent · Product Thinking" />
   <meta property="og:type" content="website" />
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
   <style>
-    /* =========================================================
-       RESET & BASE
-    ========================================================= */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
     :root {
-      --bg: #020617;
-      --bg-2: #030b1c;
-      --bg-3: #071127;
-      --card: rgba(8, 16, 35, 0.72);
-      --card-2: rgba(10, 20, 42, 0.88);
-      --line: rgba(148, 163, 184, 0.16);
-      --line-2: rgba(148, 163, 184, 0.28);
-      --txt: #e5e7eb;
-      --sub: #94a3b8;
-      --muted: #64748b;
-      --green: #22c55e;
-      --cyan: #06b6d4;
-      --blue: #3b82f6;
-      --pink: #ec4899;
-      --amber: #f59e0b;
-      --danger: #ef4444;
-      --shadow: 0 24px 60px rgba(0, 0, 0, 0.38);
-      --shadow-2: 0 30px 80px rgba(2, 6, 23, 0.62);
-      --radius-xl: 24px;
-      --radius-lg: 18px;
-      --radius-md: 14px;
-      --radius-sm: 10px;
-      --nav-h: 76px;
+      --bg: #06101f;
+      --bg-soft: #0b1830;
+      --panel: rgba(12, 20, 38, 0.74);
+      --panel-strong: rgba(10, 18, 34, 0.92);
+      --line: rgba(173, 189, 219, 0.14);
+      --line-strong: rgba(173, 189, 219, 0.28);
+      --text: #f8fbff;
+      --muted: #98a8c7;
+      --muted-2: #7f91b3;
+      --green: #39d98a;
+      --cyan: #53c8ff;
+      --blue: #7aa5ff;
+      --violet: #8b7dff;
+      --amber: #ffbf69;
+      --danger: #ff6b81;
+      --shadow: 0 24px 70px rgba(0,0,0,0.35);
+      --shadow-lg: 0 30px 100px rgba(0,0,0,0.44);
+      --radius-xl: 28px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --radius-sm: 12px;
       --container: 1180px;
+      --nav-h: 78px;
     }
 
-    html, body {
-      width: 100%;
-      min-height: 100%;
-      background:
-        radial-gradient(circle at 12% 10%, rgba(34,197,94,0.10), transparent 35%),
-        radial-gradient(circle at 90% 18%, rgba(6,182,212,0.12), transparent 40%),
-        radial-gradient(circle at 65% 78%, rgba(59,130,246,0.10), transparent 45%),
-        var(--bg);
-      color: var(--txt);
-      font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      scroll-behavior: smooth;
-    }
-
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
     body {
+      font-family: 'Inter', 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background:
+        radial-gradient(circle at 12% 8%, rgba(57,217,138,0.12), transparent 32%),
+        radial-gradient(circle at 88% 12%, rgba(83,200,255,0.16), transparent 36%),
+        radial-gradient(circle at 65% 80%, rgba(122,165,255,0.12), transparent 38%),
+        linear-gradient(180deg, #06101f 0%, #081426 48%, #091121 100%);
+      color: var(--text);
+      min-height: 100vh;
       overflow-x: hidden;
       line-height: 1.6;
-      position: relative;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    button { font: inherit; border: 0; background: transparent; color: inherit; cursor: pointer; }
+    ::selection { background: rgba(83,200,255,0.24); }
+
+    .bg-grid,
+    .noise,
+    .orb { position: fixed; inset: 0; pointer-events: none; }
+    .bg-grid {
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: linear-gradient(180deg, rgba(0,0,0,.42), rgba(0,0,0,0));
+      opacity: .28;
+      z-index: 0;
+    }
+    .noise {
+      background-image: radial-gradient(rgba(255,255,255,.55) .5px, transparent .5px);
+      background-size: 5px 5px;
+      opacity: .03;
+      z-index: 0;
+    }
+    .orb {
+      width: 36rem;
+      height: 36rem;
+      border-radius: 999px;
+      filter: blur(88px);
+      opacity: .18;
+      z-index: 0;
+      animation: float 20s ease-in-out infinite;
+    }
+    .orb.one { top: -8rem; left: -8rem; background: rgba(57,217,138,0.35); }
+    .orb.two { top: 3rem; right: -10rem; background: rgba(83,200,255,0.3); animation-duration: 26s; }
+    .orb.three { bottom: -12rem; left: 32%; background: rgba(139,125,255,0.22); animation-duration: 24s; }
+    @keyframes float {
+      0%,100% { transform: translate3d(0,0,0) scale(1); }
+      50% { transform: translate3d(2rem, 1.6rem, 0) scale(1.08); }
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    button {
-      font: inherit;
-      color: inherit;
-      background: none;
-      border: none;
-      cursor: pointer;
-    }
-
-    img {
-      display: block;
-      max-width: 100%;
-    }
-
-    ::selection {
-      background: rgba(34, 197, 94, 0.25);
-      color: #fff;
+    .scroll-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 3px;
+      z-index: 1000;
+      background: linear-gradient(90deg, var(--green), var(--cyan), var(--blue));
+      box-shadow: 0 0 20px rgba(83,200,255,.28);
     }
 
     .container {
       width: min(var(--container), calc(100% - 40px));
       margin: 0 auto;
-    }
-
-    .section {
       position: relative;
-      padding: 110px 0;
+      z-index: 2;
     }
-
-    .section-title {
-      font-size: clamp(28px, 3.2vw, 44px);
-      line-height: 1.15;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      margin-bottom: 14px;
+    .section {
+      padding: 112px 0;
+      position: relative;
+      z-index: 2;
     }
-
-    .section-sub {
-      color: var(--sub);
-      font-size: 15px;
-      max-width: 760px;
-      margin-bottom: 28px;
-    }
-
     .eyebrow {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      margin-bottom: 12px;
-      padding: 7px 12px;
+      padding: 8px 13px;
       border-radius: 999px;
       border: 1px solid var(--line);
-      background: rgba(255,255,255,0.02);
-      color: #cbd5e1;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: .05em;
-      text-transform: uppercase;
+      color: #dce7ff;
+      background: rgba(255,255,255,0.03);
       backdrop-filter: blur(10px);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
     }
-
     .eyebrow .dot {
       width: 7px;
       height: 7px;
       border-radius: 999px;
-      background: linear-gradient(180deg, #22c55e, #16a34a);
-      box-shadow: 0 0 14px rgba(34,197,94,0.7);
+      background: linear-gradient(180deg, var(--green), var(--cyan));
+      box-shadow: 0 0 14px rgba(57,217,138,.45);
+    }
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3.3rem);
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+      font-weight: 800;
+      margin-bottom: 14px;
+      max-width: 900px;
+    }
+    .section-desc {
+      color: var(--muted);
+      max-width: 760px;
+      font-size: 1rem;
+      margin-bottom: 34px;
     }
 
-    /* =========================================================
-       BACKGROUND LAYERS
-    ========================================================= */
-    #bg-canvas {
-      position: fixed;
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      backdrop-filter: blur(16px);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+    .panel::before {
+      content: "";
+      position: absolute;
       inset: 0;
-      z-index: 0;
-      opacity: 0.45;
+      background:
+        radial-gradient(circle at 10% 0%, rgba(57,217,138,0.08), transparent 35%),
+        radial-gradient(circle at 100% 0%, rgba(83,200,255,0.08), transparent 35%);
       pointer-events: none;
     }
 
-    .noise {
-      position: fixed;
-      inset: 0;
-      z-index: 1;
-      opacity: 0.03;
-      pointer-events: none;
-      background-image:
-        radial-gradient(#fff 0.5px, transparent 0.5px);
-      background-size: 4px 4px;
-    }
-
-    .orb {
-      position: fixed;
-      width: 420px;
-      height: 420px;
-      border-radius: 999px;
-      filter: blur(85px);
-      opacity: 0.12;
-      z-index: 1;
-      pointer-events: none;
-      will-change: transform;
-    }
-
-    .orb-1 {
-      background: #22c55e;
-      top: 8%;
-      left: -8%;
-      animation: floatOrb1 20s ease-in-out infinite;
-    }
-
-    .orb-2 {
-      background: #06b6d4;
-      top: 18%;
-      right: -10%;
-      animation: floatOrb2 26s ease-in-out infinite;
-    }
-
-    .orb-3 {
-      background: #3b82f6;
-      bottom: -8%;
-      left: 24%;
-      animation: floatOrb3 22s ease-in-out infinite;
-    }
-
-    @keyframes floatOrb1 {
-      0%,100% { transform: translate3d(0,0,0) scale(1); }
-      50% { transform: translate3d(80px,40px,0) scale(1.08); }
-    }
-    @keyframes floatOrb2 {
-      0%,100% { transform: translate3d(0,0,0) scale(1); }
-      50% { transform: translate3d(-70px,65px,0) scale(1.12); }
-    }
-    @keyframes floatOrb3 {
-      0%,100% { transform: translate3d(0,0,0) scale(1); }
-      50% { transform: translate3d(30px,-70px,0) scale(1.05); }
-    }
-
-    /* =========================================================
-       PROGRESS BAR
-    ========================================================= */
-    .scroll-progress {
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 3px;
-      width: 0%;
-      z-index: 1000;
-      background: linear-gradient(90deg, var(--green), var(--cyan), var(--blue));
-      box-shadow: 0 0 20px rgba(34,197,94,0.45);
-    }
-
-    /* =========================================================
-       NAVBAR
-    ========================================================= */
     .nav-wrap {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
-      z-index: 200;
-      padding: 14px 0;
-      transition: transform .35s ease, background-color .25s ease, border-color .25s ease;
-      background: rgba(2,6,23,0.32);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(148,163,184,0.06);
+      z-index: 100;
+      padding: 16px 0;
+      transition: .25s ease;
     }
-
     .nav-wrap.scrolled {
-      background: rgba(2,6,23,0.70);
-      border-bottom-color: rgba(148,163,184,0.12);
+      background: rgba(5,10,20,.54);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(173,189,219,0.08);
     }
-
     .nav {
-      height: calc(var(--nav-h) - 28px);
+      height: calc(var(--nav-h) - 32px);
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 18px;
       padding: 0 14px;
-      border-radius: 16px;
-      border: 1px solid rgba(148,163,184,0.08);
-      background: rgba(255,255,255,0.01);
+      border-radius: 18px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(173,189,219,0.1);
     }
-
     .brand {
-      display: inline-flex;
+      display: flex;
       align-items: center;
       gap: 12px;
       min-width: 0;
     }
-
-    .brand-badge {
-      width: 34px;
-      height: 34px;
-      border-radius: 12px;
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 14px;
       display: grid;
       place-items: center;
       font-weight: 800;
       font-size: 14px;
-      color: #04110a;
-      background: linear-gradient(135deg, #22c55e, #06b6d4);
-      box-shadow: 0 10px 30px rgba(6,182,212,0.25);
-      position: relative;
-      overflow: hidden;
+      color: #041116;
+      background: linear-gradient(135deg, var(--green), var(--cyan));
+      box-shadow: 0 14px 30px rgba(57,217,138,0.2);
     }
-
-    .brand-badge::after {
-      content: "";
-      position: absolute;
-      inset: -40% -20%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,.35), transparent);
-      transform: rotate(25deg) translateX(-130%);
-      animation: shineBadge 4s ease-in-out infinite;
-    }
-
-    @keyframes shineBadge {
-      0%, 70%, 100% { transform: rotate(25deg) translateX(-130%); }
-      84% { transform: rotate(25deg) translateX(130%); }
-    }
-
-    .brand-text {
-      display: flex;
-      flex-direction: column;
-      line-height: 1.1;
-      min-width: 0;
-    }
-
-    .brand-text strong {
-      font-size: 13px;
-      font-weight: 800;
-      letter-spacing: 0.06em;
-      color: #fff;
-      white-space: nowrap;
-    }
-
-    .brand-text span {
-      font-size: 11px;
-      color: var(--sub);
-      white-space: nowrap;
-    }
-
-    .nav-menu {
+    .brand-copy { display: grid; gap: 2px; }
+    .brand-copy strong { font-size: 13px; letter-spacing: .08em; }
+    .brand-copy span { font-size: 11px; color: var(--muted); }
+    .nav-links {
       display: flex;
       align-items: center;
       gap: 8px;
       list-style: none;
     }
-
-    .nav-link {
-      position: relative;
+    .nav-links a {
       padding: 10px 12px;
       border-radius: 10px;
+      color: var(--muted);
       font-size: 13px;
-      color: var(--sub);
-      transition: color .2s ease, background .2s ease;
-      white-space: nowrap;
+      font-weight: 600;
+      transition: .2s ease;
     }
-
-    .nav-link:hover {
-      color: #fff;
-      background: rgba(255,255,255,0.03);
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--text);
+      background: rgba(255,255,255,0.05);
     }
-
-    .nav-link.active {
-      color: #fff;
-      background: rgba(34,197,94,0.08);
-    }
-
-    .nav-link.active::after {
-      content: "";
-      position: absolute;
-      left: 10px;
-      right: 10px;
-      bottom: 5px;
-      height: 2px;
-      border-radius: 999px;
-      background: linear-gradient(90deg, var(--green), var(--cyan));
-      opacity: 0.95;
-    }
-
     .nav-actions {
-      display: inline-flex;
+      display: flex;
       align-items: center;
       gap: 8px;
     }
-
-    .nav-icon-btn {
-      width: 38px;
-      height: 38px;
+    .icon-btn,
+    .nav-toggle {
+      width: 40px;
+      height: 40px;
       display: grid;
       place-items: center;
       border-radius: 12px;
       border: 1px solid var(--line);
-      background: rgba(255,255,255,0.01);
-      color: #cbd5e1;
-      transition: transform .2s ease, border-color .2s ease, background .2s ease;
+      background: rgba(255,255,255,0.04);
+      transition: .2s ease;
     }
-
-    .nav-icon-btn:hover {
+    .icon-btn:hover,
+    .nav-toggle:hover {
+      border-color: var(--line-strong);
       transform: translateY(-1px);
-      border-color: rgba(148,163,184,0.35);
-      background: rgba(255,255,255,0.03);
     }
+    .nav-toggle { display: none; }
 
-    .nav-toggle {
+    .mobile-drawer {
+      position: fixed;
+      inset: 0;
+      z-index: 120;
       display: none;
     }
-
-    /* =========================================================
-       HERO
-    ========================================================= */
-    .hero {
-      position: relative;
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
-      z-index: 2;
-      padding-top: calc(var(--nav-h) + 26px);
-      padding-bottom: 50px;
+    .mobile-drawer.open { display: block; }
+    .drawer-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(3,8,16,.7);
+      backdrop-filter: blur(8px);
     }
+    .drawer-panel {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: min(320px, calc(100% - 32px));
+      border-radius: 20px;
+      border: 1px solid var(--line);
+      background: rgba(8,14,28,.96);
+      box-shadow: var(--shadow-lg);
+      padding: 14px;
+      transform: translateY(-10px);
+      opacity: 0;
+      transition: .2s ease;
+    }
+    .mobile-drawer.open .drawer-panel {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    .drawer-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .drawer-list { list-style: none; display: grid; gap: 6px; }
+    .drawer-list a {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px;
+      border-radius: 14px;
+      border: 1px solid transparent;
+      color: #dce7ff;
+      background: rgba(255,255,255,0.03);
+    }
+    .drawer-list a span { color: var(--muted); font-size: 12px; }
 
-    .hero-inner {
-      width: min(var(--container), calc(100% - 40px));
-      margin: 0 auto;
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: calc(var(--nav-h) + 40px);
+      padding-bottom: 60px;
+      position: relative;
+    }
+    .hero-grid {
       display: grid;
-      grid-template-columns: 1.2fr .95fr;
-      gap: 28px;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 26px;
       align-items: center;
     }
-
-    .hero-left {
-      position: relative;
-      z-index: 2;
-    }
-
     .hero-kicker {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 8px 12px;
+      margin-bottom: 16px;
+      padding: 9px 13px;
       border-radius: 999px;
       border: 1px solid var(--line);
-      background: rgba(255,255,255,0.02);
-      backdrop-filter: blur(12px);
-      color: #dbeafe;
+      background: rgba(255,255,255,0.04);
+      color: #dce7ff;
       font-size: 12px;
-      margin-bottom: 16px;
+      font-weight: 700;
     }
-
-    .hero-kicker .pulse {
+    .pulse {
       width: 8px;
       height: 8px;
       border-radius: 999px;
       background: var(--green);
-      box-shadow: 0 0 0 0 rgba(34,197,94,0.7);
-      animation: pulse 2s infinite;
+      box-shadow: 0 0 0 0 rgba(57,217,138,.6);
+      animation: pulse 1.9s infinite;
     }
-
     @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(34,197,94,0.55); }
-      70% { box-shadow: 0 0 0 10px rgba(34,197,94,0); }
-      100% { box-shadow: 0 0 0 0 rgba(34,197,94,0); }
+      0% { box-shadow: 0 0 0 0 rgba(57,217,138,.55); }
+      75% { box-shadow: 0 0 0 12px rgba(57,217,138,0); }
+      100% { box-shadow: 0 0 0 0 rgba(57,217,138,0); }
     }
-
-    .hero-title {
-      font-size: clamp(40px, 6vw, 76px);
-      line-height: 1.03;
+    .hero h1 {
+      font-size: clamp(2.7rem, 6vw, 5.4rem);
+      line-height: .98;
+      letter-spacing: -0.06em;
       font-weight: 800;
-      letter-spacing: -0.04em;
-      margin-bottom: 14px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
+      margin-bottom: 18px;
+      max-width: 760px;
     }
-
-    .hero-title .line {
-      display: block;
-    }
-
-    .gradient-text {
-      background: linear-gradient(90deg, #ffffff 0%, #c7f9cc 24%, #67e8f9 60%, #93c5fd 100%);
+    .gradient {
+      background: linear-gradient(92deg, #ffffff 0%, #d9ffe7 26%, #9ee8ff 55%, #b9c7ff 100%);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-      text-shadow: 0 0 30px rgba(103,232,249,0.08);
     }
-
-    .hero-desc {
-      color: #cbd5e1;
-      font-size: clamp(15px, 2vw, 19px);
-      max-width: 700px;
+    .hero p {
+      max-width: 720px;
+      color: #d3def5;
+      font-size: 1.06rem;
       margin-bottom: 20px;
     }
-
-    .hero-typing {
-      min-height: 30px;
-      color: var(--sub);
+    .hero p strong { color: #fff; }
+    .type-line {
+      min-height: 28px;
+      color: var(--muted);
       font-size: 14px;
       margin-bottom: 26px;
       display: flex;
       align-items: center;
       gap: 8px;
     }
-
-    .hero-typing .caret {
+    .caret {
       width: 9px;
       height: 18px;
       border-radius: 2px;
       background: linear-gradient(180deg, var(--green), var(--cyan));
-      display: inline-block;
-      animation: blinkCaret 1s step-end infinite;
+      animation: blink 1s step-end infinite;
     }
-
-    @keyframes blinkCaret {
-      0%, 49% { opacity: 1; }
-      50%, 100% { opacity: 0; }
-    }
-
+    @keyframes blink { 50% { opacity: 0; } }
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
       margin-bottom: 22px;
     }
-
     .btn {
-      position: relative;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
+      min-height: 50px;
       padding: 13px 18px;
-      min-height: 48px;
-      border-radius: 14px;
-      font-size: 14px;
-      font-weight: 600;
+      border-radius: 16px;
       border: 1px solid var(--line);
-      background: rgba(255,255,255,0.01);
-      color: #f8fafc;
-      transition: transform .2s ease, border-color .2s ease, background .2s ease, box-shadow .2s ease;
-      overflow: hidden;
-      backdrop-filter: blur(12px);
+      background: rgba(255,255,255,0.05);
+      color: var(--text);
+      font-weight: 700;
+      transition: .2s ease;
     }
-
-    .btn:hover {
-      transform: translateY(-2px);
-      border-color: rgba(148,163,184,.34);
-      background: rgba(255,255,255,0.03);
+    .btn:hover { transform: translateY(-2px); border-color: var(--line-strong); }
+    .btn.primary {
+      border: 0;
+      color: #031114;
+      background: linear-gradient(135deg, var(--green), var(--cyan));
+      box-shadow: 0 16px 35px rgba(83,200,255,.18);
     }
-
-    .btn-primary {
-      color: #02120b;
-      border: none;
-      background: linear-gradient(135deg, var(--green), #86efac);
-      box-shadow:
-        0 12px 35px rgba(34,197,94,0.20),
-        0 0 0 1px rgba(255,255,255,0.12) inset;
-    }
-
-    .btn-primary:hover {
-      box-shadow:
-        0 14px 40px rgba(34,197,94,0.28),
-        0 0 0 1px rgba(255,255,255,0.16) inset;
-    }
-
-    .btn-glow::before {
-      content: "";
-      position: absolute;
-      inset: -60%;
-      background: conic-gradient(from 0deg, rgba(255,255,255,0), rgba(255,255,255,0.4), rgba(255,255,255,0));
-      animation: spinGlow 4s linear infinite;
-      opacity: 0;
-      transition: opacity .25s ease;
-      pointer-events: none;
-    }
-
-    .btn-glow:hover::before {
-      opacity: 0.7;
-    }
-
-    @keyframes spinGlow {
-      to { transform: rotate(360deg); }
-    }
-
-    .hero-meta {
+    .hero-badges {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      align-items: center;
-      color: var(--sub);
-      font-size: 13px;
     }
-
     .meta-pill {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 8px 12px;
+      padding: 10px 12px;
       border-radius: 999px;
       border: 1px solid var(--line);
-      background: rgba(255,255,255,0.02);
-      backdrop-filter: blur(10px);
+      background: rgba(255,255,255,0.03);
+      color: var(--muted);
+      font-size: 13px;
     }
 
-    .meta-pill svg {
-      width: 14px;
-      height: 14px;
-      opacity: .95;
-    }
-
-    .hero-right {
-      position: relative;
-      min-height: 520px;
-      display: grid;
-      align-items: stretch;
-    }
-
-    .hero-panel {
-      position: relative;
-      border-radius: 26px;
-      border: 1px solid rgba(148,163,184,0.14);
+    .hero-card {
+      padding: 18px;
+      border-radius: 30px;
       background:
-        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)),
-        rgba(4,10,25,0.66);
-      box-shadow: var(--shadow-2);
+        linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015)),
+        rgba(8,14,28,.84);
+      border: 1px solid rgba(173,189,219,.14);
+      box-shadow: var(--shadow-lg);
+      display: grid;
+      gap: 14px;
+      position: relative;
       overflow: hidden;
-      backdrop-filter: blur(18px);
-      transform-style: preserve-3d;
-      transition: transform .2s ease;
     }
-
-    .hero-panel::before {
+    .hero-card::after {
       content: "";
       position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at 15% 15%, rgba(34,197,94,0.14), transparent 30%),
-        radial-gradient(circle at 85% 10%, rgba(6,182,212,0.12), transparent 30%),
-        radial-gradient(circle at 50% 90%, rgba(59,130,246,0.10), transparent 35%);
+      inset: auto 10% -12% auto;
+      width: 180px;
+      height: 180px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(83,200,255,.18), transparent 70%);
       pointer-events: none;
     }
-
-    .panel-grid {
-      position: relative;
-      inset: 0;
-      height: 100%;
-      display: grid;
-      grid-template-rows: auto auto 1fr auto;
-      gap: 14px;
-      padding: 16px;
-      z-index: 2;
-    }
-
-    .panel-topbar {
+    .window-bar {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 10px;
-      padding: 10px 12px;
-      border-radius: 14px;
-      background: rgba(255,255,255,0.02);
+      gap: 12px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.03);
       border: 1px solid var(--line);
+      padding: 10px 12px;
     }
-
-    .panel-dots {
-      display: flex;
-      gap: 6px;
-      align-items: center;
-    }
-
-    .panel-dot {
+    .window-dots { display: flex; gap: 6px; }
+    .window-dots span {
       width: 8px;
       height: 8px;
       border-radius: 999px;
-      background: rgba(148,163,184,0.45);
+      display: block;
     }
+    .window-dots span:nth-child(1) { background: #ff6b81; }
+    .window-dots span:nth-child(2) { background: #ffbf69; }
+    .window-dots span:nth-child(3) { background: #39d98a; }
+    .window-label { color: var(--muted); font-size: 12px; font-weight: 600; }
 
-    .panel-dot:nth-child(1){ background:#ef4444; opacity:.85; }
-    .panel-dot:nth-child(2){ background:#f59e0b; opacity:.85; }
-    .panel-dot:nth-child(3){ background:#22c55e; opacity:.85; }
-
-    .panel-topbar .label {
-      color: #cbd5e1;
-      font-size: 12px;
-      font-weight: 600;
-    }
-
-    .hero-stats {
+    .snapshot-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 10px;
     }
-
-    .stat-box {
-      border-radius: 14px;
+    .snapshot {
       border: 1px solid var(--line);
-      background: rgba(255,255,255,0.02);
-      padding: 12px;
-      min-height: 88px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.04);
+      padding: 14px;
       display: grid;
-      align-content: space-between;
+      gap: 8px;
+      min-height: 102px;
     }
-
-    .stat-label {
+    .snapshot .label {
+      color: var(--muted);
       font-size: 11px;
-      color: var(--sub);
       text-transform: uppercase;
-      letter-spacing: 0.06em;
+      letter-spacing: .08em;
     }
-
-    .stat-value {
+    .snapshot .value {
+      font-size: 1.55rem;
       font-weight: 800;
-      font-size: 22px;
-      letter-spacing: -0.02em;
-      line-height: 1.1;
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+    .snapshot .sub {
+      color: #d6e4ff;
+      font-size: 12px;
     }
 
-    .stat-value.gradient {
-      background: linear-gradient(90deg, #bbf7d0, #67e8f9, #93c5fd);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
-    .hero-chart-card {
-      border-radius: 16px;
+    .signal-card {
+      border-radius: 22px;
       border: 1px solid var(--line);
-      background: rgba(255,255,255,0.02);
-      padding: 12px;
+      background: rgba(255,255,255,0.03);
+      padding: 16px;
       display: grid;
-      gap: 12px;
-      min-height: 180px;
+      gap: 14px;
     }
-
-    .chart-header {
+    .signal-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .signal-head h3 { font-size: 15px; font-weight: 700; }
+    .signal-badge {
+      padding: 6px 9px;
+      border-radius: 999px;
+      font-size: 11px;
+      background: rgba(57,217,138,0.12);
+      color: #d8ffee;
+      border: 1px solid rgba(57,217,138,0.18);
+    }
+    .mix-list { display: grid; gap: 12px; }
+    .mix-item { display: grid; gap: 7px; }
+    .mix-line {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 10px;
-    }
-
-    .chart-header .title {
+      color: #dce7ff;
       font-size: 13px;
-      color: #e2e8f0;
-      font-weight: 600;
-      letter-spacing: .01em;
     }
-
-    .chart-header .badge {
-      padding: 5px 8px;
+    .track {
+      height: 10px;
       border-radius: 999px;
-      font-size: 11px;
-      border: 1px solid rgba(34,197,94,0.2);
-      background: rgba(34,197,94,0.08);
-      color: #bbf7d0;
-    }
-
-    .fake-chart {
-      position: relative;
-      height: 150px;
-      border-radius: 12px;
-      background:
-        linear-gradient(to top, rgba(148,163,184,.05) 1px, transparent 1px) 0 0 / 100% 25%,
-        linear-gradient(to right, rgba(148,163,184,.04) 1px, transparent 1px) 0 0 / 10% 100%;
       overflow: hidden;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(173,189,219,0.1);
     }
-
-    .fake-chart svg {
-      width: 100%;
+    .fill {
       height: 100%;
-      display: block;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--green), var(--cyan));
     }
-
-    .chart-legend {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      color: var(--sub);
-      font-size: 12px;
-    }
-
-    .legend-item {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .legend-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-    }
-
-    .hero-mini-cards {
+    .insight-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 10px;
     }
-
-    .mini-card {
-      border-radius: 14px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.02);
-      padding: 12px;
-      display: grid;
-      gap: 8px;
-    }
-
-    .mini-card h4 {
-      font-size: 12px;
-      color: #e2e8f0;
-      font-weight: 600;
-    }
-
-    .mini-card p {
-      font-size: 12px;
-      color: var(--sub);
-      line-height: 1.45;
-    }
-
-    .chip-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-
-    .chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 11px;
-      color: #dbeafe;
-      padding: 5px 8px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.02);
-    }
-
-    .chip .dot-sm {
-      width: 5px;
-      height: 5px;
-      border-radius: 999px;
-      background: var(--green);
-    }
-
-    .scroll-cue {
-      position: absolute;
-      left: 50%;
-      bottom: 16px;
-      transform: translateX(-50%);
-      display: inline-flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      color: var(--sub);
-      font-size: 11px;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      z-index: 4;
-      opacity: .9;
-    }
-
-    .mouse {
-      width: 24px;
-      height: 38px;
-      border-radius: 999px;
-      border: 1px solid rgba(148,163,184,.26);
-      display: grid;
-      place-items: start center;
-      padding-top: 7px;
-      background: rgba(255,255,255,.01);
-    }
-
-    .mouse::before {
-      content: "";
-      width: 4px;
-      height: 8px;
-      border-radius: 999px;
-      background: linear-gradient(180deg, #fff, var(--cyan));
-      animation: wheel 1.5s ease infinite;
-    }
-
-    @keyframes wheel {
-      0% { opacity: .1; transform: translateY(0); }
-      40% { opacity: 1; }
-      100% { opacity: 0; transform: translateY(10px); }
-    }
-
-    /* =========================================================
-       QUICK STATS SECTION
-    ========================================================= */
-    .stats-wrap {
-      margin-top: -30px;
-      z-index: 3;
-      position: relative;
-    }
-
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
-    }
-
-    .metric-card {
-      position: relative;
+    .insight {
       border-radius: 18px;
-      padding: 18px 16px;
       border: 1px solid var(--line);
-      background: rgba(255,255,255,0.02);
-      backdrop-filter: blur(12px);
-      overflow: hidden;
-      min-height: 118px;
-      box-shadow: var(--shadow);
-    }
-
-    .metric-card::after {
-      content: "";
-      position: absolute;
-      inset: auto -15% -45% -15%;
-      height: 70px;
-      background: radial-gradient(circle at center, rgba(34,197,94,.14), transparent 70%);
-      pointer-events: none;
-    }
-
-    .metric-label {
-      font-size: 12px;
-      color: var(--sub);
-      margin-bottom: 10px;
-      letter-spacing: 0.04em;
-    }
-
-    .metric-value {
-      font-size: clamp(24px, 3vw, 34px);
-      font-weight: 800;
-      line-height: 1;
-      letter-spacing: -0.03em;
-      margin-bottom: 8px;
-    }
-
-    .metric-value .unit {
-      font-size: .55em;
-      font-weight: 700;
-      color: #cbd5e1;
-      margin-left: 3px;
-    }
-
-    .metric-desc {
-      color: #cbd5e1;
-      font-size: 12px;
-      line-height: 1.35;
-    }
-
-    /* =========================================================
-       ABOUT
-    ========================================================= */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1.15fr .85fr;
-      gap: 18px;
-      align-items: start;
-    }
-
-    .glass-card {
-      position: relative;
-      border-radius: var(--radius-xl);
-      border: 1px solid var(--line);
-      background: var(--card);
-      backdrop-filter: blur(16px);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
-
-    .glass-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at 15% 10%, rgba(34,197,94,0.07), transparent 40%),
-        radial-gradient(circle at 85% 0%, rgba(6,182,212,0.06), transparent 40%);
-      pointer-events: none;
-    }
-
-    .about-main {
-      padding: 22px;
-      display: grid;
-      gap: 16px;
-    }
-
-    .about-main p {
-      color: #d0d7e4;
-      font-size: 15px;
-      line-height: 1.8;
-    }
-
-    .about-highlight {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-
-    .about-pill {
-      border-radius: 14px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.02);
-      padding: 12px;
-    }
-
-    .about-pill h4 {
-      font-size: 12px;
-      color: #e2e8f0;
-      margin-bottom: 6px;
-    }
-
-    .about-pill p {
-      font-size: 12px;
-      color: var(--sub);
-      line-height: 1.5;
-    }
-
-    .about-side {
-      padding: 16px;
-      display: grid;
-      gap: 12px;
-    }
-
-    .edu-card {
-      border-radius: 16px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.02);
+      background: rgba(255,255,255,0.04);
       padding: 14px;
       display: grid;
       gap: 8px;
     }
-
-    .edu-card .t1 {
-      font-size: 13px;
-      color: #fff;
-      font-weight: 700;
-    }
-
-    .edu-card .t2 {
-      font-size: 12px;
-      color: var(--sub);
-    }
-
-    .edu-card .t3 {
-      font-size: 12px;
-      color: #cbd5e1;
-      line-height: 1.5;
-    }
-
-    /* =========================================================
-       PROJECTS SECTION
-    ========================================================= */
-    .project-toolbar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 22px;
-    }
-
-    .project-tabs {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .tab-btn {
-      padding: 8px 12px;
+    .insight h4 { font-size: 13px; }
+    .insight p { color: var(--muted); font-size: 12px; margin: 0; }
+    .chip-row { display: flex; flex-wrap: wrap; gap: 6px; }
+    .chip {
+      padding: 6px 9px;
       border-radius: 999px;
       border: 1px solid var(--line);
-      background: rgba(255,255,255,0.02);
-      color: var(--sub);
-      font-size: 12px;
+      background: rgba(255,255,255,0.04);
+      color: #dce7ff;
+      font-size: 11px;
       font-weight: 600;
-      transition: .2s ease;
     }
 
-    .tab-btn:hover {
-      color: #fff;
-      border-color: var(--line-2);
-      background: rgba(255,255,255,0.03);
+    .summary-grid {
+      margin-top: -30px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
     }
-
-    .tab-btn.active {
-      color: #02120b;
-      border-color: transparent;
-      background: linear-gradient(135deg, #86efac, #67e8f9);
-      box-shadow: 0 10px 25px rgba(6,182,212,0.16);
+    .summary-card {
+      padding: 18px;
+      min-height: 130px;
     }
-
-    .toolbar-note {
-      color: var(--sub);
+    .summary-card .k {
+      color: var(--muted);
       font-size: 12px;
+      margin-bottom: 12px;
     }
+    .summary-card .v {
+      font-size: clamp(1.85rem, 3vw, 2.4rem);
+      line-height: 1;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      margin-bottom: 8px;
+    }
+    .summary-card p { color: #d5e1f8; font-size: 12px; }
 
-    .featured-grid {
+    .story-grid {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 16px;
+      align-items: start;
+    }
+    .story-card { padding: 24px; }
+    .story-card p {
+      color: #dbe5fa;
+      font-size: 15px;
+      line-height: 1.86;
+      margin-bottom: 16px;
+    }
+    .story-card p:last-child { margin-bottom: 0; }
+    .point-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 18px;
+    }
+    .point-box {
+      padding: 14px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.04);
+    }
+    .point-box h4 {
+      font-size: 13px;
+      margin-bottom: 6px;
+      color: #fff;
+    }
+    .point-box p { color: var(--muted); font-size: 13px; line-height: 1.6; margin: 0; }
+    .profile-column {
+      display: grid;
+      gap: 12px;
+    }
+    .profile-card {
+      padding: 18px;
+    }
+    .profile-card h3 {
+      font-size: 15px;
+      margin-bottom: 10px;
+    }
+    .profile-card .row {
+      display: grid;
+      gap: 8px;
+    }
+    .profile-card .item {
+      padding: 12px 14px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.04);
+    }
+    .profile-card .item strong { display: block; font-size: 13px; margin-bottom: 4px; }
+    .profile-card .item span { color: var(--muted); font-size: 13px; }
+
+    .works-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 16px;
+      margin-bottom: 22px;
+      flex-wrap: wrap;
+    }
+    .works-note {
+      color: var(--muted);
+      font-size: 13px;
+      max-width: 560px;
+    }
+    .work-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 16px;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
     }
-
-    .project-card {
-      position: relative;
-      border-radius: 20px;
-      border: 1px solid var(--line);
-      background: var(--card);
-      backdrop-filter: blur(14px);
-      box-shadow: var(--shadow);
-      padding: 18px;
-      overflow: hidden;
-      transform-style: preserve-3d;
-      will-change: transform;
-      transition: transform .18s ease, border-color .2s ease, box-shadow .2s ease;
-      min-height: 340px;
+    .work-card {
+      padding: 20px;
+      min-height: 360px;
       display: grid;
       grid-template-rows: auto auto auto 1fr auto;
+      gap: 12px;
+      transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+    }
+    .work-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--line-strong);
+      box-shadow: 0 28px 80px rgba(0,0,0,.38);
+    }
+    .work-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       gap: 10px;
     }
-
-    .project-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at 10% 10%, rgba(34,197,94,0.10), transparent 35%),
-        radial-gradient(circle at 90% 8%, rgba(6,182,212,0.09), transparent 35%);
-      pointer-events: none;
-      opacity: .95;
-    }
-
-    .project-card:hover {
-      border-color: rgba(148,163,184,0.35);
-      box-shadow:
-        0 18px 45px rgba(2,6,23,.55),
-        0 0 0 1px rgba(255,255,255,0.02) inset;
-    }
-
-    .project-card > * {
-      position: relative;
-      z-index: 1;
-    }
-
-    .project-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-    }
-
-    .project-badge {
+    .tag {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 7px;
       padding: 7px 10px;
       border-radius: 999px;
       border: 1px solid var(--line);
+      background: rgba(255,255,255,0.04);
+      color: #e5efff;
       font-size: 11px;
-      color: #dbeafe;
-      background: rgba(255,255,255,0.02);
-      font-weight: 600;
+      font-weight: 700;
     }
-
-    .project-badge .b-dot {
+    .tag .mini-dot {
       width: 6px;
       height: 6px;
       border-radius: 999px;
       background: linear-gradient(180deg, var(--green), var(--cyan));
     }
-
-    .project-score {
-      font-size: 11px;
-      color: var(--sub);
-      padding: 6px 8px;
-      border-radius: 999px;
-      border: 1px dashed rgba(148,163,184,.22);
-    }
-
-    .project-title {
-      font-size: 22px;
-      line-height: 1.2;
+    .work-year { color: var(--muted); font-size: 12px; }
+    .work-card h3 {
+      font-size: 24px;
+      line-height: 1.16;
+      letter-spacing: -0.03em;
       font-weight: 800;
-      letter-spacing: -0.02em;
     }
-
-    .project-desc {
-      color: #cbd5e1;
+    .work-card .sub {
+      color: #d3dff4;
       font-size: 13px;
-      line-height: 1.65;
-      min-height: 64px;
+      line-height: 1.72;
     }
-
-    .project-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 7px;
-      margin-top: -2px;
-    }
-
-    .project-tag {
-      padding: 6px 9px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.02);
-      font-size: 11px;
-      color: #d1d5db;
-    }
-
-    .project-points {
+    .work-points {
+      list-style: none;
       display: grid;
-      gap: 8px;
-      margin-top: 4px;
+      gap: 9px;
     }
-
-    .project-point {
+    .work-points li {
+      color: #dfebff;
+      font-size: 12.5px;
+      line-height: 1.55;
       display: flex;
       gap: 8px;
       align-items: flex-start;
-      color: #dbe3f0;
-      font-size: 12px;
-      line-height: 1.45;
     }
-
-    .project-point .pin {
+    .work-points li::before {
+      content: "";
       width: 6px;
       height: 6px;
       border-radius: 999px;
-      background: var(--green);
-      margin-top: 6px;
+      margin-top: 8px;
       flex: 0 0 auto;
-      box-shadow: 0 0 10px rgba(34,197,94,0.35);
+      background: linear-gradient(180deg, var(--green), var(--cyan));
+      box-shadow: 0 0 12px rgba(57,217,138,.35);
     }
-
-    .project-bottom {
+    .work-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .stack-mini {
       display: flex;
       flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 10px;
-      align-items: center;
-      margin-top: 4px;
-    }
-
-    .mini-tech {
-      color: var(--sub);
-      font-size: 11px;
-      display: inline-flex;
-      flex-wrap: wrap;
       gap: 6px;
-      align-items: center;
     }
-
-    .mini-tech span {
-      display: inline-flex;
-      align-items: center;
-      padding: 5px 7px;
-      border-radius: 8px;
-      border: 1px solid rgba(148,163,184,.14);
-      background: rgba(255,255,255,0.02);
-    }
-
-    .project-actions {
-      display: inline-flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .mini-btn {
-      padding: 8px 10px;
+    .stack-mini span {
+      padding: 6px 8px;
       border-radius: 10px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.02);
-      color: #e2e8f0;
+      border: 1px solid rgba(173,189,219,0.12);
+      background: rgba(255,255,255,0.04);
+      color: #d8e4fd;
       font-size: 11px;
       font-weight: 600;
+    }
+    .card-links { display: flex; gap: 8px; flex-wrap: wrap; }
+    .card-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 36px;
+      padding: 8px 10px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.04);
+      font-size: 12px;
+      font-weight: 700;
       transition: .2s ease;
     }
-
-    .mini-btn:hover {
-      border-color: rgba(148,163,184,.32);
-      transform: translateY(-1px);
-      background: rgba(255,255,255,0.04);
+    .card-link:hover { border-color: var(--line-strong); }
+    .card-link.primary {
+      border: 0;
+      color: #041116;
+      background: linear-gradient(135deg, var(--green), var(--cyan));
     }
 
-    .mini-btn.primary {
-      border-color: transparent;
-      color: #04110a;
-      background: linear-gradient(135deg, #86efac, #67e8f9);
-    }
-
-    .projects-grid {
+    .sub-work-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 16px;
     }
-
-    .project-card.compact {
-      min-height: 260px;
-      padding: 16px;
-      grid-template-rows: auto auto 1fr auto;
-    }
-
-    .project-card.compact .project-title {
-      font-size: 18px;
-    }
-
-    .project-card.compact .project-desc {
-      min-height: auto;
-      font-size: 12px;
-    }
-
-    .empty-state {
-      display: none;
-      margin-top: 12px;
-      padding: 16px;
-      border-radius: 16px;
-      border: 1px dashed var(--line);
-      color: var(--sub);
-      text-align: center;
-      font-size: 13px;
-      background: rgba(255,255,255,0.02);
-    }
-
-    /* =========================================================
-       SKILLS
-    ========================================================= */
-    .skills-layout {
+    .sub-work {
+      padding: 18px;
+      min-height: 240px;
       display: grid;
-      grid-template-columns: 1.05fr .95fr;
+      gap: 10px;
+    }
+    .sub-work h4 {
+      font-size: 18px;
+      line-height: 1.24;
+      letter-spacing: -0.02em;
+      font-weight: 800;
+    }
+    .sub-work p { color: var(--muted); font-size: 13px; }
+
+    .skill-layout {
+      display: grid;
+      grid-template-columns: 1.04fr .96fr;
       gap: 16px;
       align-items: start;
     }
-
-    .skill-groups {
+    .stack-groups {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 14px;
     }
-
-    .skill-card {
-      border-radius: 18px;
-      border: 1px solid var(--line);
-      background: var(--card);
-      backdrop-filter: blur(14px);
-      padding: 16px;
-      box-shadow: var(--shadow);
-    }
-
-    .skill-card h3 {
-      font-size: 15px;
-      font-weight: 700;
-      margin-bottom: 12px;
-      letter-spacing: -.01em;
-    }
-
-    .skill-chip-list {
+    .stack-card { padding: 18px; }
+    .stack-card h3 { font-size: 15px; margin-bottom: 12px; }
+    .stack-list {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
     }
-
-    .skill-chip {
-      padding: 7px 9px;
-      border-radius: 10px;
+    .stack-list span {
+      padding: 8px 10px;
+      border-radius: 12px;
       border: 1px solid var(--line);
-      background: rgba(255,255,255,0.02);
-      color: #dbeafe;
+      background: rgba(255,255,255,0.04);
+      color: #dce7ff;
       font-size: 12px;
+      font-weight: 600;
     }
-
-    .skills-visual {
-      border-radius: 22px;
-      border: 1px solid var(--line);
-      background: var(--card);
-      backdrop-filter: blur(14px);
-      box-shadow: var(--shadow);
-      padding: 16px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .skills-visual::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at 20% 12%, rgba(34,197,94,0.09), transparent 35%),
-        radial-gradient(circle at 82% 14%, rgba(6,182,212,0.07), transparent 35%);
-      pointer-events: none;
-    }
-
-    .skills-visual > * {
-      position: relative;
-      z-index: 1;
-    }
-
-    .skills-visual .title {
+    .fit-card { padding: 18px; }
+    .fit-card h3 { font-size: 15px; margin-bottom: 14px; }
+    .fit-bars { display: grid; gap: 14px; margin-bottom: 18px; }
+    .fit-label {
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 12px;
+      font-size: 13px;
+      color: #dce7ff;
+      margin-bottom: 7px;
     }
-
-    .skills-visual .title h3 {
-      font-size: 15px;
-      font-weight: 700;
-    }
-
-    .skills-visual .title span {
-      font-size: 11px;
-      color: var(--sub);
-      border: 1px solid var(--line);
+    .fit-label span:last-child { color: var(--muted); }
+    .fit-track {
+      height: 10px;
       border-radius: 999px;
-      padding: 6px 8px;
-    }
-
-    .bar-list {
-      display: grid;
-      gap: 12px;
-      margin-bottom: 16px;
-    }
-
-    .bar-item {
-      display: grid;
-      gap: 6px;
-    }
-
-    .bar-label {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      color: #dbeafe;
-      font-size: 12px;
-    }
-
-    .bar-track {
-      height: 9px;
-      border-radius: 999px;
-      border: 1px solid rgba(148,163,184,.12);
-      background: rgba(255,255,255,.02);
       overflow: hidden;
-      position: relative;
+      border: 1px solid rgba(173,189,219,0.12);
+      background: rgba(255,255,255,0.04);
     }
-
-    .bar-fill {
+    .fit-fill {
       height: 100%;
-      width: 0%;
       border-radius: inherit;
       background: linear-gradient(90deg, var(--green), var(--cyan));
-      box-shadow: 0 0 14px rgba(6,182,212,.18);
-      transition: width 1s cubic-bezier(.2,.7,.1,1);
     }
-
-    .keywords-cloud {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .kw {
-      padding: 7px 10px;
+    .keyword-cloud { display: flex; flex-wrap: wrap; gap: 8px; }
+    .keyword-cloud span {
+      padding: 8px 11px;
       border-radius: 999px;
       border: 1px solid var(--line);
+      background: rgba(255,255,255,0.04);
+      color: #dce7ff;
       font-size: 11px;
-      color: #cbd5e1;
-      background: rgba(255,255,255,0.02);
+      font-weight: 700;
     }
 
-    /* =========================================================
-       TIMELINE / JOURNEY
-    ========================================================= */
-    .journey-grid {
+    .journey-layout {
       display: grid;
-      grid-template-columns: 1.15fr .85fr;
+      grid-template-columns: 1.06fr .94fr;
       gap: 16px;
+      align-items: start;
     }
-
-    .timeline {
+    .timeline { padding: 24px; }
+    .timeline-list {
       position: relative;
-      padding: 18px;
-      border-radius: 22px;
-      border: 1px solid var(--line);
-      background: var(--card);
-      box-shadow: var(--shadow);
-      overflow: hidden;
+      display: grid;
+      gap: 18px;
     }
-
-    .timeline::before {
+    .timeline-list::before {
       content: "";
       position: absolute;
-      left: 28px;
-      top: 30px;
-      bottom: 30px;
+      left: 11px;
+      top: 10px;
+      bottom: 10px;
       width: 1px;
-      background: linear-gradient(180deg, rgba(34,197,94,.35), rgba(6,182,212,.35), rgba(148,163,184,.12));
+      background: linear-gradient(180deg, rgba(57,217,138,.48), rgba(83,200,255,.35), rgba(173,189,219,.1));
     }
-
     .timeline-item {
       position: relative;
-      padding-left: 52px;
-      padding-bottom: 18px;
-      margin-bottom: 4px;
+      padding-left: 42px;
     }
-
-    .timeline-item:last-child {
-      padding-bottom: 0;
-      margin-bottom: 0;
-    }
-
-    .timeline-dot {
+    .timeline-item::before {
+      content: "";
       position: absolute;
-      left: 20px;
-      top: 4px;
-      width: 16px;
-      height: 16px;
+      left: 0;
+      top: 6px;
+      width: 22px;
+      height: 22px;
       border-radius: 999px;
-      background: rgba(2,6,23,.9);
-      border: 2px solid rgba(34,197,94,.55);
-      box-shadow: 0 0 0 6px rgba(34,197,94,.08);
+      background: rgba(8,14,28,.96);
+      border: 2px solid rgba(57,217,138,.5);
+      box-shadow: 0 0 0 6px rgba(57,217,138,.08);
     }
-
-    .timeline-time {
-      color: #bbf7d0;
-      font-size: 11px;
-      font-weight: 700;
-      margin-bottom: 4px;
-      letter-spacing: .04em;
-    }
-
-    .timeline-title {
-      font-size: 14px;
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
-
-    .timeline-desc {
-      color: var(--sub);
-      font-size: 13px;
-      line-height: 1.55;
-    }
-
-    .journey-side {
-      display: grid;
-      gap: 12px;
-      align-content: start;
-    }
-
-    .journey-card {
-      border-radius: 18px;
-      border: 1px solid var(--line);
-      background: var(--card);
-      box-shadow: var(--shadow);
-      padding: 16px;
-    }
-
-    .journey-card h4 {
-      font-size: 14px;
-      margin-bottom: 10px;
-    }
-
-    .journey-card ul {
-      list-style: none;
-      display: grid;
-      gap: 8px;
-    }
-
-    .journey-card li {
-      color: #cbd5e1;
-      font-size: 12px;
+    .timeline-year { color: #d7ffee; font-size: 12px; font-weight: 700; margin-bottom: 4px; }
+    .timeline-item h3 { font-size: 16px; margin-bottom: 5px; }
+    .timeline-item p { color: var(--muted); font-size: 13px; }
+    .journey-notes { display: grid; gap: 12px; }
+    .note-card { padding: 18px; }
+    .note-card h3 { font-size: 15px; margin-bottom: 10px; }
+    .note-card ul { list-style: none; display: grid; gap: 9px; }
+    .note-card li {
       display: flex;
       gap: 8px;
       align-items: flex-start;
+      color: #dce7ff;
+      font-size: 13px;
+      line-height: 1.6;
     }
-
-    .journey-card li .dot {
+    .note-card li::before {
+      content: "";
       width: 6px;
       height: 6px;
-      margin-top: 7px;
+      margin-top: 9px;
       border-radius: 999px;
       background: linear-gradient(180deg, var(--cyan), var(--blue));
       flex: 0 0 auto;
     }
 
-    /* =========================================================
-       AWARDS
-    ========================================================= */
-    .awards-grid {
+    .award-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 16px;
     }
-
-    .award-card {
-      border-radius: 20px;
-      border: 1px solid var(--line);
-      background: var(--card);
-      box-shadow: var(--shadow);
-      padding: 16px;
-      display: grid;
-      gap: 10px;
-      min-height: 160px;
-    }
-
-    .award-top {
+    .award-card { padding: 20px; min-height: 180px; display: grid; gap: 10px; }
+    .award-head {
       display: flex;
       justify-content: space-between;
-      gap: 10px;
       align-items: flex-start;
+      gap: 10px;
     }
-
-    .award-tag {
-      padding: 6px 8px;
+    .award-type {
+      padding: 7px 10px;
       border-radius: 999px;
-      border: 1px solid var(--line);
+      border: 1px solid rgba(255,191,105,.18);
+      background: rgba(255,191,105,.08);
+      color: #ffe4b5;
       font-size: 11px;
-      color: #fef3c7;
-      background: rgba(245,158,11,0.08);
-    }
-
-    .award-year {
-      color: var(--sub);
-      font-size: 12px;
-    }
-
-    .award-title {
-      font-size: 15px;
-      line-height: 1.35;
       font-weight: 700;
     }
-
-    .award-desc {
-      color: var(--sub);
-      font-size: 13px;
-      line-height: 1.55;
+    .award-year { color: var(--muted); font-size: 12px; }
+    .award-card h3 {
+      font-size: 18px;
+      line-height: 1.32;
+      letter-spacing: -0.02em;
     }
+    .award-card p { color: var(--muted); font-size: 13px; }
 
-    /* =========================================================
-       CONTACT
-    ========================================================= */
     .contact-card {
-      border-radius: 24px;
-      border: 1px solid var(--line);
+      padding: 28px;
+      border-radius: 30px;
       background:
-        radial-gradient(circle at 10% 0%, rgba(34,197,94,.08), transparent 35%),
-        radial-gradient(circle at 100% 0%, rgba(6,182,212,.08), transparent 35%),
-        var(--card-2);
-      box-shadow: var(--shadow-2);
-      padding: 20px;
-      overflow: hidden;
-      position: relative;
+        radial-gradient(circle at 0% 0%, rgba(57,217,138,.12), transparent 32%),
+        radial-gradient(circle at 100% 0%, rgba(83,200,255,.12), transparent 34%),
+        rgba(9,15,30,.92);
+      border: 1px solid rgba(173,189,219,.14);
+      box-shadow: var(--shadow-lg);
     }
-
-    .contact-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(120deg, transparent 35%, rgba(255,255,255,0.03), transparent 65%);
-      transform: translateX(-120%);
-      animation: contactSweep 8s ease-in-out infinite;
-      pointer-events: none;
-    }
-
-    @keyframes contactSweep {
-      0%, 80%, 100% { transform: translateX(-120%); }
-      90% { transform: translateX(120%); }
-    }
-
     .contact-grid {
-      position: relative;
-      z-index: 1;
       display: grid;
-      grid-template-columns: 1.05fr .95fr;
+      grid-template-columns: 1.08fr .92fr;
       gap: 16px;
+      align-items: start;
     }
-
-    .contact-left h3 {
-      font-size: clamp(22px, 3vw, 34px);
-      line-height: 1.15;
-      margin-bottom: 10px;
-      font-weight: 800;
-      letter-spacing: -.03em;
+    .contact-card h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+      margin-bottom: 12px;
     }
-
-    .contact-left p {
-      color: var(--sub);
-      font-size: 14px;
-      margin-bottom: 16px;
-      max-width: 560px;
-    }
-
-    .contact-actions {
+    .contact-card p { color: var(--muted); max-width: 600px; margin-bottom: 18px; }
+    .contact-links {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin-bottom: 12px;
     }
-
-    .contact-list {
+    .contact-panel {
       display: grid;
       gap: 10px;
-      align-content: start;
     }
-
     .contact-item {
-      border-radius: 14px;
+      padding: 14px 16px;
+      border-radius: 18px;
       border: 1px solid var(--line);
-      background: rgba(255,255,255,0.02);
-      padding: 12px;
-      display: grid;
-      gap: 4px;
+      background: rgba(255,255,255,0.04);
     }
-
     .contact-item .label {
-      color: var(--sub);
+      display: block;
+      color: var(--muted);
       font-size: 11px;
+      letter-spacing: .08em;
       text-transform: uppercase;
-      letter-spacing: .06em;
+      margin-bottom: 5px;
     }
-
     .contact-item .value {
-      font-size: 14px;
       color: #fff;
+      font-size: 14px;
       font-weight: 600;
       word-break: break-word;
     }
 
-    /* =========================================================
-       FOOTER
-    ========================================================= */
     footer {
-      padding: 36px 0 70px;
-      color: var(--muted);
-      font-size: 13px;
+      padding: 38px 0 70px;
+      color: var(--muted-2);
       position: relative;
       z-index: 2;
     }
-
     .footer-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: 14px;
       flex-wrap: wrap;
-      border-top: 1px solid rgba(148,163,184,0.08);
-      padding-top: 16px;
+      border-top: 1px solid rgba(173,189,219,.08);
+      padding-top: 18px;
     }
-
     .footer-links {
       display: flex;
       gap: 8px;
       flex-wrap: wrap;
     }
-
     .footer-links a {
       padding: 8px 10px;
       border-radius: 10px;
       border: 1px solid var(--line);
-      background: rgba(255,255,255,0.02);
-      color: var(--sub);
-      transition: .2s ease;
+      background: rgba(255,255,255,0.04);
       font-size: 12px;
+      color: var(--muted);
     }
 
-    .footer-links a:hover {
-      color: #fff;
-      border-color: rgba(148,163,184,0.28);
-    }
-
-    /* =========================================================
-       FLOATING DOCK / TOP BUTTON
-    ========================================================= */
-    .floating-dock {
+    .to-top {
       position: fixed;
       right: 18px;
       bottom: 18px;
-      z-index: 180;
-      display: grid;
-      gap: 8px;
-    }
-
-    .dock-btn {
-      width: 46px;
-      height: 46px;
-      border-radius: 14px;
-      border: 1px solid var(--line);
-      background: rgba(2,6,23,0.55);
-      backdrop-filter: blur(12px);
+      width: 48px;
+      height: 48px;
+      border-radius: 15px;
       display: grid;
       place-items: center;
-      color: #dbeafe;
-      box-shadow: 0 12px 30px rgba(2,6,23,.45);
+      border: 1px solid var(--line);
+      background: rgba(8,14,28,.76);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 18px 40px rgba(0,0,0,.32);
+      z-index: 90;
+      opacity: 0;
+      transform: translateY(12px);
+      pointer-events: none;
       transition: .2s ease;
     }
-
-    .dock-btn:hover {
-      transform: translateY(-2px);
-      border-color: rgba(148,163,184,.34);
-      background: rgba(15,23,42,0.78);
+    .to-top.show {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
     }
 
-    .dock-btn svg {
-      width: 18px;
-      height: 18px;
-    }
-
-    .dock-btn.hidden {
-      opacity: 0;
-      transform: translateY(8px);
-      pointer-events: none;
-    }
-
-    /* =========================================================
-       REVEAL ANIMATION
-    ========================================================= */
     [data-reveal] {
       opacity: 0;
       transform: translateY(24px);
       transition: opacity .7s ease, transform .7s ease;
-      will-change: transform, opacity;
     }
-
     [data-reveal].revealed {
       opacity: 1;
       transform: translateY(0);
     }
 
-    [data-reveal="left"] {
-      transform: translateX(-24px);
-    }
-
-    [data-reveal="left"].revealed {
-      transform: translateX(0);
-    }
-
-    [data-reveal="right"] {
-      transform: translateX(24px);
-    }
-
-    [data-reveal="right"].revealed {
-      transform: translateX(0);
-    }
-
-    [data-reveal="zoom"] {
-      transform: translateY(18px) scale(.98);
-    }
-
-    [data-reveal="zoom"].revealed {
-      transform: translateY(0) scale(1);
-    }
-
-    /* =========================================================
-       MODAL
-    ========================================================= */
-    .modal {
-      position: fixed;
-      inset: 0;
-      z-index: 300;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-
-    .modal.open {
-      display: flex;
-    }
-
-    .modal-backdrop {
-      position: absolute;
-      inset: 0;
-      background: rgba(2,6,23,0.72);
-      backdrop-filter: blur(8px);
-      opacity: 0;
-      transition: opacity .25s ease;
-    }
-
-    .modal.open .modal-backdrop {
-      opacity: 1;
-    }
-
-    .modal-panel {
-      position: relative;
-      width: min(920px, 100%);
-      max-height: min(90vh, 920px);
-      overflow: auto;
-      border-radius: 22px;
-      border: 1px solid var(--line);
-      background:
-        radial-gradient(circle at 10% 0%, rgba(34,197,94,.08), transparent 35%),
-        radial-gradient(circle at 100% 0%, rgba(6,182,212,.08), transparent 35%),
-        rgba(4,10,25,0.95);
-      box-shadow: 0 40px 100px rgba(0,0,0,.55);
-      padding: 18px;
-      transform: translateY(10px) scale(.98);
-      opacity: 0;
-      transition: transform .25s ease, opacity .25s ease;
-      backdrop-filter: blur(16px);
-    }
-
-    .modal.open .modal-panel {
-      transform: translateY(0) scale(1);
-      opacity: 1;
-    }
-
-    .modal-close {
-      position: sticky;
-      top: 0;
-      margin-left: auto;
-      width: 38px;
-      height: 38px;
-      display: grid;
-      place-items: center;
-      border-radius: 12px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.03);
-      color: #fff;
-      z-index: 2;
-    }
-
-    .modal-body {
-      margin-top: 8px;
-      display: grid;
-      gap: 14px;
-    }
-
-    .modal-head {
-      display: grid;
-      gap: 10px;
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      background: rgba(255,255,255,0.02);
-      padding: 14px;
-    }
-
-    .modal-title {
-      font-size: 24px;
-      font-weight: 800;
-      letter-spacing: -.03em;
-      line-height: 1.15;
-    }
-
-    .modal-sub {
-      color: var(--sub);
-      font-size: 13px;
-      line-height: 1.6;
-    }
-
-    .modal-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .modal-meta .item {
-      padding: 7px 9px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      font-size: 11px;
-      color: #dbeafe;
-      background: rgba(255,255,255,0.02);
-    }
-
-    .modal-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-
-    .modal-card {
-      border-radius: 16px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.02);
-      padding: 14px;
-      display: grid;
-      gap: 8px;
-    }
-
-    .modal-card h4 {
-      font-size: 13px;
-      font-weight: 700;
-    }
-
-    .modal-card ul {
-      list-style: none;
-      display: grid;
-      gap: 8px;
-    }
-
-    .modal-card li {
-      display: flex;
-      gap: 8px;
-      align-items: flex-start;
-      color: #d7dfeb;
-      font-size: 12px;
-      line-height: 1.45;
-    }
-
-    .modal-card li .dot {
-      width: 6px;
-      height: 6px;
-      margin-top: 6px;
-      border-radius: 999px;
-      background: linear-gradient(180deg, var(--green), var(--cyan));
-      flex: 0 0 auto;
-    }
-
-    .modal-footer {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      justify-content: flex-end;
-    }
-
-    /* =========================================================
-       MOBILE NAV DRAWER
-    ========================================================= */
-    .mobile-drawer {
-      position: fixed;
-      inset: 0;
-      z-index: 240;
-      display: none;
-    }
-
-    .mobile-drawer.open {
-      display: block;
-    }
-
-    .drawer-backdrop {
-      position: absolute;
-      inset: 0;
-      background: rgba(2,6,23,.62);
-      backdrop-filter: blur(6px);
-      opacity: 0;
-      transition: opacity .2s ease;
-    }
-
-    .mobile-drawer.open .drawer-backdrop {
-      opacity: 1;
-    }
-
-    .drawer-panel {
-      position: absolute;
-      top: 14px;
-      right: 14px;
-      width: min(320px, calc(100% - 28px));
-      border-radius: 18px;
-      border: 1px solid var(--line);
-      background: rgba(4,10,25,.95);
-      box-shadow: 0 30px 70px rgba(0,0,0,.45);
-      padding: 12px;
-      transform: translateY(-10px);
-      opacity: 0;
-      transition: .2s ease;
-    }
-
-    .mobile-drawer.open .drawer-panel {
-      transform: translateY(0);
-      opacity: 1;
-    }
-
-    .drawer-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      padding: 6px;
-      margin-bottom: 8px;
-    }
-
-    .drawer-close {
-      width: 34px;
-      height: 34px;
-      display: grid;
-      place-items: center;
-      border-radius: 10px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.02);
-    }
-
-    .drawer-list {
-      display: grid;
-      gap: 6px;
-      list-style: none;
-    }
-
-    .drawer-list a {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      padding: 12px;
-      border-radius: 12px;
-      border: 1px solid transparent;
-      color: #dbeafe;
-      background: rgba(255,255,255,0.015);
-      font-size: 14px;
-      transition: .2s ease;
-    }
-
-    .drawer-list a:hover {
-      border-color: var(--line);
-      background: rgba(255,255,255,0.03);
-    }
-
-    .drawer-list a span {
-      color: var(--sub);
-      font-size: 12px;
-    }
-
-    /* =========================================================
-       RESPONSIVE
-    ========================================================= */
-    @media (max-width: 1180px) {
-      .hero-inner {
-        grid-template-columns: 1fr;
-      }
-      .hero-right {
-        min-height: 420px;
-      }
-      .stats-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .featured-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-      .about-grid,
-      .skills-layout,
-      .journey-grid,
+    @media (max-width: 1120px) {
+      .hero-grid,
+      .story-grid,
+      .skill-layout,
+      .journey-layout,
       .contact-grid {
         grid-template-columns: 1fr;
       }
-      .modal-grid {
-        grid-template-columns: 1fr;
-      }
+      .summary-grid { grid-template-columns: repeat(2, 1fr); margin-top: 0; }
+      .work-grid { grid-template-columns: 1fr 1fr; }
+      .snapshot-grid { grid-template-columns: 1fr 1fr 1fr; }
     }
 
-    @media (max-width: 900px) {
-      .nav-menu {
-        display: none;
-      }
-      .nav-toggle {
-        display: grid;
-      }
-      .nav-actions .nav-icon-btn.desktop-only {
-        display: none;
-      }
-      .featured-grid,
-      .projects-grid,
-      .awards-grid,
-      .skill-groups {
-        grid-template-columns: 1fr;
-      }
+    @media (max-width: 860px) {
+      .nav-links,
+      .nav-actions .icon-btn { display: none; }
+      .nav-toggle { display: grid; }
+      .section { padding: 88px 0; }
+      .work-grid,
+      .sub-work-grid,
+      .award-grid,
+      .stack-groups,
+      .point-grid,
+      .insight-grid { grid-template-columns: 1fr; }
+      .summary-grid { grid-template-columns: 1fr; }
+      .snapshot-grid { grid-template-columns: 1fr; }
       .hero {
         min-height: auto;
         padding-top: calc(var(--nav-h) + 34px);
-        padding-bottom: 80px;
       }
-      .hero-right {
-        min-height: 360px;
-      }
-      .hero-title {
-        font-size: clamp(36px, 11vw, 58px);
-      }
-      .panel-grid {
-        padding: 12px;
-      }
-      .hero-stats {
-        grid-template-columns: 1fr;
-      }
-      .hero-mini-cards {
-        grid-template-columns: 1fr;
-      }
-      .stats-grid {
-        grid-template-columns: 1fr;
-      }
-      .section {
-        padding: 80px 0;
-      }
-      .stats-wrap {
-        margin-top: 0;
-      }
-      .project-toolbar {
-        align-items: flex-start;
-      }
+      .hero h1 { font-size: clamp(2.4rem, 12vw, 4.4rem); }
     }
 
     @media (max-width: 560px) {
-      .container {
-        width: calc(100% - 24px);
-      }
-      .nav-wrap {
-        padding: 10px 0;
-      }
-      .nav {
-        padding: 0 10px;
-      }
-      .hero-actions .btn {
-        width: 100%;
-        justify-content: center;
-      }
-      .hero-meta {
-        gap: 8px;
-      }
-      .meta-pill {
-        width: 100%;
-      }
-      .floating-dock {
-        right: 10px;
-        bottom: 10px;
-      }
-      .dock-btn {
-        width: 42px;
-        height: 42px;
-        border-radius: 12px;
-      }
+      .container { width: calc(100% - 24px); }
+      .hero-actions .btn,
+      .contact-links .btn { width: 100%; }
+      .nav-wrap { padding: 10px 0; }
+      .nav { padding: 0 10px; }
+      .contact-card { padding: 22px; }
+      .story-card,
+      .fit-card,
+      .timeline,
+      .stack-card,
+      .award-card,
+      .work-card,
+      .sub-work,
+      .profile-card { padding: 18px; }
     }
 
-    /* =========================================================
-       REDUCED MOTION
-    ========================================================= */
     @media (prefers-reduced-motion: reduce) {
-      * {
-        animation: none !important;
-        transition: none !important;
-        scroll-behavior: auto !important;
-      }
-      .orb { display: none; }
-      .noise { display: none; }
+      * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
     }
   </style>
 </head>
 <body>
-  <!-- Background layers -->
-  <div class="scroll-progress" id="scrollProgress"></div>
-  <canvas id="bg-canvas" aria-hidden="true"></canvas>
-  <div class="noise" aria-hidden="true"></div>
-  <div class="orb orb-1" aria-hidden="true"></div>
-  <div class="orb orb-2" aria-hidden="true"></div>
-  <div class="orb orb-3" aria-hidden="true"></div>
+  <div class="bg-grid"></div>
+  <div class="noise"></div>
+  <div class="orb one"></div>
+  <div class="orb two"></div>
+  <div class="orb three"></div>
+  <div class="scroll-bar" id="scrollBar"></div>
 
-  <!-- NAV -->
   <header class="nav-wrap" id="navWrap">
     <div class="container">
       <div class="nav">
-        <a class="brand" href="#top" aria-label="맨 위로 이동">
-          <div class="brand-badge">LS</div>
-          <div class="brand-text">
+        <a class="brand" href="#top">
+          <div class="brand-mark">LS</div>
+          <div class="brand-copy">
             <strong>LEE SEUNGYOON</strong>
-            <span>Machine Learning Engineer Portfolio</span>
+            <span>AI Engineer Portfolio</span>
           </div>
         </a>
 
-        <ul class="nav-menu" id="navMenu">
-          <li><a class="nav-link active" href="#about">About</a></li>
-          <li><a class="nav-link" href="#projects">Projects</a></li>
-          <li><a class="nav-link" href="#skills">Skills</a></li>
-          <li><a class="nav-link" href="#journey">Journey</a></li>
-          <li><a class="nav-link" href="#awards">Awards</a></li>
-          <li><a class="nav-link" href="#contact">Contact</a></li>
+        <ul class="nav-links" id="navLinks">
+          <li><a class="active" href="#about">About</a></li>
+          <li><a href="#work">Work</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#journey">Journey</a></li>
+          <li><a href="#awards">Awards</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
 
         <div class="nav-actions">
-          <a class="nav-icon-btn desktop-only" href="https://github.com/leeseungyoons" target="_blank" rel="noopener" aria-label="GitHub">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M12 2a10 10 0 0 0-3.162 19.49c.5.092.683-.216.683-.48 0-.237-.008-.866-.013-1.7-2.782.605-3.37-1.34-3.37-1.34-.454-1.154-1.11-1.461-1.11-1.461-.908-.62.069-.608.069-.608 1.004.07 1.533 1.031 1.533 1.031.893 1.529 2.343 1.087 2.914.832.091-.647.35-1.088.636-1.338-2.221-.253-4.556-1.11-4.556-4.943 0-1.092.39-1.986 1.03-2.686-.104-.253-.447-1.273.098-2.653 0 0 .84-.269 2.75 1.026a9.57 9.57 0 0 1 5.006 0c1.91-1.295 2.748-1.026 2.748-1.026.547 1.38.204 2.4.1 2.653.64.7 1.028 1.594 1.028 2.686 0 3.842-2.339 4.687-4.568 4.935.359.309.679.919.679 1.852 0 1.337-.012 2.416-.012 2.746 0 .266.18.576.688.478A10.001 10.001 0 0 0 12 2Z"/>
-            </svg>
+          <a class="icon-btn" href="https://github.com/leeseungyoons" target="_blank" rel="noopener" aria-label="GitHub">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.162 19.49c.5.092.683-.216.683-.48 0-.237-.008-.866-.013-1.7-2.782.605-3.37-1.34-3.37-1.34-.454-1.154-1.11-1.461-1.11-1.461-.908-.62.069-.608.069-.608 1.004.07 1.533 1.031 1.533 1.031.893 1.529 2.343 1.087 2.914.832.091-.647.35-1.088.636-1.338-2.221-.253-4.556-1.11-4.556-4.943 0-1.092.39-1.986 1.03-2.686-.104-.253-.447-1.273.098-2.653 0 0 .84-.269 2.75 1.026a9.57 9.57 0 0 1 5.006 0c1.91-1.295 2.748-1.026 2.748-1.026.547 1.38.204 2.4.1 2.653.64.7 1.028 1.594 1.028 2.686 0 3.842-2.339 4.687-4.568 4.935.359.309.679.919.679 1.852 0 1.337-.012 2.416-.012 2.746 0 .266.18.576.688.478A10.001 10.001 0 0 0 12 2Z"/></svg>
           </a>
-
-          <button class="nav-icon-btn nav-toggle" id="navToggle" aria-label="메뉴 열기">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-              <path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round"/>
-            </svg>
+          <button class="nav-toggle" id="navToggle" aria-label="메뉴 열기">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round"/></svg>
           </button>
         </div>
       </div>
     </div>
   </header>
 
-  <!-- MOBILE DRAWER -->
   <div class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
     <div class="drawer-backdrop" id="drawerBackdrop"></div>
-    <div class="drawer-panel" role="dialog" aria-modal="true" aria-label="모바일 메뉴">
+    <div class="drawer-panel">
       <div class="drawer-head">
         <div class="brand">
-          <div class="brand-badge">LS</div>
-          <div class="brand-text">
+          <div class="brand-mark">LS</div>
+          <div class="brand-copy">
             <strong>MENU</strong>
             <span>Portfolio Sections</span>
           </div>
         </div>
-        <button class="drawer-close" id="drawerClose" aria-label="메뉴 닫기">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-            <path d="M6 6l12 12M18 6l-12 12" stroke-linecap="round"/>
-          </svg>
+        <button class="icon-btn" id="drawerClose" aria-label="닫기">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg>
         </button>
       </div>
       <ul class="drawer-list">
         <li><a href="#about" data-drawer-link>About <span>소개</span></a></li>
-        <li><a href="#projects" data-drawer-link>Projects <span>프로젝트</span></a></li>
-        <li><a href="#skills" data-drawer-link>Skills <span>기술스택</span></a></li>
+        <li><a href="#work" data-drawer-link>Work <span>대표 프로젝트</span></a></li>
+        <li><a href="#skills" data-drawer-link>Skills <span>기술 역량</span></a></li>
         <li><a href="#journey" data-drawer-link>Journey <span>성장 과정</span></a></li>
-        <li><a href="#awards" data-drawer-link>Awards <span>수상·활동</span></a></li>
-        <li><a href="#contact" data-drawer-link>Contact <span>연락처</span></a></li>
+        <li><a href="#awards" data-drawer-link>Awards <span>수상/활동</span></a></li>
+        <li><a href="#contact" data-drawer-link>Contact <span>연락하기</span></a></li>
       </ul>
     </div>
   </div>
 
-  <!-- HERO -->
-  <main id="top" style="position:relative; z-index:2;">
+  <main id="top">
     <section class="hero">
-      <div class="hero-inner">
-        <div class="hero-left" data-reveal="left">
-          <div class="hero-kicker">
-            <span class="pulse"></span>
-            AI · ML · Data → Service
-          </div>
-
-          <h1 class="hero-title">
-            <span class="line">데이터에서 모델을 만들고</span>
-            <span class="line gradient-text">서비스까지 연결하는</span>
-            <span class="line">Machine Learning Engineer</span>
-          </h1>
-
-          <p class="hero-desc">
-            강남대학교 AI 전공 · KT AIVLE 프로젝트 경험.
-            <strong style="color:#fff;">NLP, 시계열 예측, 센서 데이터 행동 인식, AI Agent</strong>를 중심으로
-            <strong style="color:#fff;">데이터 → 모델링 → 서비스 연동</strong>까지 직접 구현해 온 포트폴리오입니다.
-          </p>
-
-          <div class="hero-typing" aria-live="polite">
-            <span id="typingText"></span>
-            <span class="caret" aria-hidden="true"></span>
-          </div>
-
-          <div class="hero-actions">
-            <a href="#projects" class="btn btn-primary btn-glow" data-magnetic>
-              <span>🔥 View Projects</span>
-            </a>
-            <a href="https://github.com/leeseungyoons" class="btn" target="_blank" rel="noopener" data-magnetic>
-              <span>GitHub</span>
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M12 2a10 10 0 0 0-3.162 19.49c.5.092.683-.216.683-.48 0-.237-.008-.866-.013-1.7-2.782.605-3.37-1.34-3.37-1.34-.454-1.154-1.11-1.461-1.11-1.461-.908-.62.069-.608.069-.608 1.004.07 1.533 1.031 1.533 1.031.893 1.529 2.343 1.087 2.914.832.091-.647.35-1.088.636-1.338-2.221-.253-4.556-1.11-4.556-4.943 0-1.092.39-1.986 1.03-2.686-.104-.253-.447-1.273.098-2.653 0 0 .84-.269 2.75 1.026a9.57 9.57 0 0 1 5.006 0c1.91-1.295 2.748-1.026 2.748-1.026.547 1.38.204 2.4.1 2.653.64.7 1.028 1.594 1.028 2.686 0 3.842-2.339 4.687-4.568 4.935.359.309.679.919.679 1.852 0 1.337-.012 2.416-.012 2.746 0 .266.18.576.688.478A10.001 10.001 0 0 0 12 2Z"/>
-              </svg>
-            </a>
-            <a href="#contact" class="btn" data-magnetic>
-              <span>Contact</span>
-            </a>
-          </div>
-
-          <div class="hero-meta">
-            <div class="meta-pill">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-                <path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2Z" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-              2026 Job Ready Portfolio
-            </div>
-            <div class="meta-pill">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-                <path d="M12 2v20M2 12h20" stroke-linecap="round"/>
-              </svg>
-              ML · NLP · Time Series · Agent
-            </div>
-            <div class="meta-pill">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-                <path d="M20 7L9 18l-5-5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-              GitHub Pages Live
-            </div>
-          </div>
-        </div>
-
-        <div class="hero-right" data-reveal="right">
-          <div class="hero-panel" id="heroPanel3D">
-            <div class="panel-grid">
-              <div class="panel-topbar">
-                <div class="panel-dots" aria-hidden="true">
-                  <span class="panel-dot"></span>
-                  <span class="panel-dot"></span>
-                  <span class="panel-dot"></span>
-                </div>
-                <div class="label">Portfolio Overview / AI-ML-Engineer</div>
-              </div>
-
-              <div class="hero-stats">
-                <div class="stat-box">
-                  <div class="stat-label">featured projects</div>
-                  <div class="stat-value gradient">3</div>
-                </div>
-                <div class="stat-box">
-                  <div class="stat-label">total projects</div>
-                  <div class="stat-value">9+</div>
-                </div>
-                <div class="stat-box">
-                  <div class="stat-label">major focus</div>
-                  <div class="stat-value" style="font-size:18px;">ML · AI</div>
-                </div>
-              </div>
-
-              <div class="hero-chart-card">
-                <div class="chart-header">
-                  <div class="title">Project Domain Mix</div>
-                  <div class="badge">Portfolio Signal</div>
-                </div>
-
-                <div class="fake-chart" aria-hidden="true">
-                  <svg viewBox="0 0 100 40" preserveAspectRatio="none">
-                    <defs>
-                      <linearGradient id="lineA" x1="0" x2="1">
-                        <stop offset="0%" stop-color="#22c55e"/>
-                        <stop offset="100%" stop-color="#06b6d4"/>
-                      </linearGradient>
-                      <linearGradient id="areaA" x1="0" x2="0" y1="0" y2="1">
-                        <stop offset="0%" stop-color="rgba(34,197,94,.35)"/>
-                        <stop offset="100%" stop-color="rgba(6,182,212,0)"/>
-                      </linearGradient>
-                    </defs>
-
-                    <path d="M0,34 L0,28 C8,24 14,20 20,18 C26,16 34,19 40,14 C48,8 55,10 61,12 C68,14 74,11 80,8 C86,5 92,7 100,4 L100,34 Z"
-                          fill="url(#areaA)" opacity="0.9"></path>
-
-                    <path d="M0,28 C8,24 14,20 20,18 C26,16 34,19 40,14 C48,8 55,10 61,12 C68,14 74,11 80,8 C86,5 92,7 100,4"
-                          fill="none" stroke="url(#lineA)" stroke-width="1.2"></path>
-
-                    <path d="M0,30 C12,31 20,29 28,27 C36,25 48,22 55,24 C64,27 76,23 84,20 C92,16 96,16 100,15"
-                          fill="none" stroke="#93c5fd" stroke-opacity="0.8" stroke-width="0.8" stroke-dasharray="3 2"></path>
-                  </svg>
-                </div>
-
-                <div class="chart-legend">
-                  <span class="legend-item">
-                    <span class="legend-dot" style="background:#22c55e"></span> ML/Forecasting
-                  </span>
-                  <span class="legend-item">
-                    <span class="legend-dot" style="background:#06b6d4"></span> LLM/Agent
-                  </span>
-                  <span class="legend-item">
-                    <span class="legend-dot" style="background:#93c5fd"></span> Service/App
-                  </span>
-                </div>
-              </div>
-
-              <div class="hero-mini-cards">
-                <div class="mini-card">
-                  <h4>Strong Fit</h4>
-                  <div class="chip-row">
-                    <span class="chip"><span class="dot-sm"></span> LightGBM</span>
-                    <span class="chip"><span class="dot-sm"></span> NLP</span>
-                    <span class="chip"><span class="dot-sm"></span> Agent</span>
-                    <span class="chip"><span class="dot-sm"></span> Time Series</span>
-                  </div>
-                </div>
-                <div class="mini-card">
-                  <h4>Portfolio Signal</h4>
-                  <p>
-                    데이터 기반 문제정의 → 모델링 → 결과 구조화 → 서비스 연결까지
-                    실제 사용 흐름 중심으로 정리한 포트폴리오
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="scroll-cue" aria-hidden="true">
-        <span class="mouse"></span>
-        Scroll
-      </div>
-    </section>
-
-    <!-- METRICS -->
-    <section class="section stats-wrap">
       <div class="container">
-        <div class="stats-grid">
-          <div class="metric-card" data-reveal="zoom">
-            <div class="metric-label">프로젝트 경험</div>
-            <div class="metric-value"><span class="count" data-target="9">0</span><span class="unit">+</span></div>
-            <div class="metric-desc">AI / ML / 서비스 개발 프로젝트 누적 경험</div>
+        <div class="hero-grid">
+          <div data-reveal>
+            <div class="hero-kicker"><span class="pulse"></span> Data · Model · Product · Service</div>
+            <h1>
+              데이터를 끝까지 <span class="gradient">서비스로 연결하는</span><br />
+              AI Engineer
+            </h1>
+            <p>
+              안녕하세요. <strong>이승윤</strong>입니다. 저는 단순히 모델 성능을 올리는 데서 멈추지 않고,
+              <strong>데이터 수집 → 전처리 → 모델링 → 결과 해석 → 서비스 연동</strong>까지 한 흐름으로 구현하는 데 강점이 있습니다.
+              시계열 예측, NLP, LLM Agent, 추천 시스템, 웹 연동 프로젝트를 통해 <strong>결과가 실제 의사결정에 쓰이도록 만드는 경험</strong>을 쌓아왔습니다.
+            </p>
+            <div class="type-line"><span id="typing"></span><span class="caret"></span></div>
+            <div class="hero-actions">
+              <a class="btn primary" href="#work">대표 프로젝트 보기</a>
+              <a class="btn" href="https://github.com/leeseungyoons" target="_blank" rel="noopener">GitHub</a>
+              <a class="btn" href="https://leeseungyoons.github.io/ai-portfolio-site/" target="_blank" rel="noopener">Portfolio Link</a>
+            </div>
+            <div class="hero-badges">
+              <span class="meta-pill">ML · NLP · Time Series · Agent</span>
+              <span class="meta-pill">강남대학교 AI 전공</span>
+              <span class="meta-pill">KT AIVLE School 프로젝트 경험</span>
+            </div>
           </div>
 
-          <div class="metric-card" data-reveal="zoom" data-reveal-delay="80">
-            <div class="metric-label">핵심 프로젝트</div>
-            <div class="metric-value"><span class="count" data-target="3">0</span><span class="unit">개</span></div>
-            <div class="metric-desc">면접에서 먼저 보여줄 Featured 프로젝트</div>
-          </div>
+          <div class="hero-card" data-reveal>
+            <div class="window-bar">
+              <div class="window-dots"><span></span><span></span><span></span></div>
+              <div class="window-label">Portfolio Snapshot / 2026</div>
+            </div>
 
-          <div class="metric-card" data-reveal="zoom" data-reveal-delay="160">
-            <div class="metric-label">공모전/학술 활동</div>
-            <div class="metric-value"><span class="count" data-target="4">0</span><span class="unit">+</span></div>
-            <div class="metric-desc">논문·공모전·학술제·빅프로젝트 활동 기반</div>
-          </div>
+            <div class="snapshot-grid">
+              <div class="snapshot">
+                <div class="label">featured work</div>
+                <div class="value">6</div>
+                <div class="sub">대표 프로젝트 중심 정리</div>
+              </div>
+              <div class="snapshot">
+                <div class="label">awards</div>
+                <div class="value">4+</div>
+                <div class="sub">논문·학술제·공모전 기반</div>
+              </div>
+              <div class="snapshot">
+                <div class="label">focus</div>
+                <div class="value" style="font-size:1rem; line-height:1.35;">Model + Product</div>
+                <div class="sub">데이터에서 서비스까지</div>
+              </div>
+            </div>
 
-          <div class="metric-card" data-reveal="zoom" data-reveal-delay="240">
-            <div class="metric-label">ABSA 리뷰 데이터</div>
-            <div class="metric-value"><span class="count" data-target="107">0</span><span class="unit">K+</span></div>
-            <div class="metric-desc">뷰엘라 코스메틱스 미니프로젝트 기준 (107,088건)</div>
+            <div class="signal-card">
+              <div class="signal-head">
+                <h3>프로젝트 스펙트럼</h3>
+                <span class="signal-badge">실전형 포트폴리오</span>
+              </div>
+              <div class="mix-list">
+                <div class="mix-item">
+                  <div class="mix-line"><span>Machine Learning / Forecasting</span><span>90%</span></div>
+                  <div class="track"><div class="fill" style="width:90%"></div></div>
+                </div>
+                <div class="mix-item">
+                  <div class="mix-line"><span>NLP / Text Intelligence</span><span>82%</span></div>
+                  <div class="track"><div class="fill" style="width:82%"></div></div>
+                </div>
+                <div class="mix-item">
+                  <div class="mix-line"><span>LLM Agent / Workflow</span><span>78%</span></div>
+                  <div class="track"><div class="fill" style="width:78%"></div></div>
+                </div>
+                <div class="mix-item">
+                  <div class="mix-line"><span>App / Web Integration</span><span>74%</span></div>
+                  <div class="track"><div class="fill" style="width:74%"></div></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="insight-grid">
+              <div class="insight">
+                <h4>핵심 강점</h4>
+                <div class="chip-row">
+                  <span class="chip">문제정의</span>
+                  <span class="chip">피처엔지니어링</span>
+                  <span class="chip">결과 구조화</span>
+                  <span class="chip">서비스 연결</span>
+                </div>
+              </div>
+              <div class="insight">
+                <h4>한 줄 요약</h4>
+                <p>실험을 끝내지 않고, 결과가 실제로 쓰이게 만드는 AI Engineer.</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ABOUT -->
+    <section class="section" style="padding-top:0;">
+      <div class="container">
+        <div class="summary-grid">
+          <div class="panel summary-card" data-reveal>
+            <div class="k">프로젝트 경험</div>
+            <div class="v">15+</div>
+            <p>수업, 공모전, 학술 활동, KT 프로젝트까지 포함한 실전형 포트폴리오</p>
+          </div>
+          <div class="panel summary-card" data-reveal>
+            <div class="k">팀 리딩 경험</div>
+            <div class="v">4</div>
+            <p>게임, 딥러닝 프레임워크, 맛집 추천 앱 등에서 팀장 역할 수행</p>
+          </div>
+          <div class="panel summary-card" data-reveal>
+            <div class="k">데이터 기반 활동</div>
+            <div class="v">8+</div>
+            <p>예측, 감성분석, 서비스 기획, 센서 데이터 기반 문제 해결 경험</p>
+          </div>
+          <div class="panel summary-card" data-reveal>
+            <div class="k">관점</div>
+            <div class="v" style="font-size:1.4rem; line-height:1.25;">Build to Use</div>
+            <p>만드는 것보다, 실제 사용 맥락까지 설계하는 것에 집중</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="section" id="about">
       <div class="container">
         <div class="eyebrow"><span class="dot"></span> About</div>
-        <h2 class="section-title">데이터 기반 문제를 서비스까지 연결하는 AI/ML 엔지니어 지향</h2>
-        <p class="section-sub">
-          단순히 모델 성능 수치만 올리는 것이 아니라, <strong style="color:#fff;">결과가 실제 의사결정과 사용자 경험에 쓰이도록 구조화</strong>하는 데 강점을 두고 있습니다.
-          NLP, 시계열 예측, 센서 데이터 분류, LLM Agent, 웹/백엔드 연동까지 폭넓게 경험했습니다.
-        </p>
+        <h2 class="section-title">단단한 구현력 위에, 문제를 구조화하는 시선을 더해왔습니다.</h2>
+        <p class="section-desc">기술을 나열하는 포트폴리오보다, 내가 어떤 문제를 어떻게 풀어왔는지 보여주는 포트폴리오를 만들고 싶었습니다.</p>
 
-        <div class="about-grid">
-          <div class="glass-card about-main" data-reveal="left">
+        <div class="story-grid">
+          <div class="panel story-card" data-reveal>
             <p>
-              강남대학교 인공지능융합공학부 인공지능 전공으로, 다양한 수업과 프로젝트를 통해
-              <strong style="color:#fff;">AI 모델링 + 서비스 개발 + 팀 리딩</strong> 경험을 쌓았습니다.
-              초기에는 Python/배포도 낯설었지만, VS Code와 Streamlit부터 시작해 현재는
-              AWS/CI-CD/웹 연동까지 확장하며 성장했습니다.
+              저는 강남대학교 AI 전공으로 다양한 프로젝트를 수행하면서, 모델링 자체보다 <strong>“이 결과가 실제로 어디에 쓰일까?”</strong>를 계속 고민해왔습니다.
+              그래서 추천 시스템이든, 수요 예측이든, 챗봇이든 항상 <strong>사용 흐름과 결과 소비 방식</strong>을 함께 설계하려고 했습니다.
             </p>
             <p>
-              특히 KT AIVLE 프로젝트에서는 K-Food 수출·현지화 플랫폼에서
-              수요/트렌드 예측, ABSA 기반 VOC 정량화, JSON 파이프라인 표준화, 도움말 챗봇 웹 연결 등
-              <strong style="color:#fff;">“데이터 → 예측 → 리포트 → 서비스” 전체 흐름</strong>을 경험했습니다.
+              초반에는 Python과 배포도 낯설었지만, VS Code와 Streamlit으로 시작해 GitHub Pages, 웹 연동, AWS/CI-CD까지 경험 범위를 넓혀왔습니다.
+              덕분에 지금은 단순 실험 코드가 아니라 <strong>보고서, 화면, 사용자 경험까지 이어지는 형태</strong>로 프로젝트를 마무리하는 데 익숙해졌습니다.
+            </p>
+            <p>
+              KT AIVLE School 빅프로젝트에서는 K-Food 수출·현지화 플랫폼을 만들며 수요 예측, ABSA 기반 VOC 정량화, JSON 파이프라인 표준화, 도움말 챗봇 웹 연결까지 맡았습니다.
+              이 경험을 통해 <strong>데이터 → 모델 → 리포트 → 서비스</strong>의 전체 흐름을 더 분명하게 이해하게 되었습니다.
             </p>
 
-            <div class="about-highlight">
-              <div class="about-pill">
+            <div class="point-grid">
+              <div class="point-box">
                 <h4>관심 분야</h4>
-                <p>Machine Learning, Time Series Forecasting, NLP, LLM Agent, AI Service Development</p>
+                <p>Machine Learning, Time Series Forecasting, NLP, LLM Agent, Data Product</p>
               </div>
-              <div class="about-pill">
+              <div class="point-box">
                 <h4>강점 키워드</h4>
                 <p>문제정의 · 피처엔지니어링 · 모델 비교실험 · 결과 구조화 · 서비스 연결</p>
               </div>
-              <div class="about-pill">
+              <div class="point-box">
                 <h4>협업 스타일</h4>
-                <p>리딩 경험 기반으로 역할 분담, 문서화, 일정/규칙 준수, 결과 중심 협업을 선호</p>
+                <p>역할을 명확히 나누고, 일정과 산출물을 끝까지 관리하는 실전형 협업 선호</p>
               </div>
-              <div class="about-pill">
+              <div class="point-box">
                 <h4>목표 직무</h4>
-                <p>Machine Learning Engineer / AI Engineer (모델 + 서비스 연동 중심)</p>
+                <p>AI Engineer / ML Engineer — 모델을 제품과 서비스에 연결하는 역할</p>
               </div>
             </div>
           </div>
 
-          <div class="glass-card about-side" data-reveal="right">
-            <div class="edu-card">
-              <div class="t1">강남대학교 인공지능융합공학부 (AI 전공)</div>
-              <div class="t2">학부 · 4학년 / 졸업 예정</div>
-              <div class="t3">AI 입문·수학·NLP·지능형 로봇 시스템·AI 앱 개발 등 다양한 과목 기반 실습 수행</div>
+          <div class="profile-column" data-reveal>
+            <div class="panel profile-card">
+              <h3>Education</h3>
+              <div class="row">
+                <div class="item">
+                  <strong>강남대학교 AI융합공학부</strong>
+                  <span>인공지능 전공 · 4학년 · ML / NLP / AI 앱 개발 / 로봇 시스템 등 실습 중심 학습</span>
+                </div>
+                <div class="item">
+                  <strong>KT AIVLE School</strong>
+                  <span>AI 트랙 프로젝트 수행 · AI 면접관 Agent, AI 강사 Agent, K-Food 플랫폼 등 실전 경험</span>
+                </div>
+              </div>
             </div>
 
-            <div class="edu-card">
-              <div class="t1">KT AIVLE School</div>
-              <div class="t2">AI 트랙 · 실전 프로젝트 수행</div>
-              <div class="t3">AI 면접관 Agent, AI 강사 Agent, K-Food 수요 예측/리포트 플랫폼, 웹 도움말 챗봇 등 수행</div>
-            </div>
-
-            <div class="edu-card">
-              <div class="t1">수상/활동 기반 포인트</div>
-              <div class="t2">논문 우수상 · 학술제 · 공모전</div>
-              <div class="t3">문제 해결 과정을 결과물(논문/프로토타입/서비스)로 마무리한 경험이 다수 있음</div>
+            <div class="panel profile-card">
+              <h3>What makes me different</h3>
+              <div class="row">
+                <div class="item">
+                  <strong>현장 감각 + 데이터 감각</strong>
+                  <span>실제 사용 맥락과 운영 관점을 함께 생각하며 문제를 푸는 편입니다.</span>
+                </div>
+                <div class="item">
+                  <strong>팀 리딩 경험</strong>
+                  <span>팀장 역할을 맡아 기획, 통합, 일정 관리, 결과물 마무리까지 책임진 경험이 있습니다.</span>
+                </div>
+                <div class="item">
+                  <strong>끝까지 구현하는 태도</strong>
+                  <span>모델링 결과를 보고서, 서비스 화면, 챗봇, 앱으로 연결해 실제 형태로 남깁니다.</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- PROJECTS -->
-    <section class="section" id="projects">
+    <section class="section" id="work">
       <div class="container">
-        <div class="eyebrow"><span class="dot"></span> Projects</div>
-        <h2 class="section-title">핵심 프로젝트 3개 + 확장 프로젝트들</h2>
-        <p class="section-sub">
-          컨설팅 피드백을 반영해 <strong style="color:#fff;">핵심 3개는 강하게</strong>, 나머지 프로젝트는
-          <strong style="color:#fff;">기술 스펙트럼을 보여주는 포지션</strong>으로 정리했습니다.
-          카드 클릭으로 상세 내용을 볼 수 있습니다.
-        </p>
-
-        <div class="project-toolbar" data-reveal="zoom">
-          <div class="project-tabs" id="projectTabs">
-            <button class="tab-btn active" data-filter="all">전체</button>
-            <button class="tab-btn" data-filter="featured">Featured</button>
-            <button class="tab-btn" data-filter="ml">ML / 예측</button>
-            <button class="tab-btn" data-filter="nlp">NLP / 텍스트</button>
-            <button class="tab-btn" data-filter="agent">LLM Agent</button>
-            <button class="tab-btn" data-filter="service">서비스 / 앱</button>
+        <div class="works-toolbar">
+          <div>
+            <div class="eyebrow"><span class="dot"></span> Selected Work</div>
+            <h2 class="section-title">제가 해온 일은, 결국 “결과가 쓰이게 만드는 것”에 가까웠습니다.</h2>
           </div>
-          <div class="toolbar-note">
-            카드 hover: 3D tilt · 카드 클릭: 상세 모달
-          </div>
+          <p class="works-note">대표 프로젝트는 문제정의, 내 역할, 실제 연결 방식이 드러나도록 정리했습니다. 코드만이 아니라 왜 만들었는지가 보이도록 구성했습니다.</p>
         </div>
 
-        <div class="featured-grid" id="featuredGrid" data-reveal="zoom"></div>
-        <div class="projects-grid" id="projectsGrid" data-reveal="zoom" data-reveal-delay="120"></div>
-        <div class="empty-state" id="emptyState">해당 필터에 맞는 프로젝트가 없습니다.</div>
+        <div class="work-grid">
+          <article class="panel work-card" data-reveal>
+            <div class="work-top">
+              <span class="tag"><span class="mini-dot"></span> Featured · Big Project</span>
+              <span class="work-year">2026</span>
+            </div>
+            <h3>K-Food 수출·현지화 플랫폼</h3>
+            <p class="sub">해외 리뷰, 트렌드, 수출 데이터를 결합해 국가별 K-Food 수요를 예측하고, 결과를 자동 리포트와 추천 파이프라인으로 연결한 프로젝트입니다.</p>
+            <ul class="work-points">
+              <li>XGBoost에서 LightGBM으로 전환하며 성능과 운영 효율을 함께 고려했습니다.</li>
+              <li>국가별 TOP-N 리포트 파이프라인과 JSON 스키마를 표준화해 후속 서비스 연결성을 높였습니다.</li>
+              <li>ABSA 기반 VOC 정량화, 도움말 챗봇 웹 연결, 레시피 챗봇 프롬프트 설계까지 맡았습니다.</li>
+            </ul>
+            <div class="work-bottom">
+              <div class="stack-mini"><span>Python</span><span>LightGBM</span><span>NLP</span><span>ABSA</span><span>JSON</span></div>
+              <div class="card-links"><a class="card-link" href="https://github.com/leeseungyoons/kfood-export-localization-platform" target="_blank" rel="noopener">Repository</a></div>
+            </div>
+          </article>
+
+          <article class="panel work-card" data-reveal>
+            <div class="work-top">
+              <span class="tag"><span class="mini-dot"></span> Featured · Agent</span>
+              <span class="work-year">2025</span>
+            </div>
+            <h3>AI 면접관 Agent</h3>
+            <p class="sub">이력서와 자기소개서를 바탕으로 질문을 생성하고, 답변을 평가한 뒤 후속 질문과 리포트까지 자동화하는 LangGraph 기반 Agent입니다.</p>
+            <ul class="work-points">
+              <li>인터뷰 상태를 구조화하고 질문 생성 → 평가 → 리포트 흐름이 끊기지 않도록 워크플로우를 설계했습니다.</li>
+              <li>질문 전략, 답변 평가, 후속 질문 생성 로직을 나눠 인터뷰 경험이 자연스럽게 이어지도록 구현했습니다.</li>
+              <li>단순 챗봇이 아니라 실제 면접 연습 도구에 가깝게 설계했다는 점이 핵심입니다.</li>
+            </ul>
+            <div class="work-bottom">
+              <div class="stack-mini"><span>LangGraph</span><span>OpenAI</span><span>Prompt</span><span>Workflow</span></div>
+              <div class="card-links"><a class="card-link" href="#contact">Ask Me</a></div>
+            </div>
+          </article>
+
+          <article class="panel work-card" data-reveal>
+            <div class="work-top">
+              <span class="tag"><span class="mini-dot"></span> Featured · Service</span>
+              <span class="work-year">2026</span>
+            </div>
+            <h3>광고 없는 맛집 추천 앱</h3>
+            <p class="sub">주소 기반 탐색과 카카오맵, 네이버 후기 데이터를 활용해 광고성 정보를 최대한 줄이고 실제 후기 중심으로 맛집을 추천하는 서비스입니다.</p>
+            <ul class="work-points">
+              <li>팀장으로서 문제정의, 추천 로직, UI 방향을 전체적으로 리딩했습니다.</li>
+              <li>위치 정확성, 후기 필터링, 추천 점수 개선에 집중해 “광고 제거”라는 차별점을 살렸습니다.</li>
+              <li>단순 지도앱이 아니라 데이터 신뢰도를 핵심 가치로 둔 서비스입니다.</li>
+            </ul>
+            <div class="work-bottom">
+              <div class="stack-mini"><span>Streamlit</span><span>Kakao API</span><span>Naver API</span><span>Ranking</span></div>
+              <div class="card-links"><a class="card-link primary" href="https://github.com/leeseungyoons/ad-free-restaurant-recommender" target="_blank" rel="noopener">Repository</a></div>
+            </div>
+          </article>
+
+          <article class="panel work-card" data-reveal>
+            <div class="work-top">
+              <span class="tag"><span class="mini-dot"></span> Forecasting</span>
+              <span class="work-year">2025</span>
+            </div>
+            <h3>풍력 발전량 예측 모델</h3>
+            <p class="sub">기상·설비 데이터를 기반으로 풍력 발전량을 예측한 시계열 회귀 프로젝트입니다. 현실적인 예측 곡선을 만들기 위해 피처 설계에 집중했습니다.</p>
+            <ul class="work-points">
+              <li>Lag, MA, EMA 같은 피처를 직접 설계하며 시계열 데이터 해석 경험을 쌓았습니다.</li>
+              <li>단순 점수보다 실제 변동성 완화와 설명 가능한 예측 흐름을 중요하게 봤습니다.</li>
+              <li>이 프로젝트를 계기로 예측 문제를 구조적으로 푸는 감각이 크게 늘었습니다.</li>
+            </ul>
+            <div class="work-bottom">
+              <div class="stack-mini"><span>Python</span><span>Regression</span><span>Time Series</span><span>Feature Engineering</span></div>
+              <div class="card-links"><a class="card-link" href="#journey">See Journey</a></div>
+            </div>
+          </article>
+
+          <article class="panel work-card" data-reveal>
+            <div class="work-top">
+              <span class="tag"><span class="mini-dot"></span> NLP</span>
+              <span class="work-year">2025</span>
+            </div>
+            <h3>스포츠 기사 감성분석</h3>
+            <p class="sub">스포츠 기사 텍스트를 바탕으로 감성을 분류하고, 팀과 선수 이슈에 대한 분위기를 정량적으로 파악하려 한 NLP 프로젝트입니다.</p>
+            <ul class="work-points">
+              <li>텍스트 전처리, 감성 분류, 도메인 기반 해석까지 연결해 본 경험이 있습니다.</li>
+              <li>스포츠라는 관심 분야를 AI 문제로 연결한 프로젝트라 몰입도가 높았습니다.</li>
+              <li>이후 ABSA와 텍스트 분류 프로젝트로 확장되는 기반이 되었습니다.</li>
+            </ul>
+            <div class="work-bottom">
+              <div class="stack-mini"><span>Python</span><span>NLP</span><span>Text Classification</span></div>
+              <div class="card-links"><a class="card-link" href="https://github.com/leeseungyoons/sports-news-sentiment-analysis" target="_blank" rel="noopener">Repository</a></div>
+            </div>
+          </article>
+
+          <article class="panel work-card" data-reveal>
+            <div class="work-top">
+              <span class="tag"><span class="mini-dot"></span> Solo Project</span>
+              <span class="work-year">2024</span>
+            </div>
+            <h3>AI 작가 앱</h3>
+            <p class="sub">React Native와 OpenAI GPT-3.5를 활용해 사용자 맞춤형 스토리를 생성하는 모바일 앱을 단독으로 개발했습니다.</p>
+            <ul class="work-points">
+              <li>기획부터 화면 구조, 입력 흐름, 생성 경험까지 혼자 구현하며 완성도 있게 마무리했습니다.</li>
+              <li>LLM 기능을 단순 호출이 아니라 사용자가 체감하는 경험으로 바꾸는 법을 익혔습니다.</li>
+              <li>개인 프로젝트이지만, 제품 관점 사고를 많이 담아낸 작업입니다.</li>
+            </ul>
+            <div class="work-bottom">
+              <div class="stack-mini"><span>React Native</span><span>OpenAI API</span><span>Mobile</span></div>
+              <div class="card-links"><a class="card-link" href="#contact">Details</a></div>
+            </div>
+          </article>
+        </div>
+
+        <div class="sub-work-grid">
+          <article class="panel sub-work" data-reveal>
+            <span class="tag"><span class="mini-dot"></span> Team Lead · Awarded</span>
+            <h4>미로 탈출 게임</h4>
+            <p>미로, 퀴즈, 힌트, 스도쿠, 공포 요소를 결합한 게임 프로젝트로 학술제 수상을 받았습니다. 팀장으로 코드 통합, UI/UX, 디자인 총괄을 맡았습니다.</p>
+            <div class="stack-mini"><span>Python</span><span>Game Logic</span><span>Leadership</span><span>UI/UX</span></div>
+          </article>
+          <article class="panel sub-work" data-reveal>
+            <span class="tag"><span class="mini-dot"></span> Research · Awarded</span>
+            <h4>화재 피난 경로 탐색 연구</h4>
+            <p>건물 구조와 피난자 행동 특성을 고려해 최적 피난 경로를 탐색한 연구로 학생논문우수상을 받았습니다. 데이터 기반 문제 해결과 연구 정리 경험을 함께 얻었습니다.</p>
+            <div class="stack-mini"><span>Research</span><span>Optimization Thinking</span><span>Data Analysis</span></div>
+          </article>
+          <article class="panel sub-work" data-reveal>
+            <span class="tag"><span class="mini-dot"></span> Agent</span>
+            <h4>AI 강사 Agent</h4>
+            <p>강의자료를 입력하면 수업 설계, 요약, 퀴즈, 과제, 피드백을 자동 생성하는 교육형 Agent입니다. 구조화된 학습 흐름 설계에 집중했습니다.</p>
+            <div class="stack-mini"><span>LLM</span><span>LangGraph</span><span>Education AI</span></div>
+          </article>
+          <article class="panel sub-work" data-reveal>
+            <span class="tag"><span class="mini-dot"></span> Framework</span>
+            <h4>미니 악당 딥러닝 프레임워크</h4>
+            <p>캐릭터 말투 유지와 데이터셋 관리 모듈을 포함한 확장형 딥러닝 프레임워크 프로젝트입니다. 팀장으로 구조 설계와 전체 통합을 맡았습니다.</p>
+            <div class="stack-mini"><span>Deep Learning</span><span>Framework Design</span><span>Data Pipeline</span></div>
+          </article>
+        </div>
       </div>
     </section>
 
-    <!-- SKILLS -->
     <section class="section" id="skills">
       <div class="container">
         <div class="eyebrow"><span class="dot"></span> Skills</div>
-        <h2 class="section-title">기술 스택과 실무형 역량 방향</h2>
-        <p class="section-sub">
-          “아는 것만 쓰고 깊이 있게 준비”라는 피드백을 반영해, 실제로 프로젝트에서 활용한 기술 중심으로 정리했습니다.
-          (면접에서 설명 가능한 수준 위주)
-        </p>
+        <h2 class="section-title">내가 실제로 설명할 수 있는 기술들, 그리고 어디에 강한지.</h2>
+        <p class="section-desc">스택을 많이 적기보다, 프로젝트에서 실제로 쓴 기술 중심으로 정리했습니다. 면접에서 바로 사례와 함께 설명할 수 있는 것들입니다.</p>
 
-        <div class="skills-layout">
-          <div class="skill-groups" data-reveal="left">
-            <div class="skill-card">
+        <div class="skill-layout">
+          <div class="stack-groups" data-reveal>
+            <div class="panel stack-card">
               <h3>Machine Learning / Modeling</h3>
-              <div class="skill-chip-list">
-                <span class="skill-chip">scikit-learn</span>
-                <span class="skill-chip">LightGBM</span>
-                <span class="skill-chip">XGBoost</span>
-                <span class="skill-chip">RandomForest</span>
-                <span class="skill-chip">분류 / 회귀 실험</span>
-                <span class="skill-chip">모델 비교/튜닝</span>
+              <div class="stack-list">
+                <span>scikit-learn</span><span>LightGBM</span><span>XGBoost</span><span>RandomForest</span><span>Classification</span><span>Regression</span><span>Model Comparison</span>
               </div>
             </div>
-
-            <div class="skill-card">
+            <div class="panel stack-card">
               <h3>Data / Feature Engineering</h3>
-              <div class="skill-chip-list">
-                <span class="skill-chip">Pandas</span>
-                <span class="skill-chip">NumPy</span>
-                <span class="skill-chip">Matplotlib</span>
-                <span class="skill-chip">Seaborn</span>
-                <span class="skill-chip">Lag / Rolling / EMA</span>
-                <span class="skill-chip">SHAP</span>
+              <div class="stack-list">
+                <span>Pandas</span><span>NumPy</span><span>Matplotlib</span><span>Lag</span><span>Rolling</span><span>EMA</span><span>SHAP</span>
               </div>
             </div>
-
-            <div class="skill-card">
+            <div class="panel stack-card">
               <h3>NLP / LLM / Agent</h3>
-              <div class="skill-chip-list">
-                <span class="skill-chip">Transformers</span>
-                <span class="skill-chip">BERT / 감성분석</span>
-                <span class="skill-chip">ABSA</span>
-                <span class="skill-chip">LangChain</span>
-                <span class="skill-chip">LangGraph</span>
-                <span class="skill-chip">Prompt Engineering</span>
+              <div class="stack-list">
+                <span>Transformers</span><span>BERT</span><span>Sentiment Analysis</span><span>ABSA</span><span>LangChain</span><span>LangGraph</span><span>Prompt Engineering</span>
               </div>
             </div>
-
-            <div class="skill-card">
-              <h3>Backend / Service / Infra</h3>
-              <div class="skill-chip-list">
-                <span class="skill-chip">Python</span>
-                <span class="skill-chip">FastAPI (학습/연동)</span>
-                <span class="skill-chip">Spring Boot</span>
-                <span class="skill-chip">REST API</span>
-                <span class="skill-chip">PostgreSQL</span>
-                <span class="skill-chip">AWS / Docker / CI-CD</span>
+            <div class="panel stack-card">
+              <h3>App / Web / Delivery</h3>
+              <div class="stack-list">
+                <span>Streamlit</span><span>React Native</span><span>Spring Boot</span><span>GitHub Pages</span><span>REST API</span><span>AWS / CI-CD</span>
               </div>
             </div>
           </div>
 
-          <div class="skills-visual" data-reveal="right">
-            <div class="title">
-              <h3>Portfolio Fit Radar (Interview-Oriented)</h3>
-              <span>설명 가능 기준</span>
-            </div>
-
-            <div class="bar-list">
-              <div class="bar-item">
-                <div class="bar-label"><span>ML Modeling & Experimentation</span><strong>90</strong></div>
-                <div class="bar-track"><div class="bar-fill" data-width="90%"></div></div>
+          <div class="panel fit-card" data-reveal>
+            <h3>Role Fit</h3>
+            <div class="fit-bars">
+              <div>
+                <div class="fit-label"><span>문제정의 & 데이터 구조화</span><span>Strong</span></div>
+                <div class="fit-track"><div class="fit-fill" style="width:92%"></div></div>
               </div>
-              <div class="bar-item">
-                <div class="bar-label"><span>Feature Engineering / Data Prep</span><strong>92</strong></div>
-                <div class="bar-track"><div class="bar-fill" data-width="92%"></div></div>
+              <div>
+                <div class="fit-label"><span>예측 / 분류 모델링</span><span>Strong</span></div>
+                <div class="fit-track"><div class="fit-fill" style="width:88%"></div></div>
               </div>
-              <div class="bar-item">
-                <div class="bar-label"><span>NLP / LLM Agent Workflow</span><strong>85</strong></div>
-                <div class="bar-track"><div class="bar-fill" data-width="85%"></div></div>
+              <div>
+                <div class="fit-label"><span>NLP / LLM Workflow</span><span>Strong</span></div>
+                <div class="fit-track"><div class="fit-fill" style="width:84%"></div></div>
               </div>
-              <div class="bar-item">
-                <div class="bar-label"><span>Service Integration / Web</span><strong>82</strong></div>
-                <div class="bar-track"><div class="bar-fill" data-width="82%"></div></div>
+              <div>
+                <div class="fit-label"><span>서비스 연결 / 프로토타이핑</span><span>Growing</span></div>
+                <div class="fit-track"><div class="fit-fill" style="width:80%"></div></div>
               </div>
-              <div class="bar-item">
-                <div class="bar-label"><span>Cloud / CI-CD / Deployment</span><strong>74</strong></div>
-                <div class="bar-track"><div class="bar-fill" data-width="74%"></div></div>
+              <div>
+                <div class="fit-label"><span>협업 / 리딩</span><span>Strong</span></div>
+                <div class="fit-track"><div class="fit-fill" style="width:86%"></div></div>
               </div>
             </div>
-
-            <div class="keywords-cloud">
-              <span class="kw">데이터 기반 문제정의</span>
-              <span class="kw">모델 성능 개선</span>
-              <span class="kw">결과 구조화</span>
-              <span class="kw">서비스 연결</span>
-              <span class="kw">팀 리딩 경험</span>
-              <span class="kw">문서화 / 발표</span>
-              <span class="kw">AI 제품 관점</span>
-              <span class="kw">실험 재현성</span>
+            <div class="keyword-cloud">
+              <span>Data to Service</span>
+              <span>Feature Engineering</span>
+              <span>Model Explainability</span>
+              <span>Workflow Design</span>
+              <span>Product Thinking</span>
+              <span>Execution</span>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- JOURNEY -->
     <section class="section" id="journey">
       <div class="container">
         <div class="eyebrow"><span class="dot"></span> Journey</div>
-        <h2 class="section-title">초기 Python/배포 초보에서 AI 프로젝트를 서비스로 연결하는 단계까지</h2>
-        <p class="section-sub">
-          단순 기술 나열보다, <strong style="color:#fff;">어떻게 성장했는지</strong>를 보여주면 면접에서 훨씬 강해집니다.
-          아래 흐름은 자기소개/면접 답변에도 그대로 사용할 수 있는 구조입니다.
-        </p>
+        <h2 class="section-title">처음보다 지금이 더 강한 이유는, 계속 만들면서 배워왔기 때문입니다.</h2>
+        <p class="section-desc">포트폴리오의 흐름이 곧 제 성장 과정입니다. 단순히 프로젝트 수가 늘어난 게 아니라, 문제를 보는 시선과 마무리하는 방식이 달라졌습니다.</p>
 
-        <div class="journey-grid">
-          <div class="timeline" data-reveal="left">
-            <div class="timeline-item">
-              <span class="timeline-dot"></span>
-              <div class="timeline-time">STEP 01 · 학부 초중반</div>
-              <div class="timeline-title">Python, AI 기초 수업 기반으로 문제 해결 시작</div>
-              <div class="timeline-desc">
-                인공지능입문·수학·코딩테스트기초 등 기초 과목을 통해 Python과 알고리즘, AI 개념을 익히며
-                실제 구현 중심으로 감을 잡기 시작.
+        <div class="journey-layout">
+          <div class="panel timeline" data-reveal>
+            <div class="timeline-list">
+              <div class="timeline-item">
+                <div class="timeline-year">초기 단계</div>
+                <h3>Python과 서비스 구현의 기초를 쌓다</h3>
+                <p>수업 프로젝트와 개인 앱을 만들며 기본적인 코딩, UI/UX, 배포 감각을 익혔습니다. AI 작가 앱, 챗봇, 게임 프로젝트가 이 시기의 기반이 되었습니다.</p>
               </div>
-            </div>
-
-            <div class="timeline-item">
-              <span class="timeline-dot"></span>
-              <div class="timeline-time">STEP 02 · 프로젝트 확장</div>
-              <div class="timeline-title">게임/앱/분석 프로젝트로 구현 범위 넓히기</div>
-              <div class="timeline-desc">
-                미로+퀴즈+스도쿠 게임(학술제 수상), React Native AI 작가 앱, 맛집 추천 서비스 등으로
-                단순 모델링을 넘어 UI/UX와 서비스 흐름까지 경험.
+              <div class="timeline-item">
+                <div class="timeline-year">모델링 확장</div>
+                <h3>예측과 NLP 문제를 본격적으로 다루기 시작하다</h3>
+                <p>풍력 발전량 예측, 스포츠 기사 감성분석, 화재 피난 경로 연구를 거치며 데이터 구조화, 피처 설계, 실험 비교의 중요성을 체감했습니다.</p>
               </div>
-            </div>
-
-            <div class="timeline-item">
-              <span class="timeline-dot"></span>
-              <div class="timeline-time">STEP 03 · ML/NLP/시계열 실험</div>
-              <div class="timeline-title">스포츠 기사 감성분석, 풍력 발전량 예측 등 모델링 역량 강화</div>
-              <div class="timeline-desc">
-                텍스트 분류, 시계열 피처 엔지니어링, 모델 비교 실험을 통해 데이터 기반 문제 해결 감각을 강화.
+              <div class="timeline-item">
+                <div class="timeline-year">실전 프로젝트</div>
+                <h3>Agent와 데이터 파이프라인, 서비스 연동을 경험하다</h3>
+                <p>KT AIVLE 프로젝트에서 AI 면접관 Agent, AI 강사 Agent, K-Food 플랫폼을 수행하며 결과를 실제 사용 흐름으로 연결하는 역량이 크게 늘었습니다.</p>
               </div>
-            </div>
-
-            <div class="timeline-item">
-              <span class="timeline-dot"></span>
-              <div class="timeline-time">STEP 04 · 연구/공모전/학술 성과</div>
-              <div class="timeline-title">논문 우수상·공모전 등 결과물로 증명</div>
-              <div class="timeline-desc">
-                화재 피난 경로 탐색 연구(학생 논문 우수상), 풍력 발전량 예측 공모전, 공공데이터 기반 서비스 설계 등
-                다양한 도메인에서 문제 해결 경험 축적.
-              </div>
-            </div>
-
-            <div class="timeline-item">
-              <span class="timeline-dot"></span>
-              <div class="timeline-time">STEP 05 · KT AIVLE Big Project</div>
-              <div class="timeline-title">AI 모델 결과를 실제 비즈니스 리포트/웹 기능으로 연결</div>
-              <div class="timeline-desc">
-                K-Food 수요/트렌드 예측, ABSA VOC 정량화, AI 리포트/도움말 챗봇, Agent 워크플로우 등으로
-                데이터-모델-서비스를 하나의 파이프라인으로 연결.
+              <div class="timeline-item">
+                <div class="timeline-year">현재</div>
+                <h3>모델을 만드는 사람에서, 결과가 쓰이게 만드는 사람으로</h3>
+                <p>지금은 ML Engineer / AI Engineer 포지션을 목표로, 예측·분석·NLP·Agent를 제품과 서비스로 연결하는 방향으로 포트폴리오를 다듬고 있습니다.</p>
               </div>
             </div>
           </div>
 
-          <div class="journey-side" data-reveal="right">
-            <div class="journey-card">
-              <h4>면접에서 강하게 말할 포인트</h4>
+          <div class="journey-notes" data-reveal>
+            <div class="panel note-card">
+              <h3>내가 프로젝트에서 자주 맡았던 역할</h3>
               <ul>
-                <li><span class="dot"></span> “모델 성능 자체”보다 “결과가 실제 의사결정에 쓰이게 구조화”한 경험</li>
-                <li><span class="dot"></span> ML + 웹/서비스 + 팀 협업까지 연결한 End-to-End 경험</li>
-                <li><span class="dot"></span> 다양한 도메인(스포츠, 에너지, 안전, 식품수출)에서 데이터 문제 해결</li>
+                <li>문제를 데이터 관점으로 다시 정의하고, 실제 구현 가능한 구조로 바꾸는 역할</li>
+                <li>핵심 모델링 로직 또는 추천/평가/예측 흐름을 설계하는 역할</li>
+                <li>결과를 화면, 리포트, 챗봇, 앱 형태로 연결하는 역할</li>
+                <li>팀장 또는 코어 구현자로서 전체 완성도를 끌어올리는 역할</li>
               </ul>
             </div>
-
-            <div class="journey-card">
-              <h4>대표 역량 키워드</h4>
+            <div class="panel note-card">
+              <h3>앞으로 더 키우고 싶은 방향</h3>
               <ul>
-                <li><span class="dot"></span> 피처 엔지니어링 (Lag / Rolling / EMA / sin-cos / log1p 등)</li>
-                <li><span class="dot"></span> LightGBM / XGBoost 중심 실험 및 비교</li>
-                <li><span class="dot"></span> LangGraph 기반 상태형 Agent 설계</li>
-                <li><span class="dot"></span> 결과 JSON 구조화 및 리포트 파이프라인 설계</li>
-              </ul>
-            </div>
-
-            <div class="journey-card">
-              <h4>현재 포지션</h4>
-              <ul>
-                <li><span class="dot"></span> 신입 ML Engineer / AI Engineer 준비</li>
-                <li><span class="dot"></span> 포트폴리오 + 면접 대비 + 직무 정렬 진행 중</li>
-                <li><span class="dot"></span> ML 엔지니어링 중심 회사에 맞춰 프로젝트 3개 집중 어필</li>
+                <li>대용량 데이터 처리와 더 견고한 ML 파이프라인 설계</li>
+                <li>실제 서비스 운영 환경에서의 모델 배포와 모니터링</li>
+                <li>LLM 기반 제품에서 재현성과 품질 관리 구조 만들기</li>
+                <li>AI 기능이 실제 사용자 경험에 녹아드는 제품 설계 역량 강화</li>
               </ul>
             </div>
           </div>
@@ -2776,112 +1677,71 @@
       </div>
     </section>
 
-    <!-- AWARDS -->
     <section class="section" id="awards">
       <div class="container">
         <div class="eyebrow"><span class="dot"></span> Awards & Activities</div>
-        <h2 class="section-title">수상 · 공모전 · 학술 활동</h2>
-        <p class="section-sub">
-          모델 개발 역량뿐 아니라, 결과를 발표/문서화/시연까지 완성한 경험들을 함께 보여주는 섹션입니다.
-        </p>
+        <h2 class="section-title">성과는 숫자보다, 끝까지 완성한 결과물로 남았습니다.</h2>
+        <p class="section-desc">연구, 학술제, 공모전, 서비스 기획까지. 주제가 달라도 공통점은 늘 분명했습니다. 데이터로 문제를 풀고, 실제 형태로 남긴다는 것.</p>
 
-        <div class="awards-grid">
-          <div class="award-card" data-reveal="zoom">
-            <div class="award-top">
-              <span class="award-tag">논문 · 우수상</span>
-              <span class="award-year">학부 재학 중</span>
-            </div>
-            <div class="award-title">한국정보통신학회 춘계종합학술대회 학생논문 우수상</div>
-            <div class="award-desc">
-              “건물 화재 피난자 행동 분석 기반 최적 피난 경로 탐색” 연구로 수상.
-              그래프/경로 탐색 기반의 안전 문제 해결 아이디어를 논문화한 경험.
-            </div>
-          </div>
-
-          <div class="award-card" data-reveal="zoom" data-reveal-delay="80">
-            <div class="award-top">
-              <span class="award-tag">공모전</span>
-              <span class="award-year">시계열 예측</span>
-            </div>
-            <div class="award-title">풍력 발전량 예측 공모전 참여</div>
-            <div class="award-desc">
-              기상 및 발전량 시계열 데이터 기반 회귀 모델링, 피처 엔지니어링, 성능 비교 실험 수행.
-            </div>
-          </div>
-
-          <div class="award-card" data-reveal="zoom" data-reveal-delay="160">
-            <div class="award-top">
-              <span class="award-tag">공공데이터 분석</span>
-              <span class="award-year">서비스 기획</span>
-            </div>
-            <div class="award-title">경력단절 여성 복귀 설계 시스템 프로젝트</div>
-            <div class="award-desc">
-              공공데이터를 기반으로 재취업 지원 문제를 서비스 관점으로 구조화하고, 데이터 기반 기능 설계를 수행.
-            </div>
-          </div>
-
-          <div class="award-card" data-reveal="zoom" data-reveal-delay="240">
-            <div class="award-top">
-              <span class="award-tag">학술제 / 팀 프로젝트</span>
-              <span class="award-year">게임 개발</span>
-            </div>
-            <div class="award-title">미로 + 퀴즈 + 스도쿠 게임 프로젝트 (팀장, 학술제 성과)</div>
-            <div class="award-desc">
-              알고리즘 구현 + 사용자 경험을 결합한 프로젝트로 기획부터 구현, 팀 조율까지 리딩 경험 축적.
-            </div>
-          </div>
+        <div class="award-grid">
+          <article class="panel award-card" data-reveal>
+            <div class="award-head"><span class="award-type">Paper Award</span><span class="award-year">2025</span></div>
+            <h3>한국정보통신학회 춘계종합학술대회 학생논문우수상</h3>
+            <p>건물 화재 피난자 행동 분석 기반 최적 피난 경로 탐색 연구. 문제 정의와 연구 구조화, 결과 정리 경험을 모두 쌓은 프로젝트입니다.</p>
+          </article>
+          <article class="panel award-card" data-reveal>
+            <div class="award-head"><span class="award-type">Festival Award</span><span class="award-year">2024</span></div>
+            <h3>대학 학술제 수상 · 미로 탈출 게임</h3>
+            <p>게임성과 학습 요소를 결합한 프로젝트로 팀장 역할을 수행했습니다. 코드 통합, 디자인, UX 방향까지 총괄했습니다.</p>
+          </article>
+          <article class="panel award-card" data-reveal>
+            <div class="award-head"><span class="award-type">Contest</span><span class="award-year">2025</span></div>
+            <h3>풍력 발전량 예측 공모전 프로젝트</h3>
+            <p>기상·설비 데이터를 바탕으로 시계열 회귀 모델을 개발했습니다. 피처 설계 중심으로 예측 문제를 깊게 다뤘습니다.</p>
+          </article>
+          <article class="panel award-card" data-reveal>
+            <div class="award-head"><span class="award-type">Service Planning</span><span class="award-year">2025</span></div>
+            <h3>경력단절 여성 재취업 지원 데이터 기반 서비스 기획</h3>
+            <p>데이터를 단순 분석으로 끝내지 않고, 실제 사용자 문제를 풀기 위한 서비스 방향으로 연결한 기획 경험입니다.</p>
+          </article>
         </div>
       </div>
     </section>
 
-    <!-- CONTACT -->
     <section class="section" id="contact">
       <div class="container">
-        <div class="eyebrow"><span class="dot"></span> Contact</div>
-        <div class="contact-card" data-reveal="zoom">
+        <div class="contact-card" data-reveal>
           <div class="contact-grid">
-            <div class="contact-left">
-              <h3>채용 / 인터뷰 / 프로젝트 이야기, 언제든 편하게 연락 주세요.</h3>
+            <div>
+              <div class="eyebrow"><span class="dot"></span> Contact</div>
+              <h2>이제는 더 좋은 문제를, 더 오래 쓰이는 방식으로 풀고 싶습니다.</h2>
               <p>
-                머신러닝 모델링뿐 아니라 실제 서비스 연결 관점에서 기여할 수 있는 포지션을 찾고 있습니다.
-                ML Engineer / AI Engineer 직무에 관심이 있으며, 포트폴리오/프로젝트 상세 설명도 가능합니다.
+                예측, 분석, NLP, Agent를 만들고 끝내지 않고,
+                실제 서비스와 사용자 경험까지 연결하는 역할에 관심이 있습니다.
+                함께 이야기 나누고 싶다면 편하게 연락 주세요.
               </p>
-
-              <div class="contact-actions">
-                <a href="mailto:lieme980@gmail.com" class="btn btn-primary btn-glow" data-magnetic>
-                  이메일 보내기
-                </a>
-                <a href="https://github.com/leeseungyoons" class="btn" target="_blank" rel="noopener" data-magnetic>
-                  GitHub 방문
-                </a>
-              </div>
-
-              <div class="hero-meta" style="margin-top:6px;">
-                <div class="meta-pill">현재 포트폴리오: GitHub Pages 배포 중</div>
-                <div class="meta-pill">면접용 프로젝트 설명 정리 완료 가능</div>
+              <div class="contact-links">
+                <a class="btn primary" href="mailto:lieme980@gmail.com">Email</a>
+                <a class="btn" href="https://github.com/leeseungyoons" target="_blank" rel="noopener">GitHub</a>
+                <a class="btn" href="https://leeseungyoons.github.io/ai-portfolio-site/" target="_blank" rel="noopener">Portfolio</a>
               </div>
             </div>
-
-            <div class="contact-list">
+            <div class="contact-panel">
               <div class="contact-item">
-                <div class="label">Name</div>
-                <div class="value">이승윤 (Seungyoon Lee)</div>
+                <span class="label">Email</span>
+                <span class="value">lieme980@gmail.com</span>
               </div>
               <div class="contact-item">
-                <div class="label">Target Role</div>
-                <div class="value">Machine Learning Engineer / AI Engineer</div>
+                <span class="label">GitHub</span>
+                <span class="value">github.com/leeseungyoons</span>
               </div>
               <div class="contact-item">
-                <div class="label">Email</div>
-                <div class="value"><a href="mailto:lieme980@gmail.com">lieme980@gmail.com</a></div>
+                <span class="label">Portfolio</span>
+                <span class="value">leeseungyoons.github.io/ai-portfolio-site/</span>
               </div>
               <div class="contact-item">
-                <div class="label">GitHub</div>
-                <div class="value"><a href="https://github.com/leeseungyoons" target="_blank" rel="noopener">github.com/leeseungyoons</a></div>
-              </div>
-              <div class="contact-item">
-                <div class="label">Portfolio URL</div>
-                <div class="value"><a href="https://leeseungyoons.github.io/ai-portfolio-site/" target="_blank" rel="noopener">leeseungyoons.github.io/ai-portfolio-site</a></div>
+                <span class="label">Interest</span>
+                <span class="value">Machine Learning Engineer · AI Engineer · Data Product</span>
               </div>
             </div>
           </div>
@@ -2890,1189 +1750,136 @@
     </section>
   </main>
 
-  <!-- FOOTER -->
   <footer>
     <div class="container">
       <div class="footer-row">
-        <div>
-          © 2026 Seungyoon Lee · Built for ML Engineer Portfolio · GitHub Pages
-        </div>
+        <p>© 2026 Lee Seungyoon. Built with intent, not just style.</p>
         <div class="footer-links">
           <a href="#about">About</a>
-          <a href="#projects">Projects</a>
+          <a href="#work">Work</a>
           <a href="#skills">Skills</a>
           <a href="#contact">Contact</a>
-          <a href="https://github.com/leeseungyoons" target="_blank" rel="noopener">GitHub</a>
         </div>
       </div>
     </div>
   </footer>
 
-  <!-- FLOATING DOCK -->
-  <div class="floating-dock" aria-hidden="false">
-    <a class="dock-btn" href="https://github.com/leeseungyoons" target="_blank" rel="noopener" aria-label="GitHub">
-      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-        <path d="M12 2a10 10 0 0 0-3.162 19.49c.5.092.683-.216.683-.48 0-.237-.008-.866-.013-1.7-2.782.605-3.37-1.34-3.37-1.34-.454-1.154-1.11-1.461-1.11-1.461-.908-.62.069-.608.069-.608 1.004.07 1.533 1.031 1.533 1.031.893 1.529 2.343 1.087 2.914.832.091-.647.35-1.088.636-1.338-2.221-.253-4.556-1.11-4.556-4.943 0-1.092.39-1.986 1.03-2.686-.104-.253-.447-1.273.098-2.653 0 0 .84-.269 2.75 1.026a9.57 9.57 0 0 1 5.006 0c1.91-1.295 2.748-1.026 2.748-1.026.547 1.38.204 2.4.1 2.653.64.7 1.028 1.594 1.028 2.686 0 3.842-2.339 4.687-4.568 4.935.359.309.679.919.679 1.852 0 1.337-.012 2.416-.012 2.746 0 .266.18.576.688.478A10.001 10.001 0 0 0 12 2Z"/>
-      </svg>
-    </a>
-
-    <button class="dock-btn hidden" id="toTopBtn" aria-label="맨 위로">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-        <path d="M12 19V5M5 12l7-7 7 7" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </button>
-  </div>
-
-  <!-- PROJECT MODAL -->
-  <div class="modal" id="projectModal" aria-hidden="true">
-    <div class="modal-backdrop" id="modalBackdrop"></div>
-    <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-      <button class="modal-close" id="modalClose" aria-label="닫기">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-          <path d="M6 6l12 12M18 6l-12 12" stroke-linecap="round"/>
-        </svg>
-      </button>
-
-      <div class="modal-body" id="modalBody">
-        <!-- JS inject -->
-      </div>
-    </div>
-  </div>
+  <button class="to-top" id="toTop" aria-label="맨 위로">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 19V5M5 12l7-7 7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
 
   <script>
-    /* =========================================================
-       DATA: PROJECTS (너 프로젝트 기반)
-       - repo/demo 링크는 나중에 실제 링크로 바꾸면 됨
-    ========================================================= */
-    const PROJECTS = [
-      {
-        id: "kfood",
-        featured: true,
-        category: ["featured", "ml", "service"],
-        title: "K-Food 수요 예측 AI 플랫폼",
-        badge: "Featured / Big Project",
-        score: "핵심도 ★★★★★",
-        period: "KT AIVLE Big Project",
-        role: "AI/ML 파이프라인 · 수요/트렌드 예측 · 결과 구조화",
-        subtitle: "해외 리뷰 / 트렌드 / 수출 데이터를 결합해 국가별 K-Food 수요를 예측하고, 결과를 AI 시장 리포트 및 추천 파이프라인으로 연결한 프로젝트",
-        shortPoints: [
-          "LightGBM / XGBoost 기반 수요 예측 모델링",
-          "Lag / Rolling / EMA / sin-cos / log1p 등 피처 엔지니어링",
-          "Top-N 결과 JSON 스키마 표준화 및 리포트 파이프라인 연계"
-        ],
-        tags: ["ML Forecasting", "LightGBM", "Time Series", "SHAP", "K-Food", "Pipeline"],
-        tech: ["Python", "Pandas", "LightGBM", "XGBoost", "SHAP", "JSON Pipeline"],
-        metrics: [
-          "ABSA 실습 데이터 107,088건 (관련 파이프라인 경험 축적)",
-          "수요/트렌드 예측 결과를 리포트/웹 기능과 연결",
-          "모델 성능 + 활용성(의사결정) 관점 동시 고려"
-        ],
-        whatIDid: [
-          "수요 예측용 시계열 피처 엔지니어링 설계 (Lag/롤링/EMA/계절성 인코딩 등)",
-          "XGBoost → LightGBM 전환 및 실험 비교(속도/성능/운영 관점 포함)",
-          "Top-N 추천 결과를 JSON 스키마로 표준화하여 리포트/웹 연동 구조 설계",
-          "ABSA 기반 VOC 정량화 결과와 연결될 수 있도록 파이프라인 구조화"
-        ],
-        stackDetail: [
-          "Python · Pandas · NumPy",
-          "LightGBM · XGBoost · Scikit-learn",
-          "SHAP (Feature Importance 분석)",
-          "JSON Schema / 결과 구조화"
-        ],
-        impact: [
-          "모델 결과를 단순 예측값으로 끝내지 않고, AI 리포트 생성과 도움말 챗봇 기능 등 서비스 계층까지 연결",
-          "면접에서 ‘모델 개발 + 비즈니스 활용성’ 관점을 동시에 어필할 수 있는 대표 프로젝트"
-        ],
-        repo: "https://github.com/leeseungyoons",
-        demo: "https://leeseungyoons.github.io/ai-portfolio-site/"
-      },
-      {
-        id: "ai-interviewer",
-        featured: true,
-        category: ["featured", "agent", "nlp", "service"],
-        title: "AI 면접관 Agent (LangGraph)",
-        badge: "Featured / Agent",
-        score: "핵심도 ★★★★★",
-        period: "KT 미니프로젝트",
-        role: "Agent 설계 · 상태 관리 · 질문/평가/리포트 플로우 구현",
-        subtitle: "이력서·자기소개서를 기반으로 질문 생성 → 답변 평가 → 추가 질문 → 인터뷰 리포트 생성까지 자동화한 AI 면접 시뮬레이터",
-        shortPoints: [
-          "LangGraph 기반 상태형 워크플로우 설계",
-          "질문 생성 → 답변 평가 → 진행 판단 → 리포트 자동화",
-          "면접 전략/커버리지/평가 반영 로직 고도화"
-        ],
-        tags: ["LLM Agent", "LangGraph", "Interview", "Workflow", "NLP"],
-        tech: ["Python", "LangGraph", "LangChain", "OpenAI", "Gradio"],
-        metrics: [
-          "상태 기반 InterviewState 설계",
-          "질문/답변/평가 누적 로그 및 최종 리포트 자동 생성",
-          "규칙 기반 + LLM 혼합 흐름 구성"
-        ],
-        whatIDid: [
-          "InterviewState(TypedDict) 구조 설계: resume_summary, keywords, strategy, conversation, evaluation 등",
-          "사전 준비(이력서 분석/질문전략) + 면접 절차(질문/평가/추가질문/리포트) 노드 설계",
-          "evaluate → reflect → re-evaluate → decide → generate/summarize 구조 등 고도화 아이디어 반영",
-          "LangGraph 노드 1:1 매핑 함수로 구성하여 확장 가능한 구조로 구현"
-        ],
-        stackDetail: [
-          "Python · LangChain · LangGraph",
-          "OpenAI GPT 계열 모델 연동",
-          "Gradio UI 연결 경험",
-          "상태형 워크플로우 / 규칙 기반 분기"
-        ],
-        impact: [
-          "단순 챗봇이 아니라 ‘절차형 AI Agent’를 설계한 경험으로 차별화 가능",
-          "LLM 활용 능력뿐 아니라 서비스 플로우/UX 관점까지 설명 가능한 프로젝트"
-        ],
-        repo: "https://github.com/leeseungyoons",
-        demo: "https://leeseungyoons.github.io/ai-portfolio-site/"
-      },
-      {
-        id: "restaurant",
-        featured: true,
-        category: ["featured", "service", "nlp"],
-        title: "광고 없는 맛집 추천 서비스",
-        badge: "Featured / Service",
-        score: "핵심도 ★★★★☆",
-        period: "학부 프로젝트",
-        role: "데이터 수집/정제 · API 활용 · 추천 서비스 구현",
-        subtitle: "광고성 정보를 최대한 제거하고 실제 리뷰 기반으로 맛집을 추천하는 서비스. 데이터 신뢰도 중심의 문제정의가 강점인 프로젝트",
-        shortPoints: [
-          "Kakao / Naver API 활용 데이터 수집",
-          "광고 키워드 필터링 및 리뷰 중심 정제",
-          "추천 결과를 실제 서비스 형태로 구현"
-        ],
-        tags: ["Service", "API", "Recommendation", "Data Processing", "Web"],
-        tech: ["Python", "Kakao API", "Naver API", "Web Service"],
-        metrics: [
-          "광고성 노이즈를 줄이는 규칙 설계",
-          "리뷰 중심 추천 흐름 구현",
-          "데이터 신뢰도 중심 문제 해결"
-        ],
-        whatIDid: [
-          "광고/협찬 여부를 판단할 키워드 규칙과 필터링 기준 설계",
-          "카카오/네이버 API로 수집 가능한 데이터 구조를 검토하고 추천 로직에 맞게 정제",
-          "‘광고성 정보 제거 후 추천’이라는 사용자 관점 문제정의를 서비스 흐름에 반영"
-        ],
-        stackDetail: [
-          "Python",
-          "Kakao API / Naver API",
-          "데이터 정제 / 규칙 기반 필터링",
-          "웹 서비스 구현 경험"
-        ],
-        impact: [
-          "‘정확도’ 이전에 사용자 신뢰를 높이는 데이터 설계 관점을 강조할 수 있는 프로젝트",
-          "면접에서 서비스 기획력 + 데이터 처리 감각을 동시에 보여주기 좋음"
-        ],
-        repo: "https://github.com/leeseungyoons",
-        demo: "https://leeseungyoons.github.io/ai-portfolio-site/"
-      },
-      {
-        id: "wind-power",
-        featured: false,
-        category: ["ml", "service"],
-        title: "풍력 발전량 예측 모델 (공모전)",
-        badge: "Time Series / Competition",
-        score: "확장 프로젝트",
-        period: "공모전",
-        role: "시계열 예측 모델링 · 피처 엔지니어링 · 성능 비교",
-        subtitle: "기상/발전량 시계열 데이터를 활용해 풍력 발전량을 예측한 공모전 프로젝트",
-        shortPoints: [
-          "Lag / MA / EMA 기반 피처 엔지니어링",
-          "LightGBM / XGBoost / 기타 모델 비교",
-          "RMSE 등 회귀 성능 기준으로 평가"
-        ],
-        tags: ["Time Series", "Regression", "LightGBM", "XGBoost"],
-        tech: ["Python", "Pandas", "LightGBM", "XGBoost", "Matplotlib"],
-        metrics: [
-          "시계열 피처 설계 경험",
-          "회귀 모델 비교 실험 경험",
-          "공모전 제출 파이프라인 경험"
-        ],
-        whatIDid: [
-          "기상 및 발전량 데이터 전처리, 결측/이상치 처리",
-          "Lag, MA, EMA 등 시계열 특징 생성 및 회귀 모델 학습",
-          "성능 비교를 통해 예측 곡선 안정성과 일반화 관점 고려"
-        ],
-        stackDetail: [
-          "Pandas / NumPy",
-          "LightGBM / XGBoost",
-          "시계열 피처 엔지니어링",
-          "회귀 모델 평가 지표 (RMSE 등)"
-        ],
-        impact: [
-          "K-Food 수요 예측 프로젝트와 연결되는 시계열 모델링 기초/응용 역량을 보여줌"
-        ],
-        repo: "https://github.com/leeseungyoons",
-        demo: ""
-      },
-      {
-        id: "sports-sentiment",
-        featured: false,
-        category: ["nlp", "ml"],
-        title: "스포츠 기사 감성 분석 시스템",
-        badge: "NLP / Text Classification",
-        score: "확장 프로젝트",
-        period: "NLP 프로젝트",
-        role: "텍스트 전처리 · 감성분류 · 분석 결과 구조화",
-        subtitle: "스포츠 기사 텍스트를 기반으로 감정을 분류하고, 팀/선수 이슈에 대한 분위기를 정량적으로 파악하는 방향의 NLP 프로젝트",
-        shortPoints: [
-          "한국어 기사 텍스트 전처리",
-          "감성 분석 분류 실험",
-          "텍스트 기반 정량화 경험"
-        ],
-        tags: ["NLP", "Sentiment Analysis", "Text Classification"],
-        tech: ["Python", "NLP", "TF-IDF", "Scikit-learn / BERT(경험)"],
-        metrics: [
-          "텍스트 분류 파이프라인 구축 경험",
-          "감성 정량화 분석 경험",
-          "도메인 텍스트 문제 해결 경험"
-        ],
-        whatIDid: [
-          "기사 데이터 전처리 및 특징 추출(TF-IDF 등) 기반 분류 실험",
-          "감정 레이블 기준으로 모델 학습 및 결과 비교",
-          "기사 감성 분포를 분석 가능한 형태로 구조화"
-        ],
-        stackDetail: [
-          "Python / Scikit-learn",
-          "NLP 전처리 / TF-IDF",
-          "텍스트 분류 모델 실험",
-          "BERT 기반 감성분석 학습 경험(프로젝트/실습 확장)"
-        ],
-        impact: [
-          "NLP 도메인 프로젝트 경험을 보여주는 포트폴리오 포인트",
-          "AI 면접관 Agent 및 ABSA 경험과 함께 텍스트 역량의 연속성을 강화"
-        ],
-        repo: "https://github.com/leeseungyoons",
-        demo: ""
-      },
-      {
-        id: "ai-writer-app",
-        featured: false,
-        category: ["service", "agent", "nlp"],
-        title: "AI 작가 앱 (React Native)",
-        badge: "App / GPT",
-        score: "확장 프로젝트",
-        period: "AI 앱 개발 과목",
-        role: "단독 개발 · 앱 UI/흐름 · GPT 연동",
-        subtitle: "GPT 기반 맞춤형 스토리 생성을 제공하는 React Native 앱을 단독으로 개발한 프로젝트",
-        shortPoints: [
-          "React Native 기반 모바일 앱 구현",
-          "GPT 기반 스토리 생성 기능",
-          "단독 개발 경험"
-        ],
-        tags: ["React Native", "GPT", "Mobile App", "UX"],
-        tech: ["React Native", "JavaScript", "OpenAI API"],
-        metrics: [
-          "단독 앱 개발 완료 경험",
-          "생성형 AI 기능 사용자 흐름 구현",
-          "모바일 UI/UX 경험"
-        ],
-        whatIDid: [
-          "사용자 입력 → 프롬프트 구성 → 생성 결과 출력까지 앱 플로우 설계",
-          "React Native 기반 화면 구성 및 상태 관리",
-          "생성형 AI 기능을 사용자 경험 중심으로 연결"
-        ],
-        stackDetail: [
-          "React Native",
-          "OpenAI API",
-          "모바일 UI/UX 설계",
-          "단독 개발"
-        ],
-        impact: [
-          "웹/백엔드뿐 아니라 모바일 앱 구현 경험까지 보유함을 보여주는 포인트"
-        ],
-        repo: "https://github.com/leeseungyoons",
-        demo: ""
-      },
-      {
-        id: "maze-game",
-        featured: false,
-        category: ["service"],
-        title: "미로 + 퀴즈 + 스도쿠 게임 (팀장 / 학술제 수상)",
-        badge: "Team Lead / Game",
-        score: "확장 프로젝트",
-        period: "파이썬응용 프로젝트",
-        role: "팀장 · 알고리즘 구현 · UI/UX/통합 관리",
-        subtitle: "미로 탐색, 퀴즈, 스도쿠 요소를 결합한 게임 프로젝트로 학술제 수상. 팀 리딩 및 통합 관리 경험이 핵심",
-        shortPoints: [
-          "미로/스도쿠 알고리즘 구현",
-          "팀장 역할 및 코드 통합",
-          "학술제 성과"
-        ],
-        tags: ["Algorithm", "Game", "Team Lead", "Python"],
-        tech: ["Python", "게임 로직", "UI/UX", "팀 협업"],
-        metrics: [
-          "팀 리딩 경험",
-          "기획-구현-통합-시연 완료",
-          "학술제 수상 성과"
-        ],
-        whatIDid: [
-          "게임 로직 및 퍼즐 요소 통합 구조 설계",
-          "팀원 작업 분담/관리 및 코드 통합",
-          "학술제 발표/시연을 위한 결과물 완성도 관리"
-        ],
-        stackDetail: [
-          "Python",
-          "알고리즘 구현",
-          "팀 협업 / 리딩",
-          "기획 및 시연"
-        ],
-        impact: [
-          "기술뿐 아니라 리딩/협업/완성도 측면의 강점을 보여주는 프로젝트"
-        ],
-        repo: "https://github.com/leeseungyoons",
-        demo: ""
-      },
-      {
-        id: "fire-evac",
-        featured: false,
-        category: ["ml", "service"],
-        title: "화재 피난 경로 탐색 연구 (학생논문 우수상)",
-        badge: "Research / Award",
-        score: "학술 성과",
-        period: "학술대회 논문",
-        role: "연구 아이디어 · 시뮬레이션/경로탐색 · 논문화",
-        subtitle: "피난자 행동 특성과 건물 구조를 고려한 최적 피난 경로 탐색 연구로 학생 논문 우수상을 수상한 프로젝트",
-        shortPoints: [
-          "행동 특성 반영 경로 탐색 아이디어",
-          "건물 구조 그래프 모델링",
-          "논문화 및 학술대회 발표"
-        ],
-        tags: ["Research", "Graph", "Simulation", "Safety"],
-        tech: ["Python", "그래프/탐색 알고리즘", "시뮬레이션"],
-        metrics: [
-          "한국정보통신학회 학생논문 우수상",
-          "연구-구현-문서화-발표 경험",
-          "안전 문제 해결 도메인 경험"
-        ],
-        whatIDid: [
-          "건물 구조 및 피난자 행동 특성 기반 경로 탐색 아이디어 설계",
-          "시뮬레이션/분석을 통해 결과 정리",
-          "연구 내용을 논문 형식으로 정리 및 발표"
-        ],
-        stackDetail: [
-          "그래프 탐색 / 알고리즘",
-          "연구 문서화 / 발표",
-          "안전 도메인 문제 해결"
-        ],
-        impact: [
-          "기술 구현뿐 아니라 연구/논문화 역량까지 보여줄 수 있는 강력한 포트폴리오 요소"
-        ],
-        repo: "https://github.com/leeseungyoons",
-        demo: ""
-      },
-      {
-        id: "helper-chatbot",
-        featured: false,
-        category: ["agent", "service", "nlp"],
-        title: "웹 서비스 도움말 챗봇 (FAQ/사용방법 안내)",
-        badge: "Service / Helper Chatbot",
-        score: "확장 프로젝트",
-        period: "K-Food 플랫폼 연동",
-        role: "FAQ 설계 · 흐름 정의 · 웹 연결",
-        subtitle: "K-Food 플랫폼의 실제 화면 흐름(레시피 생성→리포트→상세 옵션→PDF 다운로드 등)에 맞춘 도움말/사용방법 안내 챗봇",
-        shortPoints: [
-          "실제 서비스 화면 기반 FAQ 설계",
-          "사용자 흐름 중심 답변 구조",
-          "웹 연동 가능한 Helper Chatbot 구조"
-        ],
-        tags: ["Chatbot", "FAQ", "UX", "LangGraph", "Service"],
-        tech: ["Python", "LangGraph", "Gradio/웹 연결", "FAQ 구조화"],
-        metrics: [
-          "실제 서비스 사용자 흐름 기반",
-          "기능 안내/사용방법 질문 대응 구조화",
-          "프로젝트 운영 관점의 챗봇 설계"
-        ],
-        whatIDid: [
-          "레시피 생성/리포트/최종 보고서 흐름을 기준으로 FAQ 카테고리 설계",
-          "홈페이지 화면 캡처와 실제 기능 기준으로 답변 우선순위/안내 방식 설계",
-          "레시피 생성 챗봇과 구분되는 ‘Helper Chatbot’ 역할 정의 및 폴더 구조 구성"
-        ],
-        stackDetail: [
-          "LangGraph / 챗봇 구조",
-          "서비스 흐름 분석",
-          "FAQ 지식베이스 설계",
-          "웹 연동"
-        ],
-        impact: [
-          "사용자 관점의 완성도를 높이는 기능 설계 역량을 보여줄 수 있는 프로젝트"
-        ],
-        repo: "https://github.com/leeseungyoons",
-        demo: ""
-      }
+    const $ = (s, p = document) => p.querySelector(s);
+    const $$ = (s, p = document) => Array.from(p.querySelectorAll(s));
+
+    const typingEl = $("#typing");
+    const words = [
+      "문제를 데이터로 정의하고, 결과를 서비스로 연결합니다.",
+      "예측과 분석을 실제 의사결정 흐름 속에 놓는 일을 좋아합니다.",
+      "실험에서 끝나지 않고, 사용자 경험까지 구현하려고 합니다."
     ];
 
-    /* =========================================================
-       HELPERS
-    ========================================================= */
-    const $ = (s, el = document) => el.querySelector(s);
-    const $$ = (s, el = document) => Array.from(el.querySelectorAll(s));
+    let wordIndex = 0;
+    let charIndex = 0;
+    let deleting = false;
 
-    const clamp = (n, min, max) => Math.min(Math.max(n, min), max);
+    function typeLoop() {
+      const current = words[wordIndex];
+      if (!typingEl) return;
 
-    function escapeHtml(str = "") {
-      return str
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
+      typingEl.textContent = deleting
+        ? current.slice(0, charIndex--)
+        : current.slice(0, charIndex++);
+
+      let delay = deleting ? 26 : 42;
+
+      if (!deleting && charIndex > current.length) {
+        deleting = true;
+        delay = 1500;
+      } else if (deleting && charIndex < 0) {
+        deleting = false;
+        wordIndex = (wordIndex + 1) % words.length;
+        charIndex = 0;
+        delay = 250;
+      }
+      setTimeout(typeLoop, delay);
+    }
+    typeLoop();
+
+    const navWrap = $("#navWrap");
+    const scrollBar = $("#scrollBar");
+    const toTop = $("#toTop");
+
+    function onScroll() {
+      const y = window.scrollY;
+      navWrap?.classList.toggle("scrolled", y > 18);
+      toTop?.classList.toggle("show", y > 600);
+
+      const doc = document.documentElement;
+      const total = doc.scrollHeight - doc.clientHeight;
+      const ratio = total > 0 ? (y / total) * 100 : 0;
+      if (scrollBar) scrollBar.style.width = ratio + "%";
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    toTop?.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+
+    const navToggle = $("#navToggle");
+    const drawer = $("#mobileDrawer");
+    const drawerBackdrop = $("#drawerBackdrop");
+    const drawerClose = $("#drawerClose");
+
+    function closeDrawer() {
+      drawer?.classList.remove("open");
+      drawer?.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    }
+    function openDrawer() {
+      drawer?.classList.add("open");
+      drawer?.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
     }
 
-    /* =========================================================
-       PARTICLE / NETWORK BACKGROUND
-    ========================================================= */
-    (function initBackgroundCanvas() {
-      const canvas = $("#bg-canvas");
-      if (!canvas) return;
-      const ctx = canvas.getContext("2d");
-      let dpr = Math.min(window.devicePixelRatio || 1, 1.8);
+    navToggle?.addEventListener("click", openDrawer);
+    drawerBackdrop?.addEventListener("click", closeDrawer);
+    drawerClose?.addEventListener("click", closeDrawer);
+    $$('[data-drawer-link]').forEach(link => link.addEventListener('click', closeDrawer));
 
-      let w = 0, h = 0;
-      let particles = [];
-      let mouse = { x: -9999, y: -9999, active: false };
-
-      function resize() {
-        w = window.innerWidth;
-        h = window.innerHeight;
-        canvas.width = Math.floor(w * dpr);
-        canvas.height = Math.floor(h * dpr);
-        canvas.style.width = w + "px";
-        canvas.style.height = h + "px";
-        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-
-        const count = Math.floor((w * h) / 14000);
-        particles = new Array(clamp(count, 45, 140)).fill(0).map(() => ({
-          x: Math.random() * w,
-          y: Math.random() * h,
-          vx: (Math.random() - 0.5) * 0.35,
-          vy: (Math.random() - 0.5) * 0.35,
-          r: Math.random() * 1.6 + 0.4,
-          hueMix: Math.random()
-        }));
-      }
-
-      function onPointerMove(e) {
-        mouse.x = e.clientX;
-        mouse.y = e.clientY;
-        mouse.active = true;
-      }
-
-      function onPointerLeave() {
-        mouse.active = false;
-      }
-
-      function step() {
-        ctx.clearRect(0, 0, w, h);
-
-        // soft vignette tint
-        const grad = ctx.createRadialGradient(w * .5, h * .35, 20, w * .5, h * .35, Math.max(w, h) * .75);
-        grad.addColorStop(0, "rgba(255,255,255,0.02)");
-        grad.addColorStop(1, "rgba(0,0,0,0)");
-        ctx.fillStyle = grad;
-        ctx.fillRect(0, 0, w, h);
-
-        for (let i = 0; i < particles.length; i++) {
-          const p = particles[i];
-
-          // mouse repulsion / attraction subtle
-          if (mouse.active) {
-            const dxm = mouse.x - p.x;
-            const dym = mouse.y - p.y;
-            const dist2 = dxm * dxm + dym * dym;
-            if (dist2 < 160 * 160) {
-              const dist = Math.sqrt(dist2) || 1;
-              const force = (160 - dist) / 160;
-              p.vx -= (dxm / dist) * force * 0.012;
-              p.vy -= (dym / dist) * force * 0.012;
-            }
-          }
-
-          p.x += p.vx;
-          p.y += p.vy;
-
-          // friction
-          p.vx *= 0.995;
-          p.vy *= 0.995;
-
-          // bounds
-          if (p.x < -20) p.x = w + 20;
-          if (p.x > w + 20) p.x = -20;
-          if (p.y < -20) p.y = h + 20;
-          if (p.y > h + 20) p.y = -20;
-
-          // draw point
-          const c = p.hueMix < 0.5
-            ? `rgba(34,197,94,0.55)`
-            : `rgba(6,182,212,0.55)`;
-
-          ctx.beginPath();
-          ctx.fillStyle = c;
-          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-          ctx.fill();
-
-          // halo
-          ctx.beginPath();
-          ctx.fillStyle = p.hueMix < 0.5
-            ? "rgba(34,197,94,0.06)"
-            : "rgba(6,182,212,0.06)";
-          ctx.arc(p.x, p.y, p.r * 6, 0, Math.PI * 2);
-          ctx.fill();
-        }
-
-        // connections
-        for (let i = 0; i < particles.length; i++) {
-          const a = particles[i];
-          for (let j = i + 1; j < particles.length; j++) {
-            const b = particles[j];
-            const dx = a.x - b.x;
-            const dy = a.y - b.y;
-            const d2 = dx * dx + dy * dy;
-            const maxD = 110;
-            if (d2 < maxD * maxD) {
-              const d = Math.sqrt(d2);
-              const alpha = (1 - d / maxD) * 0.12;
-              ctx.strokeStyle = `rgba(148,163,184,${alpha})`;
-              ctx.lineWidth = 1;
-              ctx.beginPath();
-              ctx.moveTo(a.x, a.y);
-              ctx.lineTo(b.x, b.y);
-              ctx.stroke();
-            }
-          }
-        }
-
-        // mouse glow
-        if (mouse.active) {
-          const mg = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 140);
-          mg.addColorStop(0, "rgba(34,197,94,0.06)");
-          mg.addColorStop(0.55, "rgba(6,182,212,0.03)");
-          mg.addColorStop(1, "rgba(0,0,0,0)");
-          ctx.fillStyle = mg;
-          ctx.fillRect(mouse.x - 140, mouse.y - 140, 280, 280);
-        }
-
-        requestAnimationFrame(step);
-      }
-
-      window.addEventListener("resize", resize);
-      window.addEventListener("mousemove", onPointerMove, { passive: true });
-      window.addEventListener("mouseleave", onPointerLeave, { passive: true });
-
-      resize();
-      step();
-    })();
-
-    /* =========================================================
-       TYPING EFFECT (ROTATING SENTENCES)
-    ========================================================= */
-    (function initTyping() {
-      const el = $("#typingText");
-      if (!el) return;
-
-      const lines = [
-        "ML 모델 성능만이 아니라, 결과가 실제 의사결정에 쓰이게 만드는 엔지니어를 지향합니다.",
-        "LightGBM · XGBoost · SHAP · LangGraph · Agent Workflow 중심의 프로젝트 경험",
-        "NLP · 시계열 예측 · 센서 데이터 · 서비스 연동까지 End-to-End 구현 경험"
-      ];
-
-      let lineIndex = 0;
-      let charIndex = 0;
-      let deleting = false;
-
-      function tick() {
-        const current = lines[lineIndex];
-        if (!deleting) {
-          charIndex++;
-          el.textContent = current.slice(0, charIndex);
-          if (charIndex >= current.length) {
-            deleting = true;
-            setTimeout(tick, 1400);
-            return;
-          }
-        } else {
-          charIndex--;
-          el.textContent = current.slice(0, charIndex);
-          if (charIndex <= 0) {
-            deleting = false;
-            lineIndex = (lineIndex + 1) % lines.length;
-          }
-        }
-        setTimeout(tick, deleting ? 22 : 28);
-      }
-
-      tick();
-    })();
-
-    /* =========================================================
-       HERO PANEL 3D TILT
-    ========================================================= */
-    (function initHeroPanelTilt() {
-      const panel = $("#heroPanel3D");
-      if (!panel) return;
-
-      let raf = null;
-      let targetX = 0, targetY = 0;
-      let currentX = 0, currentY = 0;
-
-      function animate() {
-        currentX += (targetX - currentX) * 0.14;
-        currentY += (targetY - currentY) * 0.14;
-        panel.style.transform = `perspective(1000px) rotateX(${currentY}deg) rotateY(${currentX}deg)`;
-        raf = requestAnimationFrame(animate);
-      }
-
-      function onMove(e) {
-        const rect = panel.getBoundingClientRect();
-        const px = (e.clientX - rect.left) / rect.width;
-        const py = (e.clientY - rect.top) / rect.height;
-        targetX = (px - 0.5) * 8;
-        targetY = (0.5 - py) * 8;
-        if (!raf) raf = requestAnimationFrame(animate);
-      }
-
-      function onLeave() {
-        targetX = 0;
-        targetY = 0;
-      }
-
-      panel.addEventListener("mousemove", onMove, { passive: true });
-      panel.addEventListener("mouseleave", onLeave, { passive: true });
-    })();
-
-    /* =========================================================
-       MAGNETIC BUTTONS
-    ========================================================= */
-    (function initMagneticButtons() {
-      const magnets = $$("[data-magnetic]");
-      magnets.forEach((el) => {
-        let raf;
-        let tx = 0, ty = 0, cx = 0, cy = 0;
-
-        function loop() {
-          cx += (tx - cx) * 0.16;
-          cy += (ty - cy) * 0.16;
-          el.style.transform = `translate(${cx}px, ${cy}px)`;
-          if (Math.abs(tx - cx) < 0.05 && Math.abs(ty - cy) < 0.05) {
-            cancelAnimationFrame(raf);
-            raf = null;
-          } else {
-            raf = requestAnimationFrame(loop);
-          }
-        }
-
-        el.addEventListener("mousemove", (e) => {
-          const rect = el.getBoundingClientRect();
-          const x = e.clientX - rect.left - rect.width / 2;
-          const y = e.clientY - rect.top - rect.height / 2;
-          tx = x * 0.12;
-          ty = y * 0.12;
-          if (!raf) raf = requestAnimationFrame(loop);
-        });
-
-        el.addEventListener("mouseleave", () => {
-          tx = 0; ty = 0;
-          if (!raf) raf = requestAnimationFrame(loop);
-        });
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add("revealed");
       });
-    })();
+    }, { threshold: 0.16, rootMargin: "0px 0px -10% 0px" });
 
-    /* =========================================================
-       SCROLL PROGRESS + NAV STATE + TOP BUTTON
-    ========================================================= */
-    (function initScrollUI() {
-      const progress = $("#scrollProgress");
-      const navWrap = $("#navWrap");
-      const toTopBtn = $("#toTopBtn");
-      const navLinks = $$(".nav-link");
-      const sectionIds = ["about", "projects", "skills", "journey", "awards", "contact"];
-      const sections = sectionIds.map(id => $("#" + id)).filter(Boolean);
+    $$('[data-reveal]').forEach(el => observer.observe(el));
 
-      function update() {
-        const y = window.scrollY || window.pageYOffset;
-        const h = document.documentElement.scrollHeight - window.innerHeight;
-        const ratio = h > 0 ? (y / h) * 100 : 0;
-        if (progress) progress.style.width = ratio + "%";
-
-        navWrap?.classList.toggle("scrolled", y > 12);
-        toTopBtn?.classList.toggle("hidden", y < 360);
-
-        let current = "about";
-        for (const sec of sections) {
-          const rect = sec.getBoundingClientRect();
-          if (rect.top <= 120 && rect.bottom > 120) {
-            current = sec.id;
-            break;
-          }
-        }
-
-        navLinks.forEach(link => {
-          link.classList.toggle("active", link.getAttribute("href") === "#" + current);
-        });
-      }
-
-      window.addEventListener("scroll", update, { passive: true });
-      window.addEventListener("resize", update);
-      update();
-
-      toTopBtn?.addEventListener("click", () => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
+    const sections = ["about", "work", "skills", "journey", "awards", "contact"];
+    const navLinks = $$("#navLinks a");
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        navLinks.forEach(link => link.classList.remove("active"));
+        const active = navLinks.find(link => link.getAttribute("href") === `#${entry.target.id}`);
+        active?.classList.add("active");
       });
-    })();
-
-    /* =========================================================
-       MOBILE DRAWER
-    ========================================================= */
-    (function initMobileDrawer() {
-      const drawer = $("#mobileDrawer");
-      const toggle = $("#navToggle");
-      const closeBtn = $("#drawerClose");
-      const backdrop = $("#drawerBackdrop");
-      const links = $$("[data-drawer-link]");
-
-      function openDrawer() {
-        drawer.classList.add("open");
-        drawer.setAttribute("aria-hidden", "false");
-        document.body.style.overflow = "hidden";
-      }
-
-      function closeDrawer() {
-        drawer.classList.remove("open");
-        drawer.setAttribute("aria-hidden", "true");
-        document.body.style.overflow = "";
-      }
-
-      toggle?.addEventListener("click", openDrawer);
-      closeBtn?.addEventListener("click", closeDrawer);
-      backdrop?.addEventListener("click", closeDrawer);
-      links.forEach(a => a.addEventListener("click", closeDrawer));
-      window.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && drawer.classList.contains("open")) closeDrawer();
-      });
-    })();
-
-    /* =========================================================
-       REVEAL ON SCROLL
-    ========================================================= */
-    (function initReveal() {
-      const nodes = $$("[data-reveal]");
-      if (!("IntersectionObserver" in window)) {
-        nodes.forEach(n => n.classList.add("revealed"));
-        return;
-      }
-
-      const obs = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const d = entry.target.getAttribute("data-reveal-delay");
-            if (d) entry.target.style.transitionDelay = d + "ms";
-            entry.target.classList.add("revealed");
-            obs.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.12 });
-
-      nodes.forEach(n => obs.observe(n));
-    })();
-
-    /* =========================================================
-       COUNTERS
-    ========================================================= */
-    (function initCounters() {
-      const counters = $$(".count");
-      if (!counters.length) return;
-
-      const animateCounter = (el) => {
-        const target = Number(el.dataset.target || 0);
-        const duration = 1200;
-        const start = performance.now();
-
-        function frame(now) {
-          const p = Math.min((now - start) / duration, 1);
-          const eased = 1 - Math.pow(1 - p, 3);
-          el.textContent = Math.floor(target * eased);
-          if (p < 1) requestAnimationFrame(frame);
-          else el.textContent = target;
-        }
-        requestAnimationFrame(frame);
-      };
-
-      const obs = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            animateCounter(entry.target);
-            obs.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.6 });
-
-      counters.forEach(c => obs.observe(c));
-    })();
-
-    /* =========================================================
-       SKILL BARS ANIMATION
-    ========================================================= */
-    (function initSkillBars() {
-      const fills = $$(".bar-fill");
-      if (!fills.length) return;
-
-      const wrap = $("#skills");
-      if (!wrap) return;
-
-      const obs = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            fills.forEach((f, idx) => {
-              setTimeout(() => {
-                f.style.width = f.dataset.width || "0%";
-              }, idx * 90);
-            });
-            obs.disconnect();
-          }
-        });
-      }, { threshold: 0.25 });
-
-      obs.observe(wrap);
-    })();
-
-    /* =========================================================
-       PROJECT CARD RENDER + FILTER + TILT + MODAL
-    ========================================================= */
-    (function initProjects() {
-      const featuredGrid = $("#featuredGrid");
-      const projectsGrid = $("#projectsGrid");
-      const emptyState = $("#emptyState");
-      const tabsWrap = $("#projectTabs");
-      const modal = $("#projectModal");
-      const modalBody = $("#modalBody");
-      const modalClose = $("#modalClose");
-      const modalBackdrop = $("#modalBackdrop");
-
-      if (!featuredGrid || !projectsGrid) return;
-
-      let currentFilter = "all";
-
-      function cardTemplate(p, compact = false) {
-        const points = p.shortPoints.slice(0, compact ? 2 : 3)
-          .map(item => `
-            <div class="project-point">
-              <span class="pin"></span>
-              <span>${escapeHtml(item)}</span>
-            </div>
-          `).join("");
-
-        const tags = p.tags.slice(0, compact ? 4 : 6)
-          .map(t => `<span class="project-tag">${escapeHtml(t)}</span>`).join("");
-
-        const techMini = p.tech.slice(0, compact ? 3 : 4)
-          .map(t => `<span>${escapeHtml(t)}</span>`).join("");
-
-        return `
-          <article class="project-card ${compact ? "compact" : ""}" data-project-id="${escapeHtml(p.id)}" tabindex="0" role="button" aria-label="${escapeHtml(p.title)} 상세보기">
-            <div class="project-top">
-              <div class="project-badge"><span class="b-dot"></span>${escapeHtml(p.badge)}</div>
-              <div class="project-score">${escapeHtml(p.score)}</div>
-            </div>
-
-            <h3 class="project-title">${escapeHtml(p.title)}</h3>
-
-            <p class="project-desc">${escapeHtml(p.subtitle)}</p>
-
-            <div class="project-tags">${tags}</div>
-
-            <div class="project-points">${points}</div>
-
-            <div class="project-bottom">
-              <div class="mini-tech">${techMini}</div>
-              <div class="project-actions">
-                <button class="mini-btn primary" data-open-project="${escapeHtml(p.id)}">상세보기</button>
-                <a class="mini-btn" href="${p.repo || 'https://github.com/leeseungyoons'}" target="_blank" rel="noopener">GitHub</a>
-              </div>
-            </div>
-          </article>
-        `;
-      }
-
-      function matchesFilter(p, filter) {
-        if (filter === "all") return true;
-        return p.category.includes(filter);
-      }
-
-      function render() {
-        const featured = PROJECTS.filter(p => p.featured && matchesFilter(p, currentFilter));
-        const others = PROJECTS.filter(p => !p.featured && matchesFilter(p, currentFilter));
-
-        featuredGrid.innerHTML = featured.map(p => cardTemplate(p, false)).join("");
-        projectsGrid.innerHTML = others.map(p => cardTemplate(p, true)).join("");
-
-        const hasAny = featured.length + others.length > 0;
-        emptyState.style.display = hasAny ? "none" : "block";
-
-        initTiltOnCards();
-        bindCardOpenEvents();
-      }
-
-      function initTiltOnCards() {
-        $$(".project-card").forEach(card => {
-          let raf = null;
-          let tx = 0, ty = 0, cx = 0, cy = 0;
-
-          const max = card.classList.contains("compact") ? 5 : 7;
-
-          function animate() {
-            cx += (tx - cx) * 0.14;
-            cy += (ty - cy) * 0.14;
-            card.style.transform = `perspective(1000px) rotateX(${cy}deg) rotateY(${cx}deg) translateY(-2px)`;
-            if (Math.abs(tx - cx) < 0.03 && Math.abs(ty - cy) < 0.03) {
-              raf = null;
-              return;
-            }
-            raf = requestAnimationFrame(animate);
-          }
-
-          function move(e) {
-            const rect = card.getBoundingClientRect();
-            const px = (e.clientX - rect.left) / rect.width;
-            const py = (e.clientY - rect.top) / rect.height;
-            tx = (px - 0.5) * max;
-            ty = (0.5 - py) * max;
-            if (!raf) raf = requestAnimationFrame(animate);
-          }
-
-          function leave() {
-            tx = 0; ty = 0;
-            if (!raf) raf = requestAnimationFrame(animate);
-          }
-
-          card.addEventListener("mousemove", move, { passive: true });
-          card.addEventListener("mouseleave", leave, { passive: true });
-
-          // keyboard open
-          card.addEventListener("keydown", (e) => {
-            if (e.key === "Enter" || e.key === " ") {
-              e.preventDefault();
-              const id = card.dataset.projectId;
-              openModalById(id);
-            }
-          });
-
-          card.addEventListener("click", (e) => {
-            // avoid hijacking GitHub link clicks
-            const target = e.target;
-            if (target.closest("a")) return;
-            const btn = target.closest("[data-open-project]");
-            if (btn) return;
-            openModalById(card.dataset.projectId);
-          });
-        });
-      }
-
-      function bindCardOpenEvents() {
-        $$("[data-open-project]").forEach(btn => {
-          btn.addEventListener("click", (e) => {
-            e.stopPropagation();
-            const id = btn.getAttribute("data-open-project");
-            openModalById(id);
-          });
-        });
-      }
-
-      function openModalById(id) {
-        const p = PROJECTS.find(x => x.id === id);
-        if (!p) return;
-
-        modalBody.innerHTML = `
-          <section class="modal-head">
-            <div class="modal-title" id="modalTitle">${escapeHtml(p.title)}</div>
-            <div class="modal-sub">${escapeHtml(p.subtitle)}</div>
-            <div class="modal-meta">
-              <span class="item">${escapeHtml(p.badge)}</span>
-              <span class="item">${escapeHtml(p.period)}</span>
-              <span class="item">${escapeHtml(p.role)}</span>
-              <span class="item">카테고리: ${escapeHtml(p.category.join(" · "))}</span>
-            </div>
-          </section>
-
-          <section class="modal-grid">
-            <div class="modal-card">
-              <h4>주요 구현 / 담당</h4>
-              <ul>
-                ${p.whatIDid.map(i => `<li><span class="dot"></span><span>${escapeHtml(i)}</span></li>`).join("")}
-              </ul>
-            </div>
-
-            <div class="modal-card">
-              <h4>기술 스택</h4>
-              <ul>
-                ${p.stackDetail.map(i => `<li><span class="dot"></span><span>${escapeHtml(i)}</span></li>`).join("")}
-              </ul>
-            </div>
-
-            <div class="modal-card">
-              <h4>성과/포인트 (면접 강조용)</h4>
-              <ul>
-                ${p.metrics.map(i => `<li><span class="dot"></span><span>${escapeHtml(i)}</span></li>`).join("")}
-              </ul>
-            </div>
-
-            <div class="modal-card">
-              <h4>임팩트 / 어필 포인트</h4>
-              <ul>
-                ${p.impact.map(i => `<li><span class="dot"></span><span>${escapeHtml(i)}</span></li>`).join("")}
-              </ul>
-            </div>
-          </section>
-
-          <section class="modal-card">
-            <h4>태그</h4>
-            <div class="project-tags">
-              ${p.tags.map(t => `<span class="project-tag">${escapeHtml(t)}</span>`).join("")}
-            </div>
-          </section>
-
-          <div class="modal-footer">
-            ${p.demo ? `<a class="btn" href="${escapeHtml(p.demo)}" target="_blank" rel="noopener">포트폴리오 / Demo</a>` : ""}
-            <a class="btn btn-primary" href="${escapeHtml(p.repo || "https://github.com/leeseungyoons")}" target="_blank" rel="noopener">GitHub 보기</a>
-          </div>
-        `;
-
-        modal.classList.add("open");
-        modal.setAttribute("aria-hidden", "false");
-        document.body.style.overflow = "hidden";
-      }
-
-      function closeModal() {
-        modal.classList.remove("open");
-        modal.setAttribute("aria-hidden", "true");
-        document.body.style.overflow = "";
-      }
-
-      tabsWrap?.addEventListener("click", (e) => {
-        const btn = e.target.closest(".tab-btn");
-        if (!btn) return;
-        currentFilter = btn.dataset.filter || "all";
-        $$(".tab-btn", tabsWrap).forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
-        render();
-      });
-
-      modalClose?.addEventListener("click", closeModal);
-      modalBackdrop?.addEventListener("click", closeModal);
-      window.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && modal.classList.contains("open")) closeModal();
-      });
-
-      render();
-    })();
-
-    /* =========================================================
-       ACTIVE NAV LINK (SECTION OBSERVER)
-    ========================================================= */
-    (function initActiveNavObserver() {
-      const links = $$(".nav-link");
-      const map = new Map(links.map(l => [l.getAttribute("href")?.replace("#", ""), l]));
-
-      const sections = ["about", "projects", "skills", "journey", "awards", "contact"]
-        .map(id => document.getElementById(id))
-        .filter(Boolean);
-
-      if (!("IntersectionObserver" in window)) return;
-
-      let current = "about";
-      const obs = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            current = entry.target.id;
-            links.forEach(l => l.classList.remove("active"));
-            map.get(current)?.classList.add("active");
-          }
-        });
-      }, {
-        rootMargin: "-35% 0px -55% 0px",
-        threshold: 0.01
-      });
-
-      sections.forEach(sec => obs.observe(sec));
-    })();
-
-    /* =========================================================
-       ANCHOR OFFSET FIX (for fixed nav)
-    ========================================================= */
-    (function initAnchorOffset() {
-      function scrollWithOffset(id) {
-        const el = document.getElementById(id);
-        if (!el) return;
-        const navH = 84;
-        const top = el.getBoundingClientRect().top + window.pageYOffset - navH;
-        window.scrollTo({ top, behavior: "smooth" });
-      }
-
-      document.addEventListener("click", (e) => {
-        const a = e.target.closest('a[href^="#"]');
-        if (!a) return;
-        const href = a.getAttribute("href");
-        if (!href || href.length < 2) return;
-        const id = href.slice(1);
-        if (!document.getElementById(id)) return;
-        e.preventDefault();
-        scrollWithOffset(id);
-      });
-    })();
-
-    /* =========================================================
-       EASTER: quick keyboard "g" opens github
-    ========================================================= */
-    (function initKeyShortcut() {
-      window.addEventListener("keydown", (e) => {
-        if (e.target && ["INPUT", "TEXTAREA"].includes(e.target.tagName)) return;
-        if (e.key.toLowerCase() === "g" && !e.metaKey && !e.ctrlKey && !e.altKey) {
-          // press 'g' twice quickly
-          const now = performance.now();
-          window.__lastG = window.__lastG || 0;
-          if (now - window.__lastG < 420) {
-            window.open("https://github.com/leeseungyoons", "_blank", "noopener");
-          }
-          window.__lastG = now;
-        }
-      });
-    })();
-
-    /* =========================================================
-       OPTIONAL: subtle parallax on orbs (mouse)
-    ========================================================= */
-    (function initOrbParallax() {
-      const o1 = $(".orb-1");
-      const o2 = $(".orb-2");
-      const o3 = $(".orb-3");
-      if (!o1 || !o2 || !o3) return;
-
-      let mx = 0, my = 0, tx = 0, ty = 0, raf;
-
-      function frame() {
-        mx += (tx - mx) * 0.06;
-        my += (ty - my) * 0.06;
-
-        o1.style.transform = `translate(${mx * -0.04}px, ${my * -0.05}px)`;
-        o2.style.transform = `translate(${mx * 0.06}px, ${my * -0.03}px)`;
-        o3.style.transform = `translate(${mx * -0.02}px, ${my * 0.06}px)`;
-
-        raf = requestAnimationFrame(frame);
-      }
-
-      window.addEventListener("mousemove", (e) => {
-        tx = e.clientX - window.innerWidth / 2;
-        ty = e.clientY - window.innerHeight / 2;
-      }, { passive: true });
-
-      frame();
-    })();
-
-    /* =========================================================
-       Console signature
-    ========================================================= */
-    console.log("%cLEE SEUNGYOON · ML Engineer Portfolio", "color:#22c55e;font-weight:700;font-size:14px;");
-    console.log("GitHub Pages에서 index.html만 교체해도 동작하도록 제작됨 ✅");
+    }, { threshold: 0.3, rootMargin: "-20% 0px -55% 0px" });
+    sections.map(id => document.getElementById(id)).filter(Boolean).forEach(sec => sectionObserver.observe(sec));
+
+    document.addEventListener("click", (e) => {
+      const anchor = e.target.closest('a[href^="#"]');
+      if (!anchor) return;
+      const href = anchor.getAttribute("href");
+      if (!href || href === "#") return;
+      const target = document.querySelector(href);
+      if (!target) return;
+      e.preventDefault();
+      const navOffset = 84;
+      const top = target.getBoundingClientRect().top + window.pageYOffset - navOffset;
+      window.scrollTo({ top, behavior: "smooth" });
+    });
+
+    console.log("LEE SEUNGYOON | AI Engineer Portfolio ready ✨");
   </script>
 </body>
 </html>
